@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Button"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <label
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldLabel="Label"
+                        name="./label"/>
+                    <link
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldLabel="Link (URL)"
+                        name="./link"
+                        emptyText="/content/academy-codenova.html"/>
+                    <buttonType
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                        fieldLabel="Type"
+                        name="./buttonType">
+                        <items jcr:primaryType="nt:unstructured">
+                            <filled jcr:primaryType="nt:unstructured" value="filled" text="Filled"/>
+                            <outline jcr:primaryType="nt:unstructured" value="outline" text="Outline"/>
+                            <text jcr:primaryType="nt:unstructured" value="text" text="Text"/>
+                        </items>
+                    </buttonType>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root
+    xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:PageContent"
+    sling:resourceType="academy-codenova/components/structure/homepage">
+    <heroTitle
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="academy-codenova/components/content/title"
+        text="CodeNova"
+        type="h1"/>
+    <heroText
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="academy-codenova/components/content/text"
+        text="Building modern AEM experiences"/>
+    <heroPrimaryButton
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="academy-codenova/components/content/button"
+        label="Get Started"
+        buttonType="filled"
+        link="/content/academy-codenova.html"/>
+    <heroSecondaryButton
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="academy-codenova/components/content/button"
+        label="Learn More"
+        buttonType="outline"
+        link="#"/>
+</jcr:root>

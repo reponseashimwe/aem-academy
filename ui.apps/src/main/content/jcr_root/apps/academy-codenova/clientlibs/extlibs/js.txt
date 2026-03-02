@@ -1,0 +1,2 @@
+js/jquery.min.js
+js/bootstrap.bundle.min.js

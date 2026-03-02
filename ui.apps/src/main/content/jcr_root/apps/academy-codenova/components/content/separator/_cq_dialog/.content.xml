@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Separator"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <borderSize
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                        fieldLabel="Border size"
+                        name="./borderSize">
+                        <items jcr:primaryType="nt:unstructured">
+                            <hidden jcr:primaryType="nt:unstructured" value="hidden" text="Hidden"/>
+                            <thin jcr:primaryType="nt:unstructured" value="thin" text="Thin"/>
+                            <medium jcr:primaryType="nt:unstructured" value="medium" text="Medium" selected="{Boolean}true"/>
+                            <thick jcr:primaryType="nt:unstructured" value="thick" text="Thick"/>
+                        </items>
+                    </borderSize>
+                    <padding
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                        fieldLabel="Padding (space around)"
+                        name="./padding">
+                        <items jcr:primaryType="nt:unstructured">
+                            <none jcr:primaryType="nt:unstructured" value="none" text="None"/>
+                            <small jcr:primaryType="nt:unstructured" value="small" text="Small"/>
+                            <medium jcr:primaryType="nt:unstructured" value="medium" text="Medium" selected="{Boolean}true"/>
+                            <large jcr:primaryType="nt:unstructured" value="large" text="Large"/>
+                        </items>
+                    </padding>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>

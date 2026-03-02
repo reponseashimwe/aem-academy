@@ -1,0 +1,20 @@
+<section class="hero">
+	<div class="container py-5 text-center">
+		<div class="mb-3">
+			<sly data-sly-resource="${'heroTitle' @ resourceType='academy-codenova/components/content/title'}"/>
+		</div>
+		<div class="mb-4">
+			<sly data-sly-resource="${'heroText' @ resourceType='academy-codenova/components/content/text'}"/>
+		</div>
+		<div class="d-flex justify-content-center gap-3 flex-wrap">
+			<sly data-sly-resource="${'heroPrimaryButton' @ resourceType='academy-codenova/components/content/button'}"/>
+			<sly data-sly-resource="${'heroSecondaryButton' @ resourceType='academy-codenova/components/content/button'}"/>
+		</div>
+	</div>
+</section>
+
+<section class="page-section">
+	<div class="container">
+		<sly data-sly-resource="${'par' @ resourceType='wcm/foundation/components/parsys'}"/>
+	</div>
+</section>

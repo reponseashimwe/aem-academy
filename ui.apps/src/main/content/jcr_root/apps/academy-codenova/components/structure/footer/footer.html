@@ -1,0 +1,25 @@
+<footer class="bg-dark text-white mt-5 py-5">
+	<div class="container">
+		<div class="row align-items-start">
+			<div class="col-md-6 col-lg-5 mb-4 mb-md-0">
+				<sly data-sly-resource="${'logo' @ resourceType='academy-codenova/components/structure/logo'}"/>
+				<p class="text-secondary small mt-2 mb-0">
+					Building the future,<br/>one component at a time.
+				</p>
+			</div>
+			<div class="col-md-6 col-lg-4">
+				<span class="fw-semibold d-block mb-2">Navigation</span>
+				<nav class="d-flex flex-column gap-1">
+					<sly data-sly-list.page="${currentPage.parent.listChildren}">
+						<a href="${page.path}.html" class="text-secondary text-decoration-none">${page.title}</a>
+					</sly>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<div class="border-top border-secondary border-opacity-25 mt-4 py-3">
+		<div class="container text-center text-secondary small">
+			<p class="mb-0">© CodeNova. All rights reserved.</p>
+		</div>
+	</div>
+</footer>

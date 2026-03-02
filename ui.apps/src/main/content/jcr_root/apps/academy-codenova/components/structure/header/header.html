@@ -1,0 +1,15 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<div class="container">
+		<sly data-sly-resource="${'logo' @ resourceType='academy-codenova/components/structure/logo'}"/>
+		<div class="navbar-collapse">
+			<ul class="navbar-nav ms-auto gap-2 gap-lg-3">
+				<sly data-sly-list.page="${currentPage.parent.listChildren}">
+					<li class="nav-item">
+						<a href="${page.path}.html"
+						   class="nav-link ${page.path == currentPage.path ? 'active' : ''}">${page.title}</a>
+					</li>
+				</sly>
+			</ul>
+		</div>
+	</div>
+</nav>
