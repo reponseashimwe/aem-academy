@@ -4,6 +4,13 @@
     xmlns:jcr="http://www.jcp.org/jcr/1.0"
     jcr:primaryType="cq:PageContent"
     sling:resourceType="academy-codenova/components/structure/homepage">
+    <styledHeader
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="academy-codenova/components/content/styled-header"
+        jcr:title="Welcome"
+        subtitle="Academy"
+        customDescription="Building modern AEM experiences"
+        position="center"/>
     <heroTitle
         jcr:primaryType="nt:unstructured"
         sling:resourceType="academy-codenova/components/content/title"
