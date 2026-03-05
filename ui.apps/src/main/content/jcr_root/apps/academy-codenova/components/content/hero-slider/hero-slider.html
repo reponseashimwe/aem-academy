@@ -1,0 +1,124 @@
+<sly data-sly-use.sliderModel="com.reponse.mvn.core.models.HeroSliderModel" />
+
+<div
+	data-sly-test="${sliderModel.hasSlides}"
+	class="cn-hero-slider"
+>
+	<div class="cn-hero-slider__frame">
+		<div
+			id="${resource.name}-slider"
+			class="cn-hero-slider__carousel swiper"
+			data-autoplay="${sliderModel.autoplay ? 'true' : 'false'}"
+			data-interval="${sliderModel.autoplayDelay}"
+			data-wrap="${sliderModel.loop ? 'true' : 'false'}"
+		>
+			<div class="swiper-wrapper">
+				<sly data-sly-list.slide="${sliderModel.slides}">
+					<div class="swiper-slide cn-hero-slider__slide">
+						<div class="cn-hero-slide">
+							<div class="cn-hero-slide__media">
+								<sly data-sly-test.hasImage="${slide.image}">
+									<div class="cn-hero-slide__media-inner">
+										<img
+											src="${slide.image}"
+											alt="${slide.title || 'Hero slide image'}"
+											loading="lazy"
+										/>
+									</div>
+								</sly>
+								<sly data-sly-test="${!hasImage && wcmmode.edit}">
+									<div class="cn-hero-slide__media-inner cn-hero-slide__media-inner--placeholder">
+										<span>Configure an image for this slide</span>
+									</div>
+								</sly>
+							</div>
+
+							<div class="cn-hero-slide__content-container">
+								<div class="container h-100 d-flex align-items-center">
+									<div class="cn-hero-slide__content text-start">
+										<span
+											data-sly-test="${slide.pretitle}"
+											class="cn-hero-slide__pretitle text-uppercase small fw-semibold d-block mb-2"
+										>
+											${slide.pretitle}
+										</span>
+										<h1 class="cn-hero-slide__title fw-bold mb-3">${slide.title}</h1>
+										<p
+											data-sly-test="${slide.subtitle}"
+											class="cn-hero-slide__subtitle lead mb-4"
+										>
+											${slide.subtitle}
+										</p>
+
+										<div
+											class="d-flex flex-wrap justify-content-start gap-3"
+											data-sly-test="${slide.ctaLabel || slide.ctaLink}"
+										>
+											<a
+												href="${slide.ctaLink || '#'}"
+												class="btn ${slide.ctaVariant == 'outline' ? 'btn-outline-light' : (slide.ctaVariant == 'ghost' ? 'btn-link text-white' : 'btn-light')}"
+											>
+												${slide.ctaLabel || 'Learn more'}
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</sly>
+			</div>
+
+			<div class="cn-hero-slider__bottom">
+				<div
+					class="cn-hero-slider__pagination swiper-pagination"
+					data-sly-test="${sliderModel.showPagination}"
+				>
+				</div>
+
+				<div class="cn-hero-slider__controls">
+					<button
+						type="button"
+						class="cn-hero-slider__nav"
+						data-cn-hero-prev="true"
+						data-sly-test="${sliderModel.showNavigation}"
+					>
+						<span
+							class="cn-hero-slider__arrow"
+							aria-hidden="true"
+							>&lsaquo;</span
+						>
+						<span class="visually-hidden">Previous slide</span>
+					</button>
+
+					<div class="cn-hero-slider__counter">
+						<span class="cn-hero-slider__counter-current">1</span>
+						<span class="cn-hero-slider__counter-separator">/</span>
+						<span class="cn-hero-slider__counter-total">${sliderModel.totalSlides}</span>
+					</div>
+
+					<button
+						type="button"
+						class="cn-hero-slider__nav"
+						data-cn-hero-next="true"
+						data-sly-test="${sliderModel.showNavigation}"
+					>
+						<span
+							class="cn-hero-slider__arrow"
+							aria-hidden="true"
+							>&rsaquo;</span
+						>
+						<span class="visually-hidden">Next slide</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div
+	data-sly-test="${!sliderModel.hasSlides && wcmmode.edit}"
+	class="cn-hero-slider-empty d-flex align-items-center justify-content-center text-muted"
+>
+	<span>Add slides in the dialog.</span>
+</div>

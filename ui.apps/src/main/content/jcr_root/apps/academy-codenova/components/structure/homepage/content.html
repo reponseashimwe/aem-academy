@@ -1,30 +1,9 @@
-<section class="hero">
-	<div class="container py-5 text-center">
-		<div class="mb-3">
-			<sly data-sly-resource="${'heroTitle' @ resourceType='academy-codenova/components/content/title'}" />
-		</div>
-		<div class="mb-4">
-			<sly data-sly-resource="${'heroText' @ resourceType='academy-codenova/components/content/text'}" />
-		</div>
-		<div class="hero-actions d-flex justify-content-center gap-3 flex-wrap">
-			<div class="hero-actions__item">
-				<sly
-					data-sly-resource="${'heroPrimaryButton' @ resourceType='academy-codenova/components/content/button'}"
-				/>
-			</div>
-			<div class="hero-actions__item">
-				<sly
-					data-sly-resource="${'heroSecondaryButton' @ resourceType='academy-codenova/components/content/button'}"
-				/>
-			</div>
-		</div>
-	</div>
+<section class="cn-hero-slider-wrapper">
+	<sly data-sly-resource="${'heroSlider' @ resourceType='academy-codenova/components/content/hero-slider'}" />
 </section>
 
 <section class="page-section">
 	<div class="container">
-		<sly data-sly-resource="${'styledHeader' @ resourceType='academy-codenova/components/content/styled-header'}" />
-
 		<sly data-sly-resource="${'par' @ resourceType='wcm/foundation/components/parsys'}" />
 	</div>
 </section>

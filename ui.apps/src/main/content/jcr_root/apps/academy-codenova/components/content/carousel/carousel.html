@@ -15,7 +15,7 @@
         </div>
     </sly>
 </div>
-<div data-sly-test="${!resource.slides || !resource.slides.hasChildren}"
+<div data-sly-test="${(!resource.slides || !resource.slides.hasChildren) && wcmmode.edit}"
      class="d-flex align-items-center justify-content-center rounded bg-light text-muted small cn-carousel-empty">
     <span>Add slides in the dialog</span>
 </div>
