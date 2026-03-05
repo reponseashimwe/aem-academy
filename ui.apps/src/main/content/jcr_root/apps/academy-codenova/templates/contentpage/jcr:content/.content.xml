@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
     jcr:primaryType="cq:PageContent"
-    sling:resourceType="academy-codenova/components/structure/page"/>
+    sling:resourceType="academy-codenova/components/structure/page">
+    <styledHeader
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="academy-codenova/components/content/styled-header"
+        jcr:title="Page Title"
+        subtitle="Academy"
+        customDescription="Edit this description in the page."
+        position="start"/>
+    <par
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="wcm/foundation/components/parsys"/>
+</jcr:root>

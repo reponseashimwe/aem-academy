@@ -42,9 +42,10 @@
                             <goal>bnd-process</goal>
                         </goals>
                         <configuration>
-                            <bnd><![CDATA[
-Import-Package: javax.annotation;version=0.0.0,*
-                                ]]></bnd>
+<bnd><![CDATA[
+Export-Package: com.reponse.mvn.core.*
+Sling-Model-Packages: com.reponse.mvn.core.models
+]]></bnd>
                         </configuration>
                     </execution>
                 </executions>

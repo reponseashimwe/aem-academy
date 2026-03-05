@@ -31,24 +31,17 @@
                 <configuration>
                     <properties>
                         <cloudManagerTarget>none</cloudManagerTarget>
+                        <packageType>container</packageType>
                     </properties>
                     <filters>
-                        <!-- /apps root -->
+                        <!-- /apps: parents of what ui.apps deploys -->
                         <filter><root>/apps</root></filter>
+                        <filter><root>/apps/academy-codenova</root></filter>
                         <filter><root>/apps/mvnreponse</root></filter>
-                        <!-- Common overlay roots -->
-                                                <filter><root>/apps/sling</root></filter>
-                        <filter><root>/apps/cq</root></filter>
-                        <filter><root>/apps/dam</root></filter>
-                        <filter><root>/apps/wcm</root></filter>
-                        <filter><root>/apps/msm</root></filter>
-
-                        <!-- Immutable context-aware configurations -->
-                        <filter><root>/apps/settings</root></filter>
-
-                        <!-- DAM folder root, will be created via repoinit -->
+                        <!-- /content/dam: ancestor must be covered for dependency validation -->
+                        <filter><root>/content</root></filter>
+                        <filter><root>/content/dam</root></filter>
                         <filter><root>/content/dam/mvnreponse</root></filter>
-
                     </filters>
                 </configuration>
             </plugin>
