@@ -10,8 +10,13 @@
 			<div class="col-md-6 col-lg-4">
 				<span class="fw-semibold d-block mb-2">Navigation</span>
 				<nav class="d-flex flex-column gap-1">
-					<sly data-sly-list.page="${currentPage.parent.listChildren}">
-						<a href="${page.path}.html" class="text-secondary text-decoration-none">${page.title}</a>
+					<sly data-sly-list.child="${currentPage.listChildren}">
+						<a href="${child.path}.html" class="text-secondary text-decoration-none">${child.title}</a>
+					</sly>
+					<sly data-sly-test="${!childList}">
+						<sly data-sly-list.page="${currentPage.parent.listChildren}">
+							<a href="${page.path}.html" class="text-secondary text-decoration-none">${page.title}</a>
+						</sly>
 					</sly>
 				</nav>
 			</div>
