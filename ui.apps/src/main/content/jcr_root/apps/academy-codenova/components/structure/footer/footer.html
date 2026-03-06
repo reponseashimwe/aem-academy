@@ -2,21 +2,18 @@
 	<div class="container">
 		<div class="row align-items-start">
 			<div class="col-md-6 col-lg-5 mb-4 mb-md-0">
-				<sly data-sly-resource="${'logo' @ resourceType='academy-codenova/components/structure/logo'}"/>
-				<p class="text-secondary small mt-2 mb-0">
-					Building the future,<br/>one component at a time.
-				</p>
+				<sly data-sly-resource="${'logo' @ resourceType='academy-codenova/components/structure/logo'}" />
+				<p class="text-secondary small mt-2 mb-0">Building the future,<br />one component at a time.</p>
 			</div>
 			<div class="col-md-6 col-lg-4">
 				<span class="fw-semibold d-block mb-2">Navigation</span>
 				<nav class="d-flex flex-column gap-1">
 					<sly data-sly-list.child="${currentPage.listChildren}">
-						<a href="${child.path}.html" class="text-secondary text-decoration-none">${child.title}</a>
-					</sly>
-					<sly data-sly-test="${!childList}">
-						<sly data-sly-list.page="${currentPage.parent.listChildren}">
-							<a href="${page.path}.html" class="text-secondary text-decoration-none">${page.title}</a>
-						</sly>
+						<a
+							href="${child.path}.html"
+							class="text-secondary text-decoration-none"
+							>${child.title}</a
+						>
 					</sly>
 				</nav>
 			</div>

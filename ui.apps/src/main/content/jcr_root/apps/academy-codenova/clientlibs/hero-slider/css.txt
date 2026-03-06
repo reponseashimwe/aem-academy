@@ -1,1 +1,0 @@
-css/hero-slider.css

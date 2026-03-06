@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root
+    xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    xmlns:cq="http://www.day.com/jcr/cq/1.0"
+    xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Page Info"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+
+            <level
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                fieldLabel="Level"
+                name="./level">
+                <items jcr:primaryType="nt:unstructured">
+                    <beginner
+                        jcr:primaryType="nt:unstructured"
+                        text="Beginner"
+                        value="Beginner"/>
+                    <intermediate
+                        jcr:primaryType="nt:unstructured"
+                        text="Intermediate"
+                        value="Intermediate"/>
+                    <advanced
+                        jcr:primaryType="nt:unstructured"
+                        text="Advanced"
+                        value="Advanced"/>
+                </items>
+            </level>
+
+            <duration
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                fieldLabel="Duration"
+                name="./duration"
+                emptyText="e.g. 3 hours, 5 lessons"/>
+
+        </items>
+    </content>
+
+</jcr:root>
+

@@ -1,1 +1,0 @@
-js/hero-slider.js
