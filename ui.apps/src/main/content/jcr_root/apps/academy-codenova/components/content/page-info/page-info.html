@@ -1,0 +1,10 @@
+<div class="cn-page-info" data-sly-test="${properties.level || properties.duration}">
+	<span data-sly-test="${properties.level}" class="cn-page-info__level">
+		${properties.level}
+	</span>
+	<span data-sly-test="${properties.level && properties.duration}" class="cn-page-info__separator">·</span>
+	<span data-sly-test="${properties.duration}" class="cn-page-info__duration">
+		${properties.duration}
+	</span>
+</div>
+

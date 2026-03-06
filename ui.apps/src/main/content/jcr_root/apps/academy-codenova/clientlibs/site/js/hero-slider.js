@@ -1,4 +1,7 @@
-;(function () {
+/**
+ * Hero Slider initialisation – site-scoped script.
+ */
+(function () {
 	if (typeof window === "undefined") {
 		return;
 	}

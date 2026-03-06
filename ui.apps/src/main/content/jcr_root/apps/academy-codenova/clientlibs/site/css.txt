@@ -1,1 +1,3 @@
 styles/main.css
+styles/hero-slider.css
+styles/courses-grid.css
