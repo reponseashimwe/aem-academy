@@ -1,20 +1,35 @@
-<sly data-sly-test="${properties.fileReference || properties.imagePath}">
-    <sly data-sly-test="${properties.link}">
-        <a href="${properties.link}">
-            <img class="img-fluid rounded"
-                 src="${properties.fileReference || properties.imagePath}"
-                 alt="${properties.alt || 'Image'}"
-                 loading="lazy"/>
-        </a>
-    </sly>
-    <sly data-sly-test="${!properties.link}">
-        <img class="img-fluid rounded"
-             src="${properties.fileReference || properties.imagePath}"
-             alt="${properties.alt || 'Image'}"
-             loading="lazy"/>
-    </sly>
-</sly>
-<div data-sly-test="${!properties.fileReference && !properties.imagePath && wcmmode.edit}"
-     class="d-flex align-items-center justify-content-center rounded border border-2 border-secondary border-dashed bg-light text-muted small cn-image-placeholder">
-    <span>Select an image</span>
+<sly data-sly-use.image="com.adobe.cq.wcm.core.components.models.Image" />
+
+<a
+	data-sly-test="${image.link}"
+	href="${image.link}"
+>
+	<img
+		class="img-fluid rounded"
+		src="${image.src}"
+		alt="${image.alt}"
+		loading="lazy"
+	/>
+</a>
+
+<img
+	data-sly-test="${!image.link && image.src}"
+	class="img-fluid rounded"
+	src="${image.src}"
+	alt="${image.alt}"
+	loading="lazy"
+/>
+
+<p
+	class="mt-2 text-muted small"
+	data-sly-test="${image.displayPopupTitle && image.title}"
+>
+	${image.title}
+</p>
+
+<div
+	data-sly-test="${!image.src && wcmmode.edit}"
+	class="cn-image-placeholder"
+>
+	Select image
 </div>

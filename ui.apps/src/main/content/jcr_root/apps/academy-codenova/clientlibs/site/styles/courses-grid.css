@@ -40,7 +40,10 @@
 	border: 1px solid var(--cn-border);
 	box-shadow: 0 0.5rem 1rem rgba(15, 14, 23, 0.04);
 	overflow: hidden;
-	transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+	transition:
+		transform 0.18s ease,
+		box-shadow 0.18s ease,
+		border-color 0.18s ease;
 }
 
 .cn-pages-grid__card:hover {
@@ -150,7 +153,10 @@
 	color: var(--cn-text-muted);
 	text-decoration: none;
 	border: 1px solid transparent;
-	transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+	transition:
+		background-color 0.15s ease,
+		color 0.15s ease,
+		border-color 0.15s ease;
 }
 
 .cn-pages-grid__pagination-link:hover {
@@ -166,4 +172,3 @@
 	border-color: var(--cn-hero-start);
 	cursor: default;
 }
-
