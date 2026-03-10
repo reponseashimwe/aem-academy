@@ -1,13 +1,15 @@
 <sly
 	data-sly-test.isHomepage="${currentPage.contentResource.resourceType == 'academy-codenova/components/structure/homepage'}"
 ></sly>
+<sly data-sly-use.nav="com.reponse.mvn.core.models.NavigationModel"/>
+
 
 <nav class="navbar navbar-expand-lg navbar-dark ${isHomepage ? 'cn-navbar-transparent' : 'bg-dark'}">
 	<div class="container">
 		<sly data-sly-resource="${'logo' @ resourceType='academy-codenova/components/structure/logo'}" />
 		<div class="navbar-collapse">
 			<ul class="navbar-nav ms-auto gap-2 gap-lg-3">
-				<sly data-sly-list.child="${currentPage.listChildren}">
+				<sly data-sly-list.child="${nav.rootPage.listChildren}">
 					<li class="nav-item">
 						<a
 							href="${child.path}.html"

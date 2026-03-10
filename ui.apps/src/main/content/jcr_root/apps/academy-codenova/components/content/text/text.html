@@ -1,5 +1,15 @@
-<div class="cn-text mb-3">
-	<sly data-sly-test="${properties.text || 'This is a placeholder text.'}"
-		>${properties.text || "This is a placeholder text."}</sly
-	>
+<sly data-sly-use.text="com.adobe.cq.wcm.core.components.models.Text" />
+
+<div class="cn-text">
+	<sly data-sly-test="${text.text}">
+		<sly data-sly-test="${text.isRichText}">
+			${text.text @ context='html'}
+		</sly>
+		<sly data-sly-test="${!text.isRichText}">
+			${text.text}
+		</sly>
+	</sly>
+	<sly data-sly-test="${!text.text && wcmmode.edit}">
+		This is a placeholder text.
+	</sly>
 </div>
