@@ -1,5 +1,5 @@
 <sly data-sly-use.list="com.adobe.cq.wcm.core.components.models.List" />
-<sly data-sly-use.pagination="${'com.reponse.mvn.core.models.PaginationModel' @ resource=resource}" />
+<sly data-sly-use.pagination="${'com.reponse.mvn.core.models.PaginationModel'}" />
 <sly data-sly-test.hasItems="${list && list.listItems && !list.listItems.isEmpty}">
 	<!-- Grid of pages -->
 	<div class="cn-pages-grid cn-pages-grid--cols-${properties.columns || '3'}">
