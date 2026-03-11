@@ -6,4 +6,5 @@
     jcr:primaryType="sling:OsgiConfig"
     org.apache.sling.commons.log.file="logs/project-academy-reponse.log"
     org.apache.sling.commons.log.level="INFO"
-    org.apache.sling.commons.log.names="[com.reponse.mvn]" />
+    org.apache.sling.commons.log.names="[com.reponse.mvn.core]"
+    org.apache.sling.commons.log.pattern="\{0,date,yyyy-MM-dd HH:mm:ss.SSS} {4} [{3}] {5}" />
