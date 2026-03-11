@@ -1,0 +1,7 @@
+<jcr:root
+    xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="sling:OsgiConfig"
+    org.apache.sling.commons.log.file="logs/project-academy-reponse.log"
+    org.apache.sling.commons.log.file.number="3"
+    org.apache.sling.commons.log.rotation.schedule="0 0/30 * * * ?" />

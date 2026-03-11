@@ -1,6 +1,7 @@
 package com.reponse.mvn.core.models;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,6 +14,8 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.adobe.cq.wcm.core.components.models.ListItem;
 
@@ -22,7 +25,9 @@ import com.adobe.cq.wcm.core.components.models.ListItem;
     defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL
 )
 public class PaginationModel {
-    
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(PaginationModel.class);
+
     @Self
     private SlingHttpServletRequest request;
 
@@ -38,11 +43,13 @@ public class PaginationModel {
     private int totalPages = 1;
 
     @PostConstruct
-    protected void init () {
+    protected void init() {
+
+        String resourcePath = request.getResource().getPath();
+        LOGGER.debug("Pagination init for {}", resourcePath);
+
         if (list == null) {
-            paginatedItems = Collections.emptyList();
-            currentPage = 1;
-            totalPages = 1;
+            LOGGER.warn("List model not available for {}", resourcePath);
             return;
         }
 
@@ -50,6 +57,7 @@ public class PaginationModel {
 
         if (columns <= 0) {
             columns = 3;
+            LOGGER.debug("Invalid columns value, defaulting to {}", columns);
         }
 
         int totalItems = allItems.size();
@@ -58,22 +66,38 @@ public class PaginationModel {
         currentPage = getPageFromSelector();
 
         int start = (currentPage - 1) * columns;
-        int end = Math.min(start + columns, allItems.size());
+        int end = Math.min(start + columns, totalItems);
+
+        LOGGER.debug("Page {} -> items {} to {}", currentPage, start, end);
 
         if (start < totalItems) {
             paginatedItems = allItems.subList(start, end);
+        } else {
+            LOGGER.warn("Page {} exceeds available items {}", currentPage, totalItems);
         }
     }
 
     protected int getPageFromSelector() {
+
         RequestPathInfo pathInfo = request.getRequestPathInfo();
         String[] selectors = pathInfo.getSelectors();
 
+        if (selectors == null || selectors.length == 0) {
+            return 1;
+        }
+
+        LOGGER.debug("Selectors: {}", Arrays.toString(selectors));
+
         for (String selector : selectors) {
+
             if (selector.startsWith("page")) {
                 try {
-                    return Integer.parseInt(selector.substring(4));
+                    int page = Integer.parseInt(selector.substring(4));
+                    LOGGER.debug("Resolved page selector: {}", page);
+                    return page;
+
                 } catch (NumberFormatException e) {
+                    LOGGER.error("Invalid page selector {}", selector, e);
                     return 1;
                 }
             }
@@ -96,17 +120,19 @@ public class PaginationModel {
 
     public List<Integer> getPageNumbers() {
         List<Integer> pageNumbers = new ArrayList<>();
+
         for (int i = 1; i <= totalPages; i++) {
             pageNumbers.add(i);
         }
+
         return pageNumbers;
     }
 
-    public int getPreviousPage() { 
-       return currentPage > 1 ? currentPage - 1 : 1;
+    public int getPreviousPage() {
+        return currentPage > 1 ? currentPage - 1 : 1;
     }
 
     public int getNextPage() {
         return currentPage < totalPages ? currentPage + 1 : totalPages;
     }
-}   
+}
