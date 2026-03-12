@@ -1,2 +1,4 @@
 js/site.js
 js/hero-slider.js
+js/toast.js
+js/loadmore.js

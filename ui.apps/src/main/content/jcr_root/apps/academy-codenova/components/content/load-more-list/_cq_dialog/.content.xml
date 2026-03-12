@@ -1,0 +1,98 @@
+<jcr:root
+    xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Load More List"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    sling:resourceSuperType="core/wcm/components/list/v2/list/cq:dialog">
+
+    <content jcr:primaryType="nt:unstructured">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs jcr:primaryType="nt:unstructured">
+                <items jcr:primaryType="nt:unstructured">
+
+                    <listSettings jcr:primaryType="nt:unstructured">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns jcr:primaryType="nt:unstructured">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column jcr:primaryType="nt:unstructured">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <id
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:hideResource="{Boolean}true"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </listSettings>
+
+                    <itemSettings jcr:primaryType="nt:unstructured">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns jcr:primaryType="nt:unstructured">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column jcr:primaryType="nt:unstructured">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <showModificationDate
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:hideResource="{Boolean}true"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </itemSettings>
+
+                    <gridSettings
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Grid Settings"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <showImage
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                text="Display page image"
+                                name="./showImage"
+                                value="true"
+                                uncheckedValue="false"/>
+
+                            <showDescription
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                text="Display page description"
+                                name="./showDescription"
+                                value="true"
+                                uncheckedValue="false"/>
+
+                            <itemsPerLoad
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                fieldLabel="Items per load"
+                                name="./itemsPerLoad"
+                                value="8"
+                                min="1"/>
+
+                            <year
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Year"
+                                name="./year">
+                                <datasource
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="academy-codenova/components/datasource/year-selector"/>
+                            </year>
+
+                        </items>
+
+                    </gridSettings>
+
+                </items>
+            </tabs>
+        </items>
+    </content>
+
+</jcr:root>
+
+

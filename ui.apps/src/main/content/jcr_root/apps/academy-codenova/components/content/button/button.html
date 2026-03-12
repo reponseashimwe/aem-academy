@@ -1,4 +1,5 @@
 <a href="${properties.link || '#'}"
-   class="btn ${properties.buttonType == 'outline' ? 'btn-outline-primary' : (properties.buttonType == 'text' ? 'btn-link' : 'btn-primary')}">
+   class="btn ${properties.buttonType == 'outline' ? 'btn-outline-primary' : (properties.buttonType == 'text' ? 'btn-link' : 'btn-primary')}"
+   data-toast-message="${properties.toastMessage @ context='attribute'}">
     ${properties.label || 'Button'}
 </a>
