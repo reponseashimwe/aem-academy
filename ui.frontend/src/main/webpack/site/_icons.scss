@@ -1,0 +1,61 @@
+@font-face {
+	font-family: "codeland";
+	src:
+		url("../resources/fonts/cl-icons/codeland.ttf?z8mo79") format("truetype"),
+		url("../resources/fonts/cl-icons/codeland.woff?z8mo79") format("woff"),
+		url("../resources/fonts/cl-icons/codeland.svg?z8mo79#codeland") format("svg");
+	font-weight: normal;
+	font-style: normal;
+	font-display: block;
+}
+
+[class^="cl-icon-"],
+[class*=" cl-icon-"] {
+	/* use !important to prevent issues with browser extensions that change fonts */
+	font-family: "codeland" !important;
+	speak: never;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	display: inline-block;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.cl-icon-logo:before {
+	content: "\e900";
+}
+.cl-icon-account_balance:before {
+	content: "\e901";
+}
+.cl-icon-arrow_forward:before {
+	content: "\e902";
+}
+.cl-icon-arrows_output:before {
+	content: "\e903";
+}
+.cl-icon-cell_merge:before {
+	content: "\e904";
+}
+.cl-icon-download:before {
+	content: "\e905";
+}
+.cl-icon-graph:before {
+	content: "\e906";
+}
+.cl-icon-receipt_long:before {
+	content: "\e907";
+}
+.cl-icon-school:before {
+	content: "\e908";
+}
+.cl-icon-search:before {
+	content: "\e909";
+}
+.cl-icon-question_mark:before {
+	content: "\e90a";
+}
