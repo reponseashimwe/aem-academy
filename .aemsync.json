@@ -1,0 +1,11 @@
+{
+	"targets": [
+		{
+			"name": "local-author",
+			"host": "http://localhost:4502",
+			"username": "admin",
+			"password": "admin",
+			"path": "/apps/mvnreponse"
+		}
+	]
+}

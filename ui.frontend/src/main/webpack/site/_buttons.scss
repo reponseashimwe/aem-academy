@@ -1,0 +1,120 @@
+// Base button
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+
+	padding: 12px 24px;
+	border-radius: 0;
+	border: 1px solid transparent;
+
+	font-family: $font-family;
+	font-size: 16px;
+	line-height: 1.4;
+
+	cursor: pointer;
+	text-decoration: none;
+
+	transition:
+		background-color 0.2s ease,
+		color 0.2s ease,
+		border-color 0.2s ease;
+}
+
+// Variants
+
+.btn--primary {
+	background-color: $color-primary;
+	border-color: $color-primary;
+	color: $color-white;
+
+	&:hover {
+		background-color: darken($color-primary, 5%);
+		border-color: darken($color-primary, 5%);
+	}
+}
+
+.btn--primary-light {
+	background-color: $color-light;
+	border-color: $color-light;
+	color: $color-primary;
+
+	&:hover {
+		background-color: darken($color-light, 5%);
+		border-color: darken($color-light, 5%);
+	}
+}
+
+.btn--secondary {
+	background-color: transparent;
+	border-color: $color-primary;
+	color: $color-primary;
+
+	&:hover {
+		background-color: rgba(1, 51, 75, 0.06);
+	}
+}
+
+.btn--secondary-light {
+	background-color: transparent;
+	border-color: $color-light;
+	color: $color-light;
+
+	&:hover {
+		background-color: rgba(229, 240, 245, 0.12);
+	}
+}
+
+// Link-style button
+
+.btn--link {
+	padding: 0;
+	border: none;
+	background: transparent;
+	color: $color-primary;
+	text-decoration: underline;
+	text-underline-offset: 4px;
+
+	&:hover {
+		color: darken($color-primary, 5%);
+	}
+}
+
+// Sizes
+
+.btn--sm {
+	padding: 8px 16px;
+	font-size: 14px;
+}
+
+.btn--lg {
+	padding: 16px 32px;
+	font-size: 18px;
+}
+
+// Layout helpers
+
+.btn--full {
+	width: 100%;
+}
+
+.btn--icon-right i,
+.btn--icon-right .cl-icon-arrow_forward {
+	margin-left: 8px;
+}
+
+.btn--icon-left i,
+.btn--icon-left [class^="cl-icon-"] {
+	margin-right: 8px;
+}
+
+// Disabled
+
+.btn[disabled],
+.btn--disabled {
+	cursor: not-allowed;
+	opacity: 0.6;
+	pointer-events: none;
+}
