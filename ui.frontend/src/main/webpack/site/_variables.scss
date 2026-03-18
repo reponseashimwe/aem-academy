@@ -7,17 +7,22 @@ $color-white: #ffffff;
 $color-black: #000000;
 
 // Text colors
+$color-background: $color-white;
 $color-text: $color-primary;
 $color-text-dark: $color-black;
 $color-text-muted: $color-secondary;
 
 // Typography
-$font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-primary: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-secondary: "Atkinson Hyperlegible", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family: $font-family-primary;
 $font-size: 16px;
 $font-height: 1.5;
 
 // Spacing scale
-$space-xs: 8px;
-$space-sm: 16px;
-$space-md: 24px;
-$space-lg: 40px;
+$space-unit: 8px;
+
+$space-xs: $space-unit;
+$space-sm: $space-unit * 2;
+$space-md: $space-unit * 3;
+$space-lg: $space-unit * 5;

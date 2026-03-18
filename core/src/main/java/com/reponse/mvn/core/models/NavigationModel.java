@@ -4,23 +4,16 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 
 @Model(adaptables = Resource.class)
 public class NavigationModel {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(NavigationModel.class);
-
     @Self
     private Resource resource;
 
     public Page getRootPage() {
-
-        LOGGER.info("NavigationModel executed for resource: {}", resource.getPath());
 
         PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
         Page currentPage = pageManager.getContainingPage(resource);
@@ -32,5 +25,33 @@ public class NavigationModel {
         }
 
         return root;
+    }
+
+    public boolean isHomePage() {
+        PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
+        if (pageManager == null) {
+            return false;
+        }
+
+        Page currentPage = pageManager.getContainingPage(resource);
+        Page rootPage = getRootPage();
+
+        if (currentPage == null || rootPage == null) {
+            return false;
+        }
+
+        String currentPath = currentPage.getPath();
+        String rootPath = rootPage.getPath();
+
+        if (currentPath.equals(rootPath)) {
+            return true;
+        }
+        
+        if (currentPath.startsWith(rootPath + "/")
+                && currentPage.getDepth() == rootPage.getDepth() + 2) {
+            return true;
+        }
+
+        return false;
     }
 }

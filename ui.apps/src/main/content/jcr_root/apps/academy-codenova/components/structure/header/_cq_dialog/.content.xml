@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Header Configuration"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <headerSettings
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Header Settings"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <utilLinks
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldLabel="Utility Links">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    name="./utilLinks">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <label
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Label"
+                                            name="label"/>
+                                        <icon
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                            fieldLabel="Icon"
+                                            fieldDescription="Optional icon to display before label"
+                                            name="icon">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <none
+                                                    jcr:primaryType="nt:unstructured"
+                                                    text="None"
+                                                    value=""/>
+                                                <account_balance
+                                                    jcr:primaryType="nt:unstructured"
+                                                    text="Account Balance"
+                                                    value="account_balance"/>
+                                                <receipt_long
+                                                    jcr:primaryType="nt:unstructured"
+                                                    text="Receipt Long"
+                                                    value="receipt_long"/>
+                                                <school
+                                                    jcr:primaryType="nt:unstructured"
+                                                    text="School"
+                                                    value="school"/>
+                                                <question_mark
+                                                    jcr:primaryType="nt:unstructured"
+                                                    text="Question Mark"
+                                                    value="question_mark"/>
+                                                <graph
+                                                    jcr:primaryType="nt:unstructured"
+                                                    text="Graph"
+                                                    value="graph"/>
+                                                <download
+                                                    jcr:primaryType="nt:unstructured"
+                                                    text="Download"
+                                                    value="download"/>
+                                            </items>
+                                        </icon>
+                                        <url
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                            fieldLabel="URL"
+                                            fieldDescription="Optional. Leave empty to display as plain text."
+                                            name="url"
+                                            rootPath="/content"
+                                            />
+                                    </items>
+                                </field>
+                            </utilLinks>
+                            <language
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Language Label"
+                                name="./languageLabel"
+                                value="IT"/>
+                            <showSearch
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                fieldDescription="Display search icon"
+                                name="./showSearch"
+                                text="Show Search Icon"
+                                uncheckedValue="false"
+                                value="true"/>
+                        </items>
+                    </headerSettings>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

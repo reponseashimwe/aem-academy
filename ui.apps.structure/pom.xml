@@ -36,7 +36,6 @@
                     <filters>
                         <!-- /apps: parents of what ui.apps deploys -->
                         <filter><root>/apps</root></filter>
-                        <filter><root>/apps/academy-codenova</root></filter>
                         <filter><root>/apps/mvnreponse</root></filter>
                         <!-- /content/dam: ancestor must be covered for dependency validation -->
                         <filter><root>/content</root></filter>

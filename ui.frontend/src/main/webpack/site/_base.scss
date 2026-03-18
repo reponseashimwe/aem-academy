@@ -1,5 +1,3 @@
-// Global resets + layout primitives
-
 *,
 *::before,
 *::after {
@@ -14,9 +12,23 @@ body {
 	margin: 0;
 	font-family: $font-family;
 	font-size: $font-size;
+	font-weight: 300;
 	line-height: $font-height;
 	color: $color-primary;
 	background-color: $color-white;
+
+	&.no-scroll {
+		overflow: hidden;
+	}
+}
+
+/* Font utilities */
+.font-primary {
+	font-family: $font-family-primary;
+}
+
+.font-secondary {
+	font-family: $font-family-secondary;
 }
 
 a {
@@ -41,15 +53,69 @@ button {
 
 /* Layout utilities */
 
+.root,
+.header,
+main,
+.footer {
+	display: block;
+	width: 100%;
+	clear: both;
+}
+
+.root.aem-Grid,
+.root {
+	display: flex !important;
+	flex-direction: column !important;
+	min-height: 100vh;
+
+	&::before,
+	&::after {
+		display: none !important; // remove float clearfix
+	}
+
+	> .aem-GridColumn {
+		float: none !important;
+		width: 100% !important;
+		flex-shrink: 0;
+	}
+
+	> .aem-GridColumn:not(:first-child):not(:last-child) {
+		flex: 1 0 auto;
+	}
+}
+
 .container {
+	max-width: none;
+	margin: 0;
+	padding: 0;
+}
+
+.container-inner {
+	max-width: none;
+	margin: 0;
+}
+
+.cl-container {
 	max-width: 1200px;
 	margin: 0 auto;
 	padding-inline: 16px;
 }
 
-.container-inner {
+.cl-container-wide {
+	max-width: 1240px;
+	margin: 0 auto;
+	padding-inline: 16px;
+}
+
+.cl-container-inner {
 	max-width: 960px;
 	margin: 0 auto;
+}
+
+.page-section {
+	max-width: 1240px;
+	margin: 0 auto;
+	padding-inline: 30px;
 }
 
 .section {
@@ -58,6 +124,10 @@ button {
 	@include mobile {
 		padding-block: 32px;
 	}
+}
+
+.page-content {
+	min-height: 300px;
 }
 
 /* Text utilities */

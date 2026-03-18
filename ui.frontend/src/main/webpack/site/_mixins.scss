@@ -69,3 +69,58 @@
 		@content;
 	}
 }
+
+// Typography helpers
+@mixin title-style($desktop-size, $mobile-size, $line-height, $weight: 400, $color: $color-primary) {
+	font-size: $desktop-size;
+	line-height: $line-height;
+	font-weight: $weight;
+	color: $color;
+
+	@include mobile {
+		font-size: $mobile-size;
+	}
+}
+
+// Button helpers
+@mixin btn-solid($bg, $border-color, $text-color, $hover-bg, $hover-border-color) {
+	background-color: $bg;
+	border-color: $border-color;
+	color: $text-color;
+
+	&:hover {
+		background-color: $hover-bg;
+		border-color: $hover-border-color;
+	}
+}
+
+@mixin btn-outline($border-color, $text-color, $hover-bg) {
+	background-color: transparent;
+	border-color: $border-color;
+	color: $text-color;
+
+	&:hover {
+		background-color: $hover-bg;
+	}
+}
+
+@mixin btn-link($border-color, $text-color, $dark-border-color: $color-white, $dark-text-color: $color-white) {
+	padding: 0;
+	border: none;
+	border-bottom: 1px solid $border-color;
+	background: transparent;
+	color: $text-color;
+
+	&:hover {
+		border-bottom-color: darken($border-color, 5%);
+	}
+
+	.dark & {
+		border-bottom-color: $dark-border-color;
+		color: $dark-text-color;
+
+		&:hover {
+			border-bottom-color: darken($dark-border-color, 5%);
+		}
+	}
+}

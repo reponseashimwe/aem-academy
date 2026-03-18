@@ -1,0 +1,161 @@
+.cl-designsystem {
+	--ds-border: #e5f0f5;
+	--ds-border-strong: rgba(1, 51, 75, 0.12);
+	--ds-muted: rgba(1, 51, 75, 0.45);
+
+	text-align: left;
+
+	p {
+		margin: 0;
+	}
+
+	.caption {
+		font-size: 10px;
+		letter-spacing: 1px;
+		line-height: 14px;
+		color: $color-primary;
+		text-transform: none;
+	}
+
+	.cl-ds__section-title {
+		margin-bottom: 12px;
+	}
+
+	/* Colors */
+	.cl-ds__swatches {
+		display: flex;
+		gap: 20px;
+		align-items: flex-start;
+	}
+
+	.cl-ds__swatch {
+		display: grid;
+		gap: 8px;
+		width: 110px;
+	}
+
+	.cl-ds__swatch-box {
+		width: 44px;
+		height: 44px;
+		border: 1px solid var(--ds-border-strong);
+	}
+
+	.cl-ds__swatch-meta {
+		display: grid;
+		gap: 2px;
+
+		.caption {
+			color: $color-primary;
+		}
+
+		.caption.text-muted {
+			color: var(--ds-muted);
+		}
+	}
+
+	/* Typography tables */
+	.cl-ds__panel {
+		border: 1px solid var(--ds-border);
+		background: $color-white;
+	}
+
+	.cl-ds__row {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding: 14px 16px;
+		border-bottom: 1px solid var(--ds-border);
+	}
+
+	.cl-ds__row:last-child {
+		border-bottom: none;
+	}
+
+	.cl-ds__row-label {
+		align-self: start;
+		padding-top: 2px;
+
+		.text-muted {
+			color: var(--ds-muted);
+		}
+	}
+
+	/* Buttons */
+	.cl-ds__button-stack {
+		display: grid;
+		gap: 14px;
+	}
+
+	.cl-ds__button-row {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	.cl-ds__button-row .caption {
+		color: $color-primary;
+		font-size: 18px;
+		line-height: 24px;
+	}
+
+	.cl-ds__button-row .caption .text-muted {
+		color: var(--ds-muted);
+	}
+
+	.cl-ds__icons {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 14px;
+	}
+
+	.cl-ds__icon-tile {
+		border: 1px solid var(--ds-border);
+		background: $color-white;
+	}
+
+	.cl-ds__icon-glyph {
+		height: 56px;
+		display: grid;
+		place-items: center;
+		font-size: 26px;
+		color: $color-primary;
+		border-bottom: 1px solid var(--ds-border);
+	}
+
+	.cl-ds__icon-code {
+		padding: 8px 10px;
+		background: $color-secondary;
+		color: $color-primary;
+		border-top: 2px solid rgba(1, 51, 75, 0.08);
+		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+		font-size: 11px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.cl-ds__slider-card {
+		border: 1px solid var(--ds-border);
+		background: $color-white;
+		padding: 16px;
+		display: grid;
+		gap: 12px;
+	}
+
+	.cl-ds__code {
+		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+		font-size: 12px;
+		color: rgba(1, 51, 75, 0.35);
+	}
+
+	@include mobile {
+		.cl-ds__row,
+		.cl-ds__button-row {
+			grid-template-columns: 1fr;
+		}
+
+		.cl-ds__icons {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
     <filter root="/apps/academy-codenova"/>
-    <filter root="/apps/academy-codenova/templates"/>
+    <filter root="/apps/academy-codenova copy"/>
     <filter root="/apps/mvnreponse/clientlibs"/>
     <filter root="/apps/mvnreponse/components"/>
     <filter root="/apps/mvnreponse/i18n"/>

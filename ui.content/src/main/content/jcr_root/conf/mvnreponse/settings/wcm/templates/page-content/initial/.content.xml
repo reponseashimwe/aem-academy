@@ -9,18 +9,100 @@
             jcr:primaryType="nt:unstructured"
             sling:resourceType="mvnreponse/components/container"
             layout="responsiveGrid">
+            <codeland-header
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="mvnreponse/components/codeland/header"
+                showSearch="{Boolean}true"
+                languageLabel="IT">
+                <utilLinks jcr:primaryType="nt:unstructured">
+                    <item0 jcr:primaryType="nt:unstructured" label="Ateneo" url="/content/mvnreponse/it/ateneo"/>
+                    <item1 jcr:primaryType="nt:unstructured" label="News" url="/content/mvnreponse/it/news"/>
+                    <item2 jcr:primaryType="nt:unstructured" label="Ricerca" url="/content/mvnreponse/it/ricerca"/>
+                    <item3 jcr:primaryType="nt:unstructured" label="FAQ" url="/content/mvnreponse/it/faq"/>
+                    <item4 jcr:primaryType="nt:unstructured" label="Contatti" url="/content/mvnreponse/it/contatti"/>
+                </utilLinks>
+                <cq:responsive jcr:primaryType="nt:unstructured">
+                    <default jcr:primaryType="nt:unstructured" offset="0" width="12"/>
+                </cq:responsive>
+            </codeland-header>
             <container
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="mvnreponse/components/container"
                 layout="responsiveGrid">
                 <title
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="mvnreponse/components/title"/>
+                    sling:resourceType="mvnreponse/components/title">
+                    <cq:responsive jcr:primaryType="nt:unstructured">
+                        <default jcr:primaryType="nt:unstructured" offset="0" width="12"/>
+                    </cq:responsive>
+                </title>
                 <container
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="mvnreponse/components/container"
                     layout="responsiveGrid"/>
+                <cq:responsive jcr:primaryType="nt:unstructured">
+                    <default jcr:primaryType="nt:unstructured" offset="0" width="12"/>
+                </cq:responsive>
             </container>
+            <codeland-footer
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="mvnreponse/components/codeland/footer"
+                copyrightText="© Lorem ipsum dolor sit">
+                <cq:responsive jcr:primaryType="nt:unstructured">
+                    <default jcr:primaryType="nt:unstructured" offset="0" width="12"/>
+                </cq:responsive>
+                <sections jcr:primaryType="nt:unstructured">
+                    <section0 jcr:primaryType="nt:unstructured" title="LINK">
+                        <items jcr:primaryType="nt:unstructured">
+                            <item0 jcr:primaryType="nt:unstructured" label="Docenti"/>
+                            <item1 jcr:primaryType="nt:unstructured" label="Sostieni l'Università"/>
+                            <item2 jcr:primaryType="nt:unstructured" label="Vita e pensiero editrice"/>
+                            <item3 jcr:primaryType="nt:unstructured" label="Sistema bibliotecario"/>
+                            <item4 jcr:primaryType="nt:unstructured" label="Librerie e merchandising"/>
+                            <item5 jcr:primaryType="nt:unstructured" label="Giornalisti e media"/>
+                            <item6 jcr:primaryType="nt:unstructured" label="Ufficio rapporti con il pubblico"/>
+                            <item7 jcr:primaryType="nt:unstructured" label="Contatti"/>
+                        </items>
+                    </section0>
+                    <section1 jcr:primaryType="nt:unstructured" title="STRUMENTI">
+                        <items jcr:primaryType="nt:unstructured">
+                            <item0 jcr:primaryType="nt:unstructured" label="Off-campus"/>
+                            <item1 jcr:primaryType="nt:unstructured" label="CV Online"/>
+                            <item2 jcr:primaryType="nt:unstructured" label="Albo Fornitori"/>
+                            <item3 jcr:primaryType="nt:unstructured" label="Bandi e Gare"/>
+                            <item4 jcr:primaryType="nt:unstructured" label="Verifica certificati e autocertificazioni"/>
+                            <item5 jcr:primaryType="nt:unstructured" label="Intranet"/>
+                        </items>
+                    </section1>
+                    <section2 jcr:primaryType="nt:unstructured" title="SOCIAL E MEDIA @UNICATT">
+                        <items jcr:primaryType="nt:unstructured">
+                            <item0 jcr:primaryType="nt:unstructured" label="Facebook"/>
+                            <item1 jcr:primaryType="nt:unstructured" label="X"/>
+                            <item2 jcr:primaryType="nt:unstructured" label="Linkedin"/>
+                            <item3 jcr:primaryType="nt:unstructured" label="Youtube"/>
+                            <item4 jcr:primaryType="nt:unstructured" label="Instagram"/>
+                            <item5 jcr:primaryType="nt:unstructured" label="Telegram"/>
+                            <item6 jcr:primaryType="nt:unstructured" label="Spotify"/>
+                            <item7 jcr:primaryType="nt:unstructured" label="Presenza"/>
+                        </items>
+                    </section2>
+                    <section3 jcr:primaryType="nt:unstructured" title="SECONDO TEMPO">
+                        <items jcr:primaryType="nt:unstructured">
+                            <item0 jcr:primaryType="nt:unstructured" label="Media center"/>
+                            <item1 jcr:primaryType="nt:unstructured" label="Presenza"/>
+                            <item2 jcr:primaryType="nt:unstructured" label="Facebook"/>
+                            <item3 jcr:primaryType="nt:unstructured" label="X"/>
+                            <item4 jcr:primaryType="nt:unstructured" label="Instagram"/>
+                        </items>
+                    </section3>
+                </sections>
+                <legalLinks jcr:primaryType="nt:unstructured">
+                    <item0 jcr:primaryType="nt:unstructured" label="Privacy"/>
+                    <item1 jcr:primaryType="nt:unstructured" label="Cookies"/>
+                    <item2 jcr:primaryType="nt:unstructured" label="Accessibilità"/>
+                    <item3 jcr:primaryType="nt:unstructured" label="Impostazione dei Cookies"/>
+                </legalLinks>
+            </codeland-footer>
         </root>
     </jcr:content>
 </jcr:root>

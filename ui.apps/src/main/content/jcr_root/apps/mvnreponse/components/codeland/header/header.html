@@ -1,12 +1,11 @@
 <div
-	class="cl-header"
+	class="cl-header ${nav.homePage ? 'cl-header--home' : ''}"
 	data-sly-use.nav="com.reponse.mvn.core.models.NavigationModel"
-	data-sly-test.isHomepage="${nav.isHomePage}"
 	data-sly-use.header="com.reponse.mvn.core.models.CodelandHeaderModel"
 >
 	<!-- Top utility bar -->
 	<div class="cl-header__utils">
-		<div class="cl-container-wide">
+		<div class="page-section">
 			<div class="cl-header__utils-inner">
 				<ul
 					class="cl-header__utils-list"
@@ -55,7 +54,7 @@
 
 	<!-- Main header -->
 	<div class="cl-header__main">
-		<div class="cl-container">
+		<div class="page-section">
 			<div class="cl-header__main-inner">
 				<!-- Logo -->
 				<a
@@ -204,8 +203,3 @@
 		</div>
 	</div>
 </div>
-
-<sly
-	data-sly-resource="/content/codehills/jcr:content/codeland-header"
-	data-sly-test.isHomepage="${!isHomepage}"
-/>
