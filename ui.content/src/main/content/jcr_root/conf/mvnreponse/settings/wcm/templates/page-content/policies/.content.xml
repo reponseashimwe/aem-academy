@@ -11,14 +11,6 @@
             cq:policy="mvnreponse/components/container/policy_1574694950110"
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/core/components/policies/mapping">
-            <experiencefragment-header
-                cq:policy="mvnreponse/components/experiencefragment/policy_header"
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="wcm/core/components/policies/mapping"/>
-            <experiencefragment-footer
-                cq:policy="mvnreponse/components/experiencefragment/policy_footer"
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="wcm/core/components/policies/mapping"/>
             <container
                 cq:policy="mvnreponse/components/container/policy_649128221558427"
                 jcr:primaryType="nt:unstructured"

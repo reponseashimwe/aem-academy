@@ -2,9 +2,9 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
     jcr:primaryType="cq:PageContent"
     sling:resourceType="academy-codenova/components/structure/page">
-    <codeland-header
+    <header-reference
         jcr:primaryType="nt:unstructured"
-        sling:resourceType="academy-codenova/components/structure/header"
+        sling:resourceType="academy-codenova/components/structure/header-reference"
         showSearch="true"
         languageLabel="IT"/>
     <par

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Roboto:wght@400;500;700&display=swap");
+
 @import "variables";
 @import "mixins";
 @import "base";
@@ -5,6 +7,11 @@
 @import "buttons";
 @import "slider";
 @import "icons";
+@import "designsystem";
+
+// Codeland components
+@import "codeland/header";
+@import "codeland/footer";
 
 // component‑specific styles
 @import "../components/**/*.scss";

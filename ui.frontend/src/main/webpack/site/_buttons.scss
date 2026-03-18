@@ -26,60 +26,45 @@
 // Variants
 
 .btn--primary {
-	background-color: $color-primary;
-	border-color: $color-primary;
-	color: $color-white;
-
-	&:hover {
-		background-color: darken($color-primary, 5%);
-		border-color: darken($color-primary, 5%);
-	}
+	@include btn-solid(
+		$bg: $color-primary,
+		$border-color: $color-primary,
+		$text-color: $color-white,
+		$hover-bg: darken($color-primary, 5%),
+		$hover-border-color: darken($color-primary, 5%)
+	);
 }
 
 .btn--primary-light {
-	background-color: $color-light;
-	border-color: $color-light;
-	color: $color-primary;
-
-	&:hover {
-		background-color: darken($color-light, 5%);
-		border-color: darken($color-light, 5%);
-	}
+	@include btn-solid(
+		$bg: $color-light,
+		$border-color: $color-light,
+		$text-color: $color-primary,
+		$hover-bg: darken($color-light, 5%),
+		$hover-border-color: darken($color-light, 5%)
+	);
 }
 
 .btn--secondary {
-	background-color: transparent;
-	border-color: $color-primary;
-	color: $color-primary;
-
-	&:hover {
-		background-color: rgba(1, 51, 75, 0.06);
-	}
+	@include btn-outline(
+		$border-color: $color-primary,
+		$text-color: $color-primary,
+		$hover-bg: rgba(1, 51, 75, 0.06)
+	);
 }
 
 .btn--secondary-light {
-	background-color: transparent;
-	border-color: $color-light;
-	color: $color-light;
-
-	&:hover {
-		background-color: rgba(229, 240, 245, 0.12);
-	}
+	@include btn-outline(
+		$border-color: $color-light,
+		$text-color: $color-light,
+		$hover-bg: rgba(229, 240, 245, 0.12)
+	);
 }
 
 // Link-style button
 
 .btn--link {
-	padding: 0;
-	border: none;
-	background: transparent;
-	color: $color-primary;
-	text-decoration: underline;
-	text-underline-offset: 4px;
-
-	&:hover {
-		color: darken($color-primary, 5%);
-	}
+	@include btn-link($border-color: $color-primary, $text-color: $color-primary);
 }
 
 // Sizes

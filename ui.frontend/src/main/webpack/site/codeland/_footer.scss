@@ -1,0 +1,149 @@
+// Footer Component Styles
+
+$footer-border: rgba($color-white, 0.2);
+
+.cl-footer {
+	background: $color-primary;
+	color: $color-white;
+	padding-top: 56px; 
+}
+
+.cl-footer__top {
+	border-top: 1px solid $footer-border;
+	border-bottom: 1px solid $footer-border;
+}
+
+
+.cl-footer__cols {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	border-left: 1px solid $footer-border;
+	border-right: 1px solid $footer-border;
+
+	@include tablet {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	@include mobile {
+		grid-template-columns: 1fr;
+		border-left: none;
+		border-right: none;
+	}
+}
+
+
+.cl-footer__col {
+	padding: 32px 28px;
+	border-right: 1px solid $footer-border;
+
+	&:last-child {
+		border-right: none; 
+	}
+
+	@include tablet {
+		&:nth-child(2n) {
+			border-right: none;
+		}
+		&:nth-child(2n-1) {
+			border-right: 1px solid $footer-border;
+		}
+		&:nth-child(1),
+		&:nth-child(2) {
+			border-bottom: 1px solid $footer-border;
+		}
+	}
+
+	@include mobile {
+		padding: 32px 24px;
+		border-right: none;
+		border-bottom: 1px solid $footer-border;
+
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+}
+
+.cl-footer__col-title {
+	margin: 0 0 20px;
+	font-size: 11px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	color: $color-white;
+	line-height: 1.4;
+}
+
+.cl-footer__col-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.cl-footer__col-item {
+	line-height: 1.4;
+}
+
+.cl-footer__col-text {
+	font-size: 14px;
+	font-weight: 300;
+	color: $color-white;
+	line-height: 1.5;
+	cursor: default;
+}
+
+// ==============================
+// Bottom bar
+// ==============================
+
+.cl-footer__bar {
+	padding-block: 20px;
+}
+
+.cl-footer__bar-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+
+	@include mobile {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 16px;
+	}
+}
+
+.cl-footer__copyright {
+	margin: 0;
+	font-size: 12px;
+	font-weight: 400;
+	color: rgba($color-white, 0.7);
+	line-height: 1.4;
+}
+
+.cl-footer__legal {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 8px 28px;
+}
+
+.cl-footer__legal-link {
+	font-size: 12px;
+	font-weight: 400;
+	color: rgba($color-white, 0.7);
+	text-decoration: none;
+	line-height: 1.4;
+	transition: opacity 0.2s;
+	cursor: pointer;
+
+	&:hover {
+		opacity: 0.5;
+	}
+}
