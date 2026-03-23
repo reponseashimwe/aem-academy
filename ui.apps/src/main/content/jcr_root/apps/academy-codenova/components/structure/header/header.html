@@ -4,6 +4,8 @@
 	data-sly-test.isHomepage="${nav.isHomePage}"
 	data-sly-use.header="com.reponse.mvn.core.models.CodelandHeaderModel"
 >
+	<sly data-sly-set.useDefaultLogoIcon="${properties.useDefaultLogoIcon == null || properties.useDefaultLogoIcon == 'true'}"/>
+	<sly data-sly-set.hasLogoAsset="${properties.logoAssetReference}"/>
 	<!-- Top utility bar -->
 	<div class="cl-header__utils">
 		<div class="cl-container-wide">
@@ -42,11 +44,10 @@
 						class="cl-header__utils-link cl-header__utils-link--lang"
 					>
 						${properties.languageLabel || 'IT'}
-						<span
-							class="cl-header__lang-caret"
+						<i
+							class="cl-header__lang-caret cl-icon-chevron"
 							aria-hidden="true"
-							>▾</span
-						>
+						></i>
 					</a>
 				</div>
 			</div>
@@ -63,9 +64,17 @@
 					class="cl-header__logo"
 				>
 					<i
-						class="cl-icon-logo"
-						aria-label="Codeland"
+						class="cl-icon-${properties.logoIcon || 'logo'}"
+						aria-label="${properties.logoAltText || 'Codeland'}"
+						data-sly-test="${useDefaultLogoIcon || !hasLogoAsset}"
 					></i>
+					<img
+						class="cl-header__logo-image"
+						src="${properties.logoAssetReference}"
+						alt="${properties.logoAltText || 'Codeland'}"
+						loading="eager"
+						data-sly-test="${!useDefaultLogoIcon && hasLogoAsset}"
+					/>
 				</a>
 
 				<!-- Desktop navigation -->
@@ -102,9 +111,10 @@
 						aria-label="Toggle menu"
 						data-header-toggle
 					>
-						<span class="cl-header__toggle-bar"></span>
-						<span class="cl-header__toggle-bar"></span>
-						<span class="cl-header__toggle-bar"></span>
+						<i
+							class="cl-header__toggle-icon cl-icon-menu"
+							aria-hidden="true"
+						></i>
 					</button>
 				</div>
 			</div>
@@ -124,16 +134,24 @@
 					class="cl-header__logo"
 				>
 					<i
-						class="cl-icon-logo"
-						aria-label="Codeland"
+						class="cl-icon-${properties.logoIcon || 'logo'}"
+						aria-label="${properties.logoAltText || 'Codeland'}"
+						data-sly-test="${useDefaultLogoIcon || !hasLogoAsset}"
 					></i>
+					<img
+						class="cl-header__logo-image"
+						src="${properties.logoAssetReference}"
+						alt="${properties.logoAltText || 'Codeland'}"
+						loading="eager"
+						data-sly-test="${!useDefaultLogoIcon && hasLogoAsset}"
+					/>
 				</a>
 				<button
 					class="cl-header__close"
 					aria-label="Close menu"
 					data-header-toggle
 				>
-					<i class="cl-icon-close"></i>
+					<i class="cl-icon-cross"></i>
 				</button>
 			</div>
 
@@ -193,11 +211,10 @@
 						class="cl-header__mobile-utils-link cl-header__mobile-utils-link--lang"
 					>
 						${properties.languageLabel || 'IT'}
-						<span
-							class="cl-header__lang-caret"
+						<i
+							class="cl-header__lang-caret cl-icon-chevron"
 							aria-hidden="true"
-							>▾</span
-						>
+						></i>
 					</a>
 				</div>
 			</div>

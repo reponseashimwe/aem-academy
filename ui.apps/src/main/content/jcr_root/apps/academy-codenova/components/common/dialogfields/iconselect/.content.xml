@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+    class="icon-picker"
+    fieldLabel="Icon"
+    fieldDescription="Optional icon to display before label"
+    name="icon"
+    granite:class="icon-picker">
+    <items jcr:primaryType="nt:unstructured">
+        <none
+            jcr:primaryType="nt:unstructured"
+            text="None"
+            value=""/>
+        <account_balance
+            jcr:primaryType="nt:unstructured"
+            text="Account Balance"
+            value="account_balance"/>
+        <arrow_forward
+            jcr:primaryType="nt:unstructured"
+            text="Arrow Forward"
+            value="arrow_forward"/>
+        <arrows_output
+            jcr:primaryType="nt:unstructured"
+            text="Arrows Output"
+            value="arrows_output"/>
+        <cell_merge
+            jcr:primaryType="nt:unstructured"
+            text="Cell Merge"
+            value="cell_merge"/>
+        <chevron
+            jcr:primaryType="nt:unstructured"
+            text="Chevron"
+            value="chevron"/>
+        <close
+            jcr:primaryType="nt:unstructured"
+            text="Close"
+            value="close"/>
+        <cross
+            jcr:primaryType="nt:unstructured"
+            text="Cross"
+            value="cross"/>
+        <dehaze
+            jcr:primaryType="nt:unstructured"
+            text="Dehaze"
+            value="dehaze"/>
+        <download
+            jcr:primaryType="nt:unstructured"
+            text="Download"
+            value="download"/>
+        <graph
+            jcr:primaryType="nt:unstructured"
+            text="Graph"
+            value="graph"/>
+        <logo
+            jcr:primaryType="nt:unstructured"
+            text="Logo"
+            value="logo"/>
+        <menu
+            jcr:primaryType="nt:unstructured"
+            text="Menu"
+            value="menu"/>
+        <pencil
+            jcr:primaryType="nt:unstructured"
+            text="Pencil"
+            value="pencil"/>
+        <question_mark
+            jcr:primaryType="nt:unstructured"
+            text="Question Mark"
+            value="question_mark"/>
+        <receipt_long
+            jcr:primaryType="nt:unstructured"
+            text="Receipt Long"
+            value="receipt_long"/>
+        <school
+            jcr:primaryType="nt:unstructured"
+            text="School"
+            value="school"/>
+        <search
+            jcr:primaryType="nt:unstructured"
+            text="Search"
+            value="search"/>
+    </items>
+</jcr:root>
