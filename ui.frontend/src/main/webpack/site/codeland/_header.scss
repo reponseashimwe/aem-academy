@@ -1,4 +1,3 @@
-
 .cl-header {
 	position: relative;
 	background: $color-white;
@@ -80,6 +79,8 @@
 .cl-header__lang-caret {
 	font-size: 10px;
 	line-height: 1;
+	transform: rotate(90deg);
+	display: inline-block;
 }
 
 // ==============================
@@ -117,10 +118,27 @@
 		line-height: 1;
 	}
 
+	[class^="cl-icon-"],
+	[class*=" cl-icon-"] {
+		font-size: 36px;
+		line-height: 1;
+	}
+
+	.cl-header__logo-image {
+		display: block;
+		max-height: 100%;
+		width: auto;
+	}
+
 	@include mobile {
 		height: 26px;
 
 		.cl-icon-logo {
+			font-size: 26px;
+		}
+
+		[class^="cl-icon-"],
+		[class*=" cl-icon-"] {
 			font-size: 26px;
 		}
 	}
@@ -149,7 +167,7 @@
 .cl-header__nav-link {
 	color: $color-primary;
 	text-decoration: none;
-	font-size: 16px;
+	font-size: 15px;
 	font-weight: 300;
 	transition: opacity 0.2s;
 	white-space: nowrap;
@@ -159,7 +177,7 @@
 	}
 
 	&--active {
-		font-weight: 700;
+		font-weight: 400;
 	}
 }
 
@@ -229,12 +247,10 @@
 
 .cl-header__toggle {
 	display: none;
-	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	width: 36px;
 	height: 36px;
-	gap: 5px;
 	background: transparent;
 	border: none;
 	cursor: pointer;
@@ -246,11 +262,10 @@
 	}
 }
 
-.cl-header__toggle-bar {
-	width: 17px;
-	height: 2px;
-	background: $color-primary;
-	transition: all 0.3s;
+.cl-header__toggle-icon {
+	font-size: 18px;
+	line-height: 1;
+	color: $color-primary;
 }
 
 // ==============================

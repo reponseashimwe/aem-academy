@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/container">
+    <items jcr:primaryType="nt:unstructured">
+        <logoHeading
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/heading"
+            level="{Long}4"
+            text="Logo Settings"/>
+        <useDefaultLogoIcon
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+            granite:class="cl-logo-mode-toggle"
+            checked="{Boolean}true"
+            fieldDescription="When enabled, the selected icon is used instead of an uploaded logo asset."
+            name="./useDefaultLogoIcon"
+            text="Use default icon"
+            uncheckedValue="false"
+            value="true"/>
+        <defaultIconFields
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/container"
+            granite:class="cl-logo-default-icon-fields">
+            <items jcr:primaryType="nt:unstructured">
+                <logoIcon
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/include"
+                    path="/apps/academy-codenova/components/common/dialogfields/logoiconselect"/>
+            </items>
+        </defaultIconFields>
+        <assetFields
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/container"
+            granite:class="cl-logo-asset-fields">
+            <items jcr:primaryType="nt:unstructured">
+                <logoAssetReference
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                    fieldLabel="Logo Asset"
+                    fieldDescription="Path to DAM image used as logo when default icon is disabled."
+                    name="./logoAssetReference"
+                    rootPath="/content/dam"/>
+                <logoAltText
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                    fieldLabel="Logo Alt Text"
+                    name="./logoAltText"/>
+            </items>
+        </assetFields>
+    </items>
+</jcr:root>

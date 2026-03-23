@@ -1,0 +1,14 @@
+<sly data-sly-set.useDefaultLogoIcon="${properties.useDefaultLogoIcon == null || properties.useDefaultLogoIcon == 'true'}"/>
+<sly data-sly-set.hasLogoAsset="${properties.logoAssetReference}"/>
+<i
+    class="cl-icon-${properties.logoIcon || 'logo'}"
+    aria-label="${properties.logoAltText || 'Logo'}"
+    data-sly-test="${useDefaultLogoIcon || !hasLogoAsset}"
+></i>
+<img
+    class="cl-logo__image"
+    src="${properties.logoAssetReference}"
+    alt="${properties.logoAltText || 'Logo'}"
+    loading="lazy"
+    data-sly-test="${!useDefaultLogoIcon && hasLogoAsset}"
+/>

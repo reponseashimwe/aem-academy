@@ -1,0 +1,137 @@
+.icon-picker coral-selectlist-item::before,
+.icon-picker .coral3-Select-label::before {
+	font-family: "codeland" !important;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	display: inline-block;
+	margin-right: 10px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-picker coral-selectlist-item {
+	position: relative;
+	padding-left: 28px;
+}
+
+.icon-picker .coral3-Select-label {
+	display: inline-flex;
+	align-items: center;
+}
+
+.icon-picker .coral3-Select-button {
+	text-align: left;
+}
+
+.icon-picker coral-selectlist-item[value="none"]::before,
+.icon-picker coral-selectlist-item[value=""]::before {
+	content: "";
+}
+
+.icon-picker coral-selectlist-item[value="chevron"]::before {
+	content: "\e90b";
+}
+.icon-picker coral-selectlist-item[value="close"]::before {
+	content: "\e90c";
+}
+.icon-picker coral-selectlist-item[value="dehaze"]::before {
+	content: "\e90d";
+}
+.icon-picker coral-selectlist-item[value="logo"]::before {
+	content: "\e900";
+}
+.icon-picker coral-selectlist-item[value="account_balance"]::before {
+	content: "\e901";
+}
+.icon-picker coral-selectlist-item[value="arrow_forward"]::before {
+	content: "\e902";
+}
+.icon-picker coral-selectlist-item[value="arrows_output"]::before {
+	content: "\e903";
+}
+.icon-picker coral-selectlist-item[value="cell_merge"]::before {
+	content: "\e904";
+}
+.icon-picker coral-selectlist-item[value="download"]::before {
+	content: "\e905";
+}
+.icon-picker coral-selectlist-item[value="graph"]::before {
+	content: "\e906";
+}
+.icon-picker coral-selectlist-item[value="receipt_long"]::before {
+	content: "\e907";
+}
+.icon-picker coral-selectlist-item[value="school"]::before {
+	content: "\e908";
+}
+.icon-picker coral-selectlist-item[value="search"]::before {
+	content: "\e909";
+}
+.icon-picker coral-selectlist-item[value="question_mark"]::before {
+	content: "\e90a";
+}
+.icon-picker coral-selectlist-item[value="pencil"]::before {
+	content: "\e90e";
+}
+.icon-picker coral-selectlist-item[value="menu"]::before {
+	content: "\e9bd";
+}
+.icon-picker coral-selectlist-item[value="cross"]::before {
+	content: "\ea0f";
+}
+
+/* Selected value icon */
+.icon-picker:has(input[value="account_balance"]) .coral3-Select-label::before {
+	content: "\e901";
+}
+.icon-picker:has(input[value="arrow_forward"]) .coral3-Select-label::before {
+	content: "\e902";
+}
+.icon-picker:has(input[value="arrows_output"]) .coral3-Select-label::before {
+	content: "\e903";
+}
+.icon-picker:has(input[value="cell_merge"]) .coral3-Select-label::before {
+	content: "\e904";
+}
+.icon-picker:has(input[value="download"]) .coral3-Select-label::before {
+	content: "\e905";
+}
+.icon-picker:has(input[value="graph"]) .coral3-Select-label::before {
+	content: "\e906";
+}
+.icon-picker:has(input[value="receipt_long"]) .coral3-Select-label::before {
+	content: "\e907";
+}
+.icon-picker:has(input[value="school"]) .coral3-Select-label::before {
+	content: "\e908";
+}
+.icon-picker:has(input[value="search"]) .coral3-Select-label::before {
+	content: "\e909";
+}
+.icon-picker:has(input[value="question_mark"]) .coral3-Select-label::before {
+	content: "\e90a";
+}
+.icon-picker:has(input[value="chevron"]) .coral3-Select-label::before {
+	content: "\e90b";
+}
+.icon-picker:has(input[value="close"]) .coral3-Select-label::before {
+	content: "\e90c";
+}
+.icon-picker:has(input[value="dehaze"]) .coral3-Select-label::before {
+	content: "\e90d";
+}
+.icon-picker:has(input[value="pencil"]) .coral3-Select-label::before {
+	content: "\e90e";
+}
+.icon-picker:has(input[value="menu"]) .coral3-Select-label::before {
+	content: "\e9bd";
+}
+.icon-picker:has(input[value="cross"]) .coral3-Select-label::before {
+	content: "\ea0f";
+}
+.icon-picker:has(input[value="logo"]) .coral3-Select-label::before {
+	content: "\e900";
+}

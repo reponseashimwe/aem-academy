@@ -24,6 +24,15 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.cl-icon-chevron:before {
+	content: "\e90b";
+}
+.cl-icon-close:before {
+	content: "\e90c";
+}
+.cl-icon-dehaze:before {
+	content: "\e90d";
+}
 .cl-icon-logo:before {
 	content: "\e900";
 }
@@ -57,11 +66,12 @@
 .cl-icon-question_mark:before {
 	content: "\e90a";
 }
-
-.cl-icon-close {
-	font-family: inherit !important;
+.cl-icon-pencil:before {
+	content: "\e90e";
 }
-
-.cl-icon-close:before {
-	content: "\00d7";
+.cl-icon-menu:before {
+	content: "\e9bd";
+}
+.cl-icon-cross:before {
+	content: "\ea0f";
 }
