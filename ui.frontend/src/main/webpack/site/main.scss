@@ -16,3 +16,29 @@
 
 // component‑specific styles
 @import "../components/**/*.scss";
+
+.page-section.no-padding {
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+}
+
+body.aem-AuthorLayer-Edit .editable-component,
+body.cq-wcm-edit .editable-component {
+	position: relative;
+}
+
+body.aem-AuthorLayer-Edit .editable-component::before,
+body.cq-wcm-edit .editable-component::before {
+	content: "\e90e";
+	font-family: "codeland" !important;
+	font-size: 12px;
+	line-height: 1;
+	position: absolute;
+	top: 6px;
+	right: 6px;
+	color: $color-white;
+	background: rgba($color-primary, 0.85);
+	padding: 4px;
+	border-radius: 3px;
+	z-index: 3;
+}

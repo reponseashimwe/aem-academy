@@ -9,7 +9,6 @@
 		header: '.cl-header',
 		toggle: '[data-header-toggle]',
 		menu: '[data-header-menu]',
-		body: 'body',
 	};
 
 	const CLASSES = {
@@ -18,12 +17,7 @@
 		noScroll: 'no-scroll',
 	};
 
-	function initHeader() {
-		const header = document.querySelector(SELECTORS.header);
-		if (!header) {
-			return;
-		}
-
+	function initHeader(header) {
 		const toggleButtons = header.querySelectorAll(SELECTORS.toggle);
 		const menu = header.querySelector(SELECTORS.menu);
 		const body = document.body;
@@ -62,7 +56,7 @@
 		});
 
 		// Close menu when clicking links inside mobile menu
-		const mobileLinks = menu.querySelectorAll('.cl-header__mobile-link');
+		const mobileLinks = menu.querySelectorAll('.cl-header__mobile-link, .cl-header__mobile-utils-link');
 		mobileLinks.forEach((link) => {
 			link.addEventListener('click', () => {
 				if (menu.classList.contains(CLASSES.visible)) {
@@ -83,10 +77,15 @@
 		});
 	}
 
+	function initAllHeaders() {
+		const headers = document.querySelectorAll(SELECTORS.header);
+		headers.forEach(initHeader);
+	}
+
 	// Initialize on DOM ready
 	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', initHeader);
+		document.addEventListener('DOMContentLoaded', initAllHeaders);
 	} else {
-		initHeader();
+		initAllHeaders();
 	}
 })();

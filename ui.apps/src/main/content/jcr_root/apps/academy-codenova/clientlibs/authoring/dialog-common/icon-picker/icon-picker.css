@@ -8,13 +8,16 @@
 	line-height: 1;
 	display: inline-block;
 	margin-right: 10px;
+	font-size: 18px;
+	width: 18px;
+	text-align: center;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
 
 .icon-picker coral-selectlist-item {
 	position: relative;
-	padding-left: 28px;
+	padding-left: 34px;
 }
 
 .icon-picker .coral3-Select-label {

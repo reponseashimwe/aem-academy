@@ -1,3 +1,6 @@
 <sly data-sly-test="${properties.text}">
     ${properties.text}
 </sly>
+<span data-sly-test="${wcmmode.edit && !properties.text}">
+    [CONFIGURE ${resource.name}]
+</span>

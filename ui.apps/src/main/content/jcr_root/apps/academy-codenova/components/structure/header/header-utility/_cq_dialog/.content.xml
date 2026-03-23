@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="nt:unstructured"
-    jcr:title="Header Configuration"
+    jcr:title="Header Utility"
     extraClientlibs="[academy-codenova.authoring.dialog-common]"
     sling:resourceType="cq/gui/components/authoring/dialog">
     <content
@@ -13,21 +13,33 @@
                 sling:resourceType="granite/ui/components/coral/foundation/tabs"
                 maximized="{Boolean}true">
                 <items jcr:primaryType="nt:unstructured">
-                    <headerSettings
+                    <utility
                         jcr:primaryType="nt:unstructured"
-                        jcr:title="Header Settings"
+                        jcr:title="Utility"
                         sling:resourceType="granite/ui/components/coral/foundation/container"
                         margin="{Boolean}true">
                         <items jcr:primaryType="nt:unstructured">
-                            <logoSettings
+                            <language
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/include"
-                                path="/apps/academy-codenova/components/common/dialogfields/logoselect"/>
-                             <jumbotronIcon
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Language Label"
+                                name="./languageLabel"
+                                value="IT"/>
+                            <allowTitle
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/include"
-                                path="/apps/academy-codenova/components/common/dialogfields/iconselect"
-                                name="./jumbotronIcon"/>
+                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                name="./allowTitle"
+                                value="false"/>
+                            <allowIcons
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                name="./allowIcons"
+                                value="true"/>
+                            <allowPath
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                name="./allowPath"
+                                value="true"/>
                             <utilLinks
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
@@ -53,19 +65,12 @@
                                             fieldLabel="URL"
                                             fieldDescription="Optional. Leave empty to display as plain text."
                                             name="url"
-                                            rootPath="/content"
-                                            />
+                                            rootPath="/content"/>
                                     </items>
                                 </field>
                             </utilLinks>
-                            <language
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Language Label"
-                                name="./languageLabel"
-                                value="IT"/>
                         </items>
-                    </headerSettings>
+                    </utility>
                 </items>
             </tabs>
         </items>

@@ -1,39 +1,44 @@
-<footer class="cl-footer"
-	data-sly-use.footer="com.reponse.mvn.core.models.CodelandFooterModel">
-
+<footer
+	class="cl-footer cl-footer--mode-stable"
+	data-sly-use.nav="com.reponse.mvn.core.models.NavigationModel"
+	data-sly-test.isHomepage="${nav.isHomePage}"
+>
 	<!-- 4-column grid -->
-	<div class="cl-footer__top" data-sly-test="${footer.sections}">
+	<div class="cl-footer__top">
+		<div class="page-section no-padding">
+			<div class="cl-footer__cols editable-component editable-component--footer-cols">
+				<sly data-sly-list.col="${['footer-column-1','footer-column-2','footer-column-3','footer-column-4']}">
+					<div class="cl-footer__col editable-component editable-component--footer-col">
+						<sly
+							data-sly-resource="${col @ resourceType='academy-codenova/components/common/utilitylinks', decoration=true, decorationTagName='div', cssClassName='cl-footer__utility'}"
+						/>
+					</div>
+				</sly>
+			</div>
+		</div>
+	</div>
+
+	<div class="cl-footer__bar">
 		<div class="page-section">
-			<div class="cl-footer__cols">
-				<div class="cl-footer__col" data-sly-repeat.section="${footer.sections}">
-					<h4 class="cl-footer__col-title">${section.title}</h4>
-					<ul class="cl-footer__col-list">
-						<li class="cl-footer__col-item" data-sly-repeat.item="${section.items}">
-							<span class="cl-footer__col-text">${item}</span>
-						</li>
-					</ul>
+			<div class="cl-footer__bar-inner">
+				<div class="cl-footer__copyright editable-component editable-component--footer-copyright">
+					<span class="cl-footer__copyright-prefix">&copy;</span>
+					<sly
+						data-sly-resource="${'copyright' @ resourceType='academy-codenova/components/common/text', decoration=true, decorationTagName='span', cssClassName='cl-footer__copyright-text'}"
+					/>
+				</div>
+
+				<div class="cl-footer__legal editable-component editable-component--footer-legal">
+					<sly
+						data-sly-resource="${'legal-links' @ resourceType='academy-codenova/components/common/utilitylinks', decoration=true, decorationTagName='div', cssClassName='cl-footer__utility cl-footer__utility--legal'}"
+					/>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<!-- Bottom bar -->
-	<div class="cl-footer__bar">
-		<div class="page-section">
-			<div class="cl-footer__bar-inner">
-				<p class="cl-footer__copyright">${footer.copyrightText}</p>
-				<ul class="cl-footer__legal" data-sly-test="${footer.legalLinks}">
-					<li data-sly-repeat.link="${footer.legalLinks}">
-						<sly data-sly-test="${link.url}">
-							<a href="${link.url @ extension='html'}" class="cl-footer__legal-link">${link.label}</a>
-						</sly>
-						<sly data-sly-test="${!link.url}">
-							<span class="cl-footer__legal-link">${link.label}</span>
-						</sly>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-
 </footer>
+
+<sly
+	data-sly-resource="/content/codehills/jcr:content/codeland-footer"
+	data-sly-test.isHomepage="${!isHomepage}"
+/>
