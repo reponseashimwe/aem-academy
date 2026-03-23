@@ -2,3 +2,33 @@
 .cl-logo-asset-fields {
   margin-top: 8px;
 }
+
+/* Show logo icon in Logo Type selector for "Default logo" */
+.cl-logo-mode-toggle coral-selectlist-item[value="default"]::before,
+.cl-logo-mode-toggle .coral3-Select-label::before {
+  font-family: "codeland" !important;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  display: inline-block;
+  margin-right: 8px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.cl-logo-mode-toggle coral-selectlist-item[value="default"]::before {
+  content: "\e900";
+}
+
+.cl-logo-mode-toggle coral-selectlist-item[value="default"] {
+  position: relative;
+  padding-left: 24px;
+}
+
+.cl-logo-mode-toggle:has(input[value="default"]) .coral3-Select-label::before {
+  content: "\e900";
+}
+
+.cl-logo-mode-toggle:has(input[value="custom"]) .coral3-Select-label::before {
+  content: "";
+}

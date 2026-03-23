@@ -6,6 +6,6 @@
     sling:resourceSuperType="academy-codenova/components/common/dialogfields/iconselect"
     class="icon-picker"
     fieldLabel="Default Logo Icon"
-    fieldDescription="Icon shown when 'Use default icon' is enabled."
+    fieldDescription="Icon shown when 'Default logo' is selected."
     name="./logoIcon"
     value="logo"/>

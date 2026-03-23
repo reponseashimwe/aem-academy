@@ -1,18 +1,39 @@
 // Footer Component Styles
 
-$footer-border: rgba($color-white, 0.2);
+$footer-border: $color-white;
+$footer-border-mobile: rgba($color-white, 0.35);
 
 .cl-footer {
 	background: $color-primary;
 	color: $color-white;
-	padding-top: 56px; 
-}
-
-.cl-footer__top {
-	border-top: 1px solid $footer-border;
+	padding-top: 56px;
+	padding-bottom: 20px;
 	border-bottom: 1px solid $footer-border;
 }
 
+// Keep footer layout identical in publish and author modes.
+.cl-footer--mode-stable {
+	.page-section {
+		padding-inline: 30px;
+	}
+
+	.editable-component--footer-cols,
+	.editable-component--footer-copyright,
+	.editable-component--footer-legal {
+		margin: 0;
+	}
+}
+
+.cl-footer__top {
+	margin-block: 10px;
+	border-top: 1px solid $footer-border;
+	border-bottom: 1px solid $footer-border;
+
+	@include mobile {
+		border-top: 1px solid $footer-border-mobile;
+		border-bottom: 1px solid $footer-border-mobile;
+	}
+}
 
 .cl-footer__cols {
 	display: grid;
@@ -31,13 +52,12 @@ $footer-border: rgba($color-white, 0.2);
 	}
 }
 
-
 .cl-footer__col {
 	padding: 32px 28px;
 	border-right: 1px solid $footer-border;
 
 	&:last-child {
-		border-right: none; 
+		border-right: none;
 	}
 
 	@include tablet {
@@ -54,17 +74,47 @@ $footer-border: rgba($color-white, 0.2);
 	}
 
 	@include mobile {
-		padding: 32px 24px;
+		position: relative;
+		padding: 32px 0;
 		border-right: none;
-		border-bottom: 1px solid $footer-border;
+		border-top: none;
+		border-bottom: none;
+
+		// Override tablet nth-child borders so first/second columns
+		&:nth-child(1),
+		&:nth-child(2) {
+			border-bottom: none;
+		}
+
+		&::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			height: 1px;
+			background: $footer-border-mobile;
+		}
 
 		&:last-child {
-			border-bottom: none;
+			&::after {
+				display: none;
+			}
 		}
 	}
 }
 
 .cl-footer__col-title {
+	margin: 0 0 20px;
+	font-size: 11px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	color: $color-white;
+	line-height: 1.4;
+}
+
+.cl-footer__col .cn-utility-links__title {
 	margin: 0 0 20px;
 	font-size: 11px;
 	font-weight: 700;
@@ -83,8 +133,24 @@ $footer-border: rgba($color-white, 0.2);
 	gap: 10px;
 }
 
+.cl-footer__col .cn-utility-links__list {
+	list-style: none !important;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
 .cl-footer__col-item {
 	line-height: 1.4;
+}
+
+.cl-footer__col .cn-utility-links__item {
+	line-height: 1.4;
+	list-style: none !important;
+	margin: 0;
+	padding: 0;
 }
 
 .cl-footer__col-text {
@@ -95,12 +161,50 @@ $footer-border: rgba($color-white, 0.2);
 	cursor: default;
 }
 
+.cl-footer__col .cn-utility-links__text {
+	font-size: 14px;
+	font-weight: 300;
+	color: $color-white;
+	line-height: 1.5;
+	cursor: default;
+	font-family: inherit;
+}
+
+.cl-footer__col .cn-utility-links__link {
+	display: block;
+	text-decoration: none;
+	color: $color-white;
+	font-family: inherit;
+}
+
+.cl-footer__utility,
+.cl-footer__utility .utilitylinks,
+.cl-footer__utility .utilitylinks-notitle {
+	margin: 0;
+	padding: 0;
+}
+
+.cl-footer--mode-stable .editable-component--footer-col {
+	@include mobile {
+		border-right: none !important;
+	}
+}
+
 // ==============================
 // Bottom bar
 // ==============================
 
 .cl-footer__bar {
 	padding-block: 20px;
+
+	.page-section {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+
+	@include mobile {
+		border-top: none;
+	}
 }
 
 .cl-footer__bar-inner {
@@ -110,17 +214,33 @@ $footer-border: rgba($color-white, 0.2);
 	gap: 24px;
 
 	@include mobile {
-		flex-direction: column;
+		flex-direction: column-reverse;
 		align-items: flex-start;
 		gap: 16px;
+		padding-inline: 0;
 	}
 }
 
 .cl-footer__copyright {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
 	margin: 0;
 	font-size: 12px;
 	font-weight: 400;
-	color: rgba($color-white, 0.7);
+	color: $color-white;
+	line-height: 1.4;
+}
+
+.cl-footer__copyright-prefix {
+	line-height: 1;
+}
+
+.cl-footer__copyright-text,
+.cl-footer__copyright-text .text {
+	display: inline;
+	margin: 0;
+	padding: 0;
 	line-height: 1.4;
 }
 
@@ -146,4 +266,36 @@ $footer-border: rgba($color-white, 0.2);
 	&:hover {
 		opacity: 0.5;
 	}
+}
+
+.cl-footer__legal .cn-utility-links__list {
+	list-style: none !important;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 8px 28px;
+}
+
+.cl-footer__legal .cn-utility-links__item {
+	line-height: 1.4;
+	list-style: none !important;
+	margin: 0;
+	padding: 0;
+}
+
+.cl-footer__legal .cn-utility-links__link,
+.cl-footer__legal .cn-utility-links__text {
+	font-size: 12px;
+	font-weight: 400;
+	color: $color-white;
+	text-decoration: none;
+	line-height: 1.4;
+	transition: opacity 0.2s;
+	cursor: pointer;
+}
+
+.cl-footer__legal .cn-utility-links__link:hover {
+	opacity: 0.5;
 }

@@ -1,0 +1,33 @@
+<sly data-sly-use.links="com.reponse.mvn.core.models.UtilityLinksModel" />
+
+<h4
+	class="cn-utility-links__title"
+	data-sly-test="${links.showTitle && links.title}"
+>
+	${links.title}
+</h4>
+<ul
+	class="cn-utility-links__list"
+	data-sly-test="${links.items.size > 0}"
+>
+	<sly data-sly-list.item="${links.items}">
+		<li class="cn-utility-links__item">
+			<sly data-sly-test="${item.url}">
+				<a href="${item.url @ extension='html'}" class="cn-utility-links__link">
+					<span class="cn-utility-links__text">${item.label}</span>
+				</a>
+			</sly>
+			<sly data-sly-test="${!item.url}">
+				<span class="cn-utility-links__link">
+					<span class="cn-utility-links__text">${item.label}</span>
+				</span>
+			</sly>
+		</li>
+	</sly>
+</ul>
+<span
+	class="cn-utility-links__empty"
+	data-sly-test="${wcmmode.edit && links.items.size == 0}"
+>
+	[CONFIGURE ${resource.name}]
+</span>

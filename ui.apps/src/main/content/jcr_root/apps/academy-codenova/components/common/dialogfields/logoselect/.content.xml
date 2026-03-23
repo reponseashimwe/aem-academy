@@ -6,25 +6,34 @@
     jcr:primaryType="nt:unstructured"
     sling:resourceType="granite/ui/components/coral/foundation/container">
     <items jcr:primaryType="nt:unstructured">
-        <logoHeading
+        <logoMode
             jcr:primaryType="nt:unstructured"
-            sling:resourceType="granite/ui/components/coral/foundation/heading"
-            level="{Long}4"
-            text="Logo Settings"/>
-        <useDefaultLogoIcon
-            jcr:primaryType="nt:unstructured"
-            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-            granite:class="cl-logo-mode-toggle"
-            checked="{Boolean}true"
-            fieldDescription="When enabled, the selected icon is used instead of an uploaded logo asset."
-            name="./useDefaultLogoIcon"
-            text="Use default icon"
-            uncheckedValue="false"
-            value="true"/>
+            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+            granite:class="cq-dialog-dropdown-showhide cl-logo-mode-toggle"
+            fieldLabel="Logo Type"
+            name="./logoMode">
+            <granite:data
+                jcr:primaryType="nt:unstructured"
+                cq-dialog-dropdown-showhide-target=".cl-logo-mode-target"/>
+            <items jcr:primaryType="nt:unstructured">
+                <default
+                    jcr:primaryType="nt:unstructured"
+                    text="Default logo"
+                    selected="{Boolean}true"
+                    value="default"/>
+                <custom
+                    jcr:primaryType="nt:unstructured"
+                    text="Custom image"
+                    value="custom"/>
+            </items>
+        </logoMode>
         <defaultIconFields
             jcr:primaryType="nt:unstructured"
             sling:resourceType="granite/ui/components/coral/foundation/container"
-            granite:class="cl-logo-default-icon-fields">
+            granite:class="hide cl-logo-default-icon-fields cl-logo-mode-target">
+            <granite:data
+                jcr:primaryType="nt:unstructured"
+                showhidetargetvalue="default"/>
             <items jcr:primaryType="nt:unstructured">
                 <logoIcon
                     jcr:primaryType="nt:unstructured"
@@ -35,7 +44,10 @@
         <assetFields
             jcr:primaryType="nt:unstructured"
             sling:resourceType="granite/ui/components/coral/foundation/container"
-            granite:class="cl-logo-asset-fields">
+            granite:class="hide cl-logo-asset-fields cl-logo-mode-target">
+            <granite:data
+                jcr:primaryType="nt:unstructured"
+                showhidetargetvalue="custom"/>
             <items jcr:primaryType="nt:unstructured">
                 <logoAssetReference
                     jcr:primaryType="nt:unstructured"

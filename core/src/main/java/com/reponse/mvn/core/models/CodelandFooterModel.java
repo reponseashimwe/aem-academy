@@ -1,66 +1,102 @@
 package com.reponse.mvn.core.models;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class CodelandFooterModel {
 
+    @ChildResource(name = "column-1")
+    private Resource column1;
+
+    @ChildResource(name = "column-2")
+    private Resource column2;
+
+    @ChildResource(name = "column-3")
+    private Resource column3;
+
+    @ChildResource(name = "column-4")
+    private Resource column4;
+
+    @ChildResource(name = "legal-links")
+    private Resource legalLinksResource;
+
+    @ChildResource(name = "copyright")
+    private Resource copyrightResource;
+
     public String getCopyrightText() {
-        return "\u00a9 Lorem ipsum dolor sit";
+        if (copyrightResource == null) {
+            return "";
+        }
+        return copyrightResource.getValueMap().get("text", "");
     }
 
     public List<FooterSection> getSections() {
-        return Arrays.asList(
-            new FooterSection("LINK", Arrays.asList(
-                "Docenti",
-                "Sostieni l\u2019Universit\u00e0",
-                "Vita e pensiero editrice",
-                "Sistema bibliotecario",
-                "Librerie e merchandising",
-                "Giornalisti e media",
-                "Ufficio rapporti con il pubblico",
-                "Contatti"
-            )),
-            new FooterSection("STRUMENTI", Arrays.asList(
-                "Off-campus",
-                "CV Online",
-                "Albo Fornitori",
-                "Bandi e Gare",
-                "Verifica certificati e autocertificazioni",
-                "Intranet"
-            )),
-            new FooterSection("SOCIAL E MEDIA @UNICATT", Arrays.asList(
-                "Facebook",
-                "X",
-                "Linkedin",
-                "Youtube",
-                "Instagram",
-                "Telegram",
-                "Spotify",
-                "Presenza"
-            )),
-            new FooterSection("SECONDO TEMPO", Arrays.asList(
-                "Media center",
-                "Presenza",
-                "Facebook",
-                "X",
-                "Instagram"
-            ))
-        );
+        List<FooterSection> sections = new ArrayList<>();
+        addSection(sections, column1);
+        addSection(sections, column2);
+        addSection(sections, column3);
+        addSection(sections, column4);
+        return sections;
     }
 
     public List<LegalLink> getLegalLinks() {
-        return Arrays.asList(
-            new LegalLink("Privacy", null),
-            new LegalLink("Cookies", null),
-            new LegalLink("Accessibilit\u00e0", null),
-            new LegalLink("Impostazione dei Cookies", null)
-        );
+        if (legalLinksResource == null) {
+            return Collections.emptyList();
+        }
+
+        Resource links = legalLinksResource.getChild("utilLinks");
+        if (links == null) {
+            return Collections.emptyList();
+        }
+
+        List<LegalLink> legalLinks = new ArrayList<>();
+        Iterator<Resource> children = links.listChildren();
+        while (children.hasNext()) {
+            Resource child = children.next();
+            ValueMap vm = child.getValueMap();
+            String label = vm.get("label", String.class);
+            String url = vm.get("url", String.class);
+            if (label != null && !label.isBlank()) {
+                legalLinks.add(new LegalLink(label, url));
+            }
+        }
+
+        return legalLinks;
+    }
+
+    private void addSection(List<FooterSection> sections, Resource columnResource) {
+        if (columnResource == null) {
+            return;
+        }
+
+        ValueMap vm = columnResource.getValueMap();
+        String title = vm.get("title", "");
+        List<String> items = new ArrayList<>();
+
+        Resource links = columnResource.getChild("utilLinks");
+        if (links != null) {
+            Iterator<Resource> children = links.listChildren();
+            while (children.hasNext()) {
+                Resource child = children.next();
+                String label = child.getValueMap().get("label", String.class);
+                if (label != null && !label.isBlank()) {
+                    items.add(label);
+                }
+            }
+        }
+
+        if (!title.isBlank() || !items.isEmpty()) {
+            sections.add(new FooterSection(title, items));
+        }
     }
 
     public static final class FooterSection {
