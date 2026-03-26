@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Image"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+
+                    <asset jcr:primaryType="nt:unstructured">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns jcr:primaryType="nt:unstructured">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column jcr:primaryType="nt:unstructured">
+                                        <items jcr:primaryType="nt:unstructured">
+
+                                            <imageFromPageImage
+                                                jcr:primaryType="nt:unstructured"
+                                                granite:hide="{Boolean}true"/>
+                                            <pageImageThumbnail
+                                                jcr:primaryType="nt:unstructured"
+                                                granite:hide="{Boolean}true"/>
+
+                                            <alternativeGroup
+                                                jcr:primaryType="nt:unstructured"
+                                                granite:hide="{Boolean}true"/>
+
+                                            <decorative
+                                                jcr:primaryType="nt:unstructured"
+                                                granite:hide="{Boolean}true"/>
+
+                                            <disableLazyLoading
+                                                jcr:primaryType="nt:unstructured"
+                                                granite:hide="{Boolean}true"/>
+
+                                            <aspectRatioField
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                                path="/apps/academy-codenova/components/common/dialogfields/aspectratio"/>
+
+                                            <widthField
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                                path="/apps/academy-codenova/components/common/dialogfields/width"/>
+
+                                            <objectFit
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Object Fit"
+                                                fieldDescription="How the image fills its container (default: cover)."
+                                                name="./objectFit">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <def     jcr:primaryType="nt:unstructured" text="Cover (default)" value=""                      selected="{Boolean}true"/>
+                                                    <contain jcr:primaryType="nt:unstructured" text="Contain"          value="cl-image--fit-contain"/>
+                                                    <fill    jcr:primaryType="nt:unstructured" text="Fill"             value="cl-image--fit-fill"/>
+                                                </items>
+                                            </objectFit>
+
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </asset>
+
+                    <styling
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Styling"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <visibility
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                                path="/apps/academy-codenova/components/common/dialogfields/visibility"/>
+                                            <margin
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                                path="/apps/academy-codenova/components/common/dialogfields/margin"/>
+                                            <opacity
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                                path="/apps/academy-codenova/components/common/dialogfields/opacity"/>
+                                            <borderRadius
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                                path="/apps/academy-codenova/components/common/dialogfields/borderradius"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </styling>
+
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

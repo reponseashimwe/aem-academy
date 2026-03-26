@@ -1,5 +1,45 @@
-.cmp-breadcrumb {}
-.cmp-breadcrumb__list {}
-.cmp-breadcrumb__item {}
-.cmp-breadcrumb__item--active {}
-.cmp-breadcrumb__item-link {}
+.cl-breadcrumb {
+	.cmp-breadcrumb__list {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.cmp-breadcrumb__item {
+		display: flex;
+		align-items: center;
+		font-size: 14px;
+		font-weight: 300;
+		color: $color-primary-light;
+
+		meta {
+			display: none;
+		}
+	}
+
+	.cmp-breadcrumb__separator {
+		margin: 0 8px;
+		color: $color-primary-light;
+		font-size: 16px;
+		line-height: 1;
+	}
+
+	.cmp-breadcrumb__item--active {
+		font-weight: 400;
+		color: $color-text;
+	}
+
+	.cmp-breadcrumb__item-link {
+		color: $color-primary-light;
+		font-weight: 300;
+		text-decoration: none;
+
+		&:hover {
+			color: $color-primary;
+			text-decoration: underline;
+		}
+	}
+}

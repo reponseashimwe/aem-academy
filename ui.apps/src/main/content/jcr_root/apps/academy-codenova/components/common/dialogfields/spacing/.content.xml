@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/container">
+    <items jcr:primaryType="nt:unstructured">
+        <margin
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+            fieldLabel="Margin Y"
+            fieldDescription="Applies vertical margin (top and bottom)."
+            name="./margin">
+            <items jcr:primaryType="nt:unstructured">
+                <none jcr:primaryType="nt:unstructured" text="None" value="" selected="{Boolean}true"/>
+                <xs jcr:primaryType="nt:unstructured" text="XS" value="my-xs"/>
+                <sm jcr:primaryType="nt:unstructured" text="SM" value="my-sm"/>
+                <md jcr:primaryType="nt:unstructured" text="MD" value="my-md"/>
+                <lg jcr:primaryType="nt:unstructured" text="LG" value="my-lg"/>
+            </items>
+        </margin>
+        <marginX
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+            fieldLabel="Margin X"
+            fieldDescription="Applies horizontal margin (left and right)."
+            name="./marginX">
+            <items jcr:primaryType="nt:unstructured">
+                <none jcr:primaryType="nt:unstructured" text="None" value="" selected="{Boolean}true"/>
+                <xs jcr:primaryType="nt:unstructured" text="XS" value="mx-xs"/>
+                <sm jcr:primaryType="nt:unstructured" text="SM" value="mx-sm"/>
+                <md jcr:primaryType="nt:unstructured" text="MD" value="mx-md"/>
+                <lg jcr:primaryType="nt:unstructured" text="LG" value="mx-lg"/>
+            </items>
+        </marginX>
+        <paddingY
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+            fieldLabel="Padding Y"
+            fieldDescription="Applies vertical padding (top and bottom)."
+            name="./paddingY">
+            <items jcr:primaryType="nt:unstructured">
+                <none jcr:primaryType="nt:unstructured" text="None" value="" selected="{Boolean}true"/>
+                <xs jcr:primaryType="nt:unstructured" text="XS" value="py-xs"/>
+                <sm jcr:primaryType="nt:unstructured" text="SM" value="py-sm"/>
+                <md jcr:primaryType="nt:unstructured" text="MD" value="py-md"/>
+                <lg jcr:primaryType="nt:unstructured" text="LG" value="py-lg"/>
+            </items>
+        </paddingY>
+        <paddingX
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+            fieldLabel="Padding X"
+            fieldDescription="Applies horizontal padding (left and right)."
+            name="./paddingX">
+            <items jcr:primaryType="nt:unstructured">
+                <none jcr:primaryType="nt:unstructured" text="None" value="" selected="{Boolean}true"/>
+                <xs jcr:primaryType="nt:unstructured" text="XS" value="px-xs"/>
+                <sm jcr:primaryType="nt:unstructured" text="SM" value="px-sm"/>
+                <md jcr:primaryType="nt:unstructured" text="MD" value="px-md"/>
+                <lg jcr:primaryType="nt:unstructured" text="LG" value="px-lg"/>
+            </items>
+        </paddingX>
+    </items>
+</jcr:root>

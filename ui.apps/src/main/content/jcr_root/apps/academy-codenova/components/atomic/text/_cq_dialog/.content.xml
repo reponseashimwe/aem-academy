@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Text"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    extraClientlibs="[core.wcm.components.text.v2.editor]">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <properties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns jcr:primaryType="nt:unstructured">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column jcr:primaryType="nt:unstructured">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <textVariant
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Text Variant"
+                                                fieldDescription="Apply a design system typography style to this text block."
+                                                name="./textVariant">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <bodySm
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Body SM"
+                                                        value=""
+                                                        selected="{Boolean}true"/>
+                                                    <body
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Body"
+                                                        value="body"/>
+                                                    <bodyLg
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Body LG"
+                                                        value="body-lg"/>
+                                                    <caption
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Caption"
+                                                        value="caption"/>
+                                                </items>
+                                            </textVariant>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </properties>
+                    <styling
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Styling"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <common
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                path="/apps/academy-codenova/components/common/dialogfields/stylingtabminimal"/>
+                        </items>
+                    </styling>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

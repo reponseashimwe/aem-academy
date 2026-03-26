@@ -1,0 +1,15 @@
+<sly data-sly-test.hideMobClass="${properties.hideOnMobile ? 'hide-mobile' : ''}"></sly>
+<sly data-sly-test.hideDeskClass="${properties.hideOnDesktop ? 'hide-desktop' : ''}"></sly>
+<sly data-sly-use.breadcrumb="com.adobe.cq.wcm.core.components.models.Breadcrumb"></sly>
+
+<div class="${['cl-breadcrumb', properties.margin, properties.marginX, hideMobClass, hideDeskClass] @ join=' '}">
+	<nav class="cmp-breadcrumb" aria-label="${breadcrumb.accessibilityLabel}">
+		<ol class="cmp-breadcrumb__list" data-sly-list.item="${breadcrumb.items}">
+			<li class="${['cmp-breadcrumb__item', item.active ? 'cmp-breadcrumb__item--active' : ''] @ join=' '}">
+				<span class="cmp-breadcrumb__separator cl-icon-chevron" data-sly-test="${!itemList.first}"></span>
+				<a data-sly-test="${!item.active}" class="cmp-breadcrumb__item-link" href="${item.URL}">${item.title}</a>
+				<span data-sly-test="${item.active}" class="cmp-breadcrumb__item-title">${item.title}</span>
+			</li>
+		</ol>
+	</nav>
+</div>

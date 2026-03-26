@@ -1,0 +1,13 @@
+<sly data-sly-use.text="com.adobe.cq.wcm.core.components.models.Text">
+
+<sly data-sly-test.hideMobClass="${properties.hideOnMobile ? 'hide-mobile' : ''}"></sly>
+<sly data-sly-test.hideDeskClass="${properties.hideOnDesktop ? 'hide-desktop' : ''}"></sly>
+
+<div class="${['cmp-text', properties.textVariant, properties.margin, properties.marginX, hideMobClass, hideDeskClass] @ join=' '}">
+	<sly data-sly-test="${wcmmode.edit && !text.text}">
+		<div class="cq-placeholder" data-emptytext="${component.title}"></div>
+	</sly>
+	${text.text @ context='html'}
+</div>
+
+</sly>
