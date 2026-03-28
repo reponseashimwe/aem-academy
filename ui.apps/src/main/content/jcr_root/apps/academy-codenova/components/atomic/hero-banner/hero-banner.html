@@ -1,0 +1,33 @@
+<section class="cl-hero-banner">
+	<div class="cl-hero-banner__inner">
+		<sly data-sly-test="${properties.showBreadcrumb}">
+			<div class="cl-hero-banner__breadcrumb">
+				<sly
+					data-sly-resource="${'breadcrumb' @ resourceType='academy-codenova/components/atomic/breadcrumb', decoration=true}"
+				/>
+			</div>
+		</sly>
+
+		<sly data-sly-resource="${'slides' @ resourceType='academy-codenova/components/atomic/hero-slides', decoration=true}" />
+
+		<div class="cl-hero-banner__nav">
+			<div class="cl-hero-banner__dots" data-hero-dots></div>
+			<div class="cl-slider__arrows">
+				<button
+					class="cl-slider__arrow"
+					data-hero-prev
+					aria-label="Previous slide"
+				>
+					<i class="cl-icon-chevron u-rotate-180"></i>
+				</button>
+				<button
+					class="cl-slider__arrow cl-slider__arrow--solid"
+					data-hero-next
+					aria-label="Next slide"
+				>
+					<i class="cl-icon-chevron"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</section>

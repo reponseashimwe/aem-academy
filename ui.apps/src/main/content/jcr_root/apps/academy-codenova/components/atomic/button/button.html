@@ -1,30 +1,47 @@
 <sly data-sly-use.button="com.adobe.cq.wcm.core.components.models.Button">
+	<sly data-sly-test.iconClass="${['cl-icon-', properties.customIcon] @ join=''}"></sly>
+	<sly data-sly-test.iconLeft="${properties.customIcon && properties.iconPosition == 'left'}"></sly>
+	<sly data-sly-test.iconRight="${properties.customIcon && properties.iconPosition != 'left'}"></sly>
+	<sly data-sly-test.isNewWindow="${properties.linkTarget == '_blank'}"></sly>
+	<sly data-sly-test.hideMobClass="${properties.hideOnMobile ? 'hide-mobile' : ''}"></sly>
+	<sly data-sly-test.hideDeskClass="${properties.hideOnDesktop ? 'hide-desktop' : ''}"></sly>
+	<sly data-sly-set.brClass=""></sly>
+	<sly data-sly-set.brSide=""></sly>
+	<sly
+		data-sly-test="${properties.borderRadius}"
+		data-sly-set.brClass="${['cl-br-', properties.borderRadius] @ join=''}"
+	></sly>
+	<sly
+		data-sly-test="${properties.borderRadiusSide}"
+		data-sly-set.brSide="${['cl-br-', properties.borderRadiusSide] @ join=''}"
+	></sly>
 
-<sly data-sly-test.iconClass="${['cl-icon-', properties.customIcon] @ join=''}"></sly>
-<sly data-sly-test.iconLeft="${properties.customIcon && properties.iconPosition == 'left'}"></sly>
-<sly data-sly-test.iconRight="${properties.customIcon && properties.iconPosition != 'left'}"></sly>
-<sly data-sly-test.isNewWindow="${properties.linkTarget == '_blank'}"></sly>
-<sly data-sly-test.hideMobClass="${properties.hideOnMobile ? 'hide-mobile' : ''}"></sly>
-<sly data-sly-test.hideDeskClass="${properties.hideOnDesktop ? 'hide-desktop' : ''}"></sly>
-<sly data-sly-set.brClass=""></sly>
-<sly data-sly-set.brSide=""></sly>
-<sly data-sly-test="${properties.borderRadius}" data-sly-set.brClass="${['cl-br-', properties.borderRadius] @ join=''}"></sly>
-<sly data-sly-test="${properties.borderRadiusSide}" data-sly-set.brSide="${['cl-br-', properties.borderRadiusSide] @ join=''}"></sly>
-
-<div class="${['cl-btn-wrapper', properties.margin, properties.marginX, hideMobClass, hideDeskClass] @ join=' '}">
-	<sly data-sly-test="${wcmmode.edit && !button.text}">
-		<div class="cq-placeholder" data-emptytext="${component.title}"></div>
-	</sly>
-	<sly data-sly-test="${button.text}">
-		<a class="${['btn', properties.variant, properties.size, properties.width, brClass, brSide, iconLeft ? 'btn--icon-left' : '', iconRight ? 'btn--icon-right' : ''] @ join=' '}"
-		   href="${button.link}"
-		   target="${isNewWindow ? '_blank' : '_self'}"
-		   rel="${isNewWindow ? 'noopener noreferrer' : ''}">
-			<i class="${iconClass}" data-sly-test="${iconLeft}" aria-hidden="true"></i>
-			<span class="btn__text">${button.text}</span>
-			<i class="${iconClass}" data-sly-test="${iconRight}" aria-hidden="true"></i>
-		</a>
-	</sly>
-</div>
-
+	<div class="${['cl-btn-wrapper', properties.margin, properties.marginX, hideMobClass, hideDeskClass] @ join=' '}">
+		<sly data-sly-test="${wcmmode.edit && !button.text}">
+			<div
+				class="cq-placeholder"
+				data-emptytext="${component.title}"
+			></div>
+		</sly>
+		<sly data-sly-test="${button.text}">
+			<a
+				class="${['btn', properties.variant, properties.size, properties.width, brClass, brSide, iconLeft ? 'btn--icon-left' : '', iconRight ? 'btn--icon-right' : ''] @ join=' '}"
+				href="${button.link}"
+				target="${isNewWindow ? '_blank' : '_self'}"
+				rel="${isNewWindow ? 'noopener noreferrer' : ''}"
+			>
+				<i
+					class="${iconClass}"
+					data-sly-test="${iconLeft}"
+					aria-hidden="true"
+				></i>
+				<span class="btn__text">${button.text}</span>
+				<i
+					class="${iconClass}"
+					data-sly-test="${iconRight}"
+					aria-hidden="true"
+				></i>
+			</a>
+		</sly>
+	</div>
 </sly>

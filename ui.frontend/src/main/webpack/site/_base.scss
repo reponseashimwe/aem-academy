@@ -23,6 +23,15 @@ body {
 }
 
 /* Font utilities */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: normal;
+}
+
 .font-primary {
 	font-family: $font-family-primary;
 }
@@ -411,6 +420,12 @@ main,
 	@include desktop {
 		display: none !important;
 	}
+}
+
+/* Rotation utilities */
+
+.u-rotate-180 {
+	transform: rotate(180deg);
 }
 
 /* Border radius utilities — size */

@@ -1,0 +1,123 @@
+.cl-slideshow {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+
+    &--empty {
+        background: #f4f4f4;
+        border: 2px dashed #ccc;
+        padding: 2rem;
+        text-align: center;
+        color: #999;
+        font-size: 0.875rem;
+    }
+}
+
+.cl-slideshow__track {
+    display: flex;
+    transition: transform 0.4s ease;
+    will-change: transform;
+}
+
+.cl-slideshow__slide {
+    min-width: 100%;
+    position: relative;
+    overflow: hidden;
+
+    &--placeholder {
+        min-height: 200px;
+        background: #f0f0f0;
+        border: 2px dashed #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #999;
+        font-size: 0.875rem;
+    }
+}
+
+.cl-slideshow__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cl-slideshow__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem 1.5rem 1.25rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.55));
+    color: #fff;
+}
+
+.cl-slideshow__title {
+    margin: 0 0 0.2rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.cl-slideshow__caption-text {
+    margin: 0;
+    font-size: 0.875rem;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+// Prev / Next buttons
+.cl-slideshow__btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.35);
+    color: #fff;
+    font-size: 1.75rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.65);
+    }
+
+    &--prev { left: 0.75rem; }
+    &--next { right: 0.75rem; }
+}
+
+// Dot indicators
+.cl-slideshow__dots {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.4rem;
+    z-index: 2;
+}
+
+.cl-slideshow__dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.45);
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &.is-active,
+    &:hover {
+        background: #fff;
+    }
+}

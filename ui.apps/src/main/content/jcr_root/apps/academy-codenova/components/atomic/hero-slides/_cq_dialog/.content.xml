@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Hero Slides"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+
+                    <settings
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Settings"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+
+                                            <!-- Which slide to display in Edit mode -->
+                                            <currentSlide
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Current slide (edit mode preview)"
+                                                fieldDescription="Choose which slide is active while authoring."
+                                                name="./currentSlide"
+                                                deleteHint="{Boolean}false">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <slide0 jcr:primaryType="nt:unstructured" text="Slide 1" value="slide0" selected="{Boolean}true"/>
+                                                    <slide1 jcr:primaryType="nt:unstructured" text="Slide 2" value="slide1"/>
+                                                    <slide2 jcr:primaryType="nt:unstructured" text="Slide 3" value="slide2"/>
+                                                    <slide3 jcr:primaryType="nt:unstructured" text="Slide 4" value="slide3"/>
+                                                    <slide4 jcr:primaryType="nt:unstructured" text="Slide 5" value="slide4"/>
+                                                    <slide5 jcr:primaryType="nt:unstructured" text="Slide 6" value="slide5"/>
+                                                </items>
+                                            </currentSlide>
+
+                                            <slide0Row
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <label
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/heading"
+                                                        level="{Long}4"
+                                                        text="Slide 1"/>
+                                                    <showInViewMode
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        fieldDescription="When checked the slide is visible in both Preview and Publish. Uncheck to hide it from visitors."
+                                                        name="./slide0/hidden"
+                                                        text="Show in view mode"
+                                                        value="{Boolean}false"
+                                                        uncheckedValue="{Boolean}true"/>
+                                                </items>
+                                            </slide0Row>
+                                            <slide1Row
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <label
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/heading"
+                                                        level="{Long}4"
+                                                        text="Slide 2"/>
+                                                    <showInViewMode
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        fieldDescription="When checked the slide is visible in both Preview and Publish. Uncheck to hide it from visitors."
+                                                        name="./slide1/hidden"
+                                                        text="Show in view mode"
+                                                        value="{Boolean}false"
+                                                        uncheckedValue="{Boolean}true"/>
+                                                </items>
+                                            </slide1Row>
+                                            <slide2Row
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <label
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/heading"
+                                                        level="{Long}4"
+                                                        text="Slide 3"/>
+                                                    <showInViewMode
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        fieldDescription="When checked the slide is visible in both Preview and Publish. Uncheck to hide it from visitors."
+                                                        name="./slide2/hidden"
+                                                        text="Show in view mode"
+                                                        value="{Boolean}false"
+                                                        uncheckedValue="{Boolean}true"/>
+                                                </items>
+                                            </slide2Row>
+                                            <slide3Row
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <label
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/heading"
+                                                        level="{Long}4"
+                                                        text="Slide 4"/>
+                                                    <showInViewMode
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        fieldDescription="When checked the slide is visible in both Preview and Publish. Uncheck to hide it from visitors."
+                                                        name="./slide3/hidden"
+                                                        text="Show in view mode"
+                                                        value="{Boolean}false"
+                                                        uncheckedValue="{Boolean}true"/>
+                                                </items>
+                                            </slide3Row>
+                                            <slide4Row
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <label
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/heading"
+                                                        level="{Long}4"
+                                                        text="Slide 5"/>
+                                                    <showInViewMode
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        fieldDescription="When checked the slide is visible in both Preview and Publish. Uncheck to hide it from visitors."
+                                                        name="./slide4/hidden"
+                                                        text="Show in view mode"
+                                                        value="{Boolean}false"
+                                                        uncheckedValue="{Boolean}true"/>
+                                                </items>
+                                            </slide4Row>
+                                            <slide5Row
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <label
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/heading"
+                                                        level="{Long}4"
+                                                        text="Slide 6"/>
+                                                    <showInViewMode
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        fieldDescription="When checked the slide is visible in both Preview and Publish. Uncheck to hide it from visitors."
+                                                        name="./slide5/hidden"
+                                                        text="Show in view mode"
+                                                        value="{Boolean}false"
+                                                        uncheckedValue="{Boolean}true"/>
+                                                </items>
+                                            </slide5Row>
+
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </settings>
+
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

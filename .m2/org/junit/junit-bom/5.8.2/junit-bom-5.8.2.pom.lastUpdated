@@ -1,0 +1,6 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Mar 26 23:16:37 CAT 2026
+@default-central-https\://repo.maven.apache.org/maven2/.lastUpdated=1774559797307
+https\://repo.adobe.com/nexus/content/groups/public/.error=Could not transfer artifact org.junit\:junit-bom\:pom\:5.8.2 from/to adobe-public-releases (https\://repo.adobe.com/nexus/content/groups/public/)\: repo.adobe.com\: nodename nor servname provided, or not known
+@default-adobe-public-releases-https\://repo.adobe.com/nexus/content/groups/public/.lastUpdated=1774559797298
+https\://repo.maven.apache.org/maven2/.error=Could not transfer artifact org.junit\:junit-bom\:pom\:5.8.2 from/to central (https\://repo.maven.apache.org/maven2)\: repo.maven.apache.org\: nodename nor servname provided, or not known
