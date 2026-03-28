@@ -5,6 +5,13 @@
     jcr:primaryType="nt:unstructured"
     sling:resourceType="granite/ui/components/coral/foundation/container">
     <items jcr:primaryType="nt:unstructured">
+        <hideComponent
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+            text="Hide Component"
+            name="./hidden"
+            value="{Boolean}true"
+            uncheckedValue="{Boolean}false"/>
         <hideOnMobile
             jcr:primaryType="nt:unstructured"
             sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"

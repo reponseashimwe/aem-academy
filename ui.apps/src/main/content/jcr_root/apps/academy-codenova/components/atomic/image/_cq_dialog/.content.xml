@@ -39,6 +39,28 @@
                                                 jcr:primaryType="nt:unstructured"
                                                 granite:hide="{Boolean}true"/>
 
+                                            <mobileImageHeading
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/heading"
+                                                text="Mobile Image"/>
+
+                                            <mobileFile
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                                fileNameParameter="./mobileFileName"
+                                                fileReferenceParameter="./mobileFileReference"
+                                                mimeTypes="[image/gif,image/jpeg,image/png,image/tiff,image/svg+xml]"
+                                                name="./mobileFile"
+                                                fieldLabel="Mobile Image"
+                                                fieldDescription="Optional image shown on small screens (≤767 px). If not provided, the desktop image is used on all screen sizes."/>
+
+                                            <mobileAlt
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Mobile Image Alt Text"
+                                                fieldDescription="Alternative text for the mobile image."
+                                                name="./mobileAlt"/>
+
                                             <aspectRatioField
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/include"

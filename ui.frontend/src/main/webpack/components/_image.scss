@@ -46,3 +46,27 @@
 
 .cl-image--fit-fill   .cmp-image__image,
 .cl-image--fit-fill   picture img { object-fit: fill; }
+
+// Mobile image support
+// cl-atomic-image--has-mobile is added to the wrapper when a mobile image is configured.
+.cl-atomic-image--has-mobile {
+    // Hide the v3 desktop image on mobile
+    > .cmp-image {
+        @media (max-width: 767px) { display: none; }
+    }
+
+    // Mobile <img> — hidden on desktop, shown on mobile
+    .cl-image__mobile-img {
+        display: none;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+        @media (max-width: 767px) { display: block; }
+
+        // --all: no desktop image was provided, so show on every breakpoint
+        &--all {
+            display: block;
+        }
+    }
+}

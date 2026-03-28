@@ -3,7 +3,7 @@
     jcr:primaryType="nt:unstructured"
     jcr:title="Text"
     sling:resourceType="cq/gui/components/authoring/dialog"
-    extraClientlibs="[core.wcm.components.text.v2.editor]">
+    extraClientlibs="[core.wcm.components.text.v2.editor,academy-codenova.authoring.dialog-common]">
     <content
         jcr:primaryType="nt:unstructured"
         sling:resourceType="granite/ui/components/coral/foundation/container">
@@ -49,6 +49,10 @@
                                                         value="caption"/>
                                                 </items>
                                             </textVariant>
+                                            <textColor
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                                path="/apps/academy-codenova/components/common/dialogfields/textcolor"/>
                                         </items>
                                     </column>
                                 </items>

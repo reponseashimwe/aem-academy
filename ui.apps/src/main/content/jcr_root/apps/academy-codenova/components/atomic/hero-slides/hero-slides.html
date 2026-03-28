@@ -1,0 +1,16 @@
+<sly data-sly-test="${wcmmode.edit}">
+	<div>
+		<span style="font-family: monospace; text-transform: uppercase;">[Configure Slides]</span>
+	</div>
+</sly>
+
+<div
+	class="cl-hero-banner__slides"
+	data-hero-slides
+>
+	<sly data-sly-list.child="${resource.children}">
+		<sly data-sly-test="${child.resourceType == 'academy-codenova/components/atomic/hero-slide'}">
+			<sly data-sly-resource="${child}" />
+		</sly>
+	</sly>
+</div>

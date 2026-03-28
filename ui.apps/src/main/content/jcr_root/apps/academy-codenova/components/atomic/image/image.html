@@ -2,13 +2,23 @@
 <sly data-sly-test.hideDeskClass="${properties.hideOnDesktop ? 'hide-desktop' : ''}"></sly>
 <sly data-sly-set.brClass=""></sly>
 <sly data-sly-set.brSide=""></sly>
-<sly data-sly-test="${properties.borderRadius}" data-sly-set.brClass="${['cl-br-', properties.borderRadius] @ join=''}"></sly>
-<sly data-sly-test="${properties.borderRadiusSide}" data-sly-set.brSide="${['cl-br-', properties.borderRadiusSide] @ join=''}"></sly>
+<sly
+	data-sly-test="${properties.borderRadius}"
+	data-sly-set.brClass="${['cl-br-', properties.borderRadius] @ join=''}"
+></sly>
+<sly
+	data-sly-test="${properties.borderRadiusSide}"
+	data-sly-set.brSide="${['cl-br-', properties.borderRadiusSide] @ join=''}"
+></sly>
 
-<sly data-sly-test.hasImage="${properties.fileReference || properties.fileName}"></sly>
+<sly data-sly-test.hasDesktopImage="${properties.fileReference || properties.fileName}"></sly>
+<sly data-sly-test.hasMobileImage="${properties.mobileFileReference || properties.mobileFileName}"></sly>
+<sly data-sly-set.mobileSrc="${properties.mobileFileReference ? properties.mobileFileReference : [resource.path, '/mobileFile'] @ join=''}"></sly>
+<sly data-sly-test.hasImage="${hasDesktopImage || hasMobileImage}"></sly>
+<sly data-sly-set.mobileMod="${hasMobileImage ? 'cl-atomic-image--has-mobile' : ''}"></sly>
 
 <div
-	class="${['cl-atomic-image', properties.aspectRatio, brClass, brSide, properties.objectFit, properties.componentWidth, properties.opacity, properties.margin, properties.marginX, hideMobClass, hideDeskClass] @ join=' '}"
+	class="${['cl-atomic-image', mobileMod, properties.aspectRatio, brClass, brSide, properties.objectFit, properties.componentWidth, properties.opacity, properties.margin, properties.marginX, hideMobClass, hideDeskClass] @ join=' '}"
 >
 	<sly data-sly-test="${wcmmode.edit && !hasImage}">
 		<img
@@ -17,7 +27,19 @@
 			class="cmp-image__image cl-image-placeholder"
 		/>
 	</sly>
+
 	<sly data-sly-test="${hasImage}">
-		<sly data-sly-resource="${resource @ resourceType='core/wcm/components/image/v3/image'}" />
+		<sly data-sly-test="${hasDesktopImage}">
+			<sly data-sly-resource="${resource @ resourceType='core/wcm/components/image/v3/image'}" />
+		</sly>
+
+		<sly data-sly-test="${hasMobileImage}">
+			<img
+				src="${mobileSrc}"
+				alt="${properties.mobileAlt ? properties.mobileAlt : (properties.alt ? properties.alt : '')}"
+				class="${['cl-image__mobile-img', hasDesktopImage ? '' : 'cl-image__mobile-img--all'] @ join=' '}"
+				loading="lazy"
+			/>
+		</sly>
 	</sly>
 </div>
