@@ -1,3 +1,31 @@
-.cmp-title {}
-.cmp-title__text {}
-.cmp-title__link {}
+.cmp-title {
+	.cmp-title__text {
+		margin: 0;
+		font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	}
+
+	.cmp-title__link {
+		text-decoration: none;
+		color: inherit;
+	}
+}
+
+.cmp-title.title-1 .cmp-title__text {
+	font-size: clamp(3rem, 5vw, 4.625rem); // 48px → 74px
+	line-height: 1.1;
+}
+
+.cmp-title.title-2 .cmp-title__text {
+	font-size: clamp(2.25rem, 4vw, 3rem); // 36px → 48px
+	line-height: 1.15;
+}
+
+.cmp-title.title-3 .cmp-title__text {
+	font-size: clamp(1.5rem, 2.5vw, 2rem); // 24px → 32px
+	line-height: 1.2;
+}
+
+.cmp-title.title-4 .cmp-title__text {
+	font-size: clamp(1rem, 1.5vw, 1.25rem); // 16px → 20px
+	line-height: 1.3;
+}

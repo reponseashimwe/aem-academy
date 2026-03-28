@@ -6,6 +6,16 @@
 	justify-content: center;
 	gap: 8px;
 
+	&.btn--icon-left {
+		justify-content: flex-start;
+	}
+
+	&.btn--icon-right {
+		justify-content: space-between;
+	}
+
+	width: 230px;
+	max-width: 100%;
 	padding: 12px 24px;
 	border-radius: 0;
 	border: 1px solid transparent;
@@ -74,6 +84,11 @@
 	font-size: 14px;
 }
 
+.btn--md {
+	padding: 12px 24px;
+	font-size: 16px;
+}
+
 .btn--lg {
 	padding: 16px 32px;
 	font-size: 18px;
@@ -81,9 +96,8 @@
 
 // Layout helpers
 
-.btn--full {
-	width: 100%;
-}
+.btn--full { width: 100%; }
+.btn--fit  { width: fit-content; }
 
 .btn--icon-right i,
 .btn--icon-right .cl-icon-arrow_forward {

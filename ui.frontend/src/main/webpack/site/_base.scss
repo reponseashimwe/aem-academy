@@ -332,3 +332,142 @@ main,
 .py-lg {
 	padding-block: $space-lg;
 }
+
+/* Margin block (vertical)  */
+
+.my-xs {
+	margin-block: $space-xs;
+}
+.my-sm {
+	margin-block: $space-sm;
+}
+.my-md {
+	margin-block: $space-md;
+}
+.my-lg {
+	margin-block: $space-lg;
+}
+
+/* Margin inline  */
+
+.mx-xs {
+	margin-inline: $space-xs;
+}
+.mx-sm {
+	margin-inline: $space-sm;
+}
+.mx-md {
+	margin-inline: $space-md;
+}
+.mx-lg {
+	margin-inline: $space-lg;
+}
+
+/* Opacity utilities */
+
+.opacity-0 {
+	opacity: 0;
+}
+.opacity-10 {
+	opacity: 0.1;
+}
+.opacity-20 {
+	opacity: 0.2;
+}
+.opacity-30 {
+	opacity: 0.3;
+}
+.opacity-40 {
+	opacity: 0.4;
+}
+.opacity-50 {
+	opacity: 0.5;
+}
+.opacity-60 {
+	opacity: 0.6;
+}
+.opacity-70 {
+	opacity: 0.7;
+}
+.opacity-80 {
+	opacity: 0.8;
+}
+.opacity-90 {
+	opacity: 0.9;
+}
+.opacity-100 {
+	opacity: 1;
+}
+
+/* Visibility utilities */
+
+.hide-mobile {
+	@include mobile {
+		display: none !important;
+	}
+}
+
+.hide-desktop {
+	@include desktop {
+		display: none !important;
+	}
+}
+
+/* Border radius utilities — size */
+
+$cl-br-sizes: (
+	"xs": 7px,
+	"sm": 16px,
+	"md": 32px,
+	"lg": 48px,
+	"xl": 60px,
+	"full": 9999px,
+);
+
+@each $name, $val in $cl-br-sizes {
+	.cl-br-#{$name} {
+		border-radius: $val;
+		overflow: hidden;
+
+		&.cl-br-top {
+			border-radius: $val $val 0 0;
+		}
+		&.cl-br-bottom {
+			border-radius: 0 0 $val $val;
+		}
+		&.cl-br-left {
+			border-radius: $val 0 0 $val;
+		}
+		&.cl-br-right {
+			border-radius: 0 $val $val 0;
+		}
+		&.cl-br-tl,
+		&.cl-br-top-left {
+			border-top-left-radius: $val;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+		&.cl-br-tr,
+		&.cl-br-top-right {
+			border-top-left-radius: 0;
+			border-top-right-radius: $val;
+			border-bottom-right-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+		&.cl-br-bl,
+		&.cl-br-bottom-left {
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+			border-bottom-left-radius: $val;
+		}
+		&.cl-br-br,
+		&.cl-br-bottom-right {
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: $val;
+			border-bottom-left-radius: 0;
+		}
+	}
+}

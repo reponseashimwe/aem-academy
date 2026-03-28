@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+    fieldLabel="Opacity"
+    fieldDescription="Controls the transparency of the component (100 = fully visible, 0 = invisible)."
+    name="./opacity">
+    <items jcr:primaryType="nt:unstructured">
+        <p100 jcr:primaryType="nt:unstructured" text="100%" value=""          selected="{Boolean}true"/>
+        <p90  jcr:primaryType="nt:unstructured" text="90%"  value="opacity-90"/>
+        <p80  jcr:primaryType="nt:unstructured" text="80%"  value="opacity-80"/>
+        <p70  jcr:primaryType="nt:unstructured" text="70%"  value="opacity-70"/>
+        <p60  jcr:primaryType="nt:unstructured" text="60%"  value="opacity-60"/>
+        <p50  jcr:primaryType="nt:unstructured" text="50%"  value="opacity-50"/>
+        <p40  jcr:primaryType="nt:unstructured" text="40%"  value="opacity-40"/>
+        <p30  jcr:primaryType="nt:unstructured" text="30%"  value="opacity-30"/>
+        <p20  jcr:primaryType="nt:unstructured" text="20%"  value="opacity-20"/>
+        <p10  jcr:primaryType="nt:unstructured" text="10%"  value="opacity-10"/>
+        <p0   jcr:primaryType="nt:unstructured" text="0%"   value="opacity-0"/>
+    </items>
+</jcr:root>

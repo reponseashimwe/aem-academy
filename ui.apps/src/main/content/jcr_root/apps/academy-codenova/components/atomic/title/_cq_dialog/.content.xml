@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Title"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    extraClientlibs="[core.wcm.components.title.v2.editor]">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <properties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns jcr:primaryType="nt:unstructured">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column jcr:primaryType="nt:unstructured">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <types        jcr:primaryType="nt:unstructured" fieldLabel="Tag"/>
+                                            <defaulttypes jcr:primaryType="nt:unstructured" fieldLabel="Tag"/>
+
+                                            <typographyVariant
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Typography Variant"
+                                                fieldDescription="Override the visual heading size independent of the HTML tag."
+                                                name="./typographyVariant">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <auto
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Auto (from tag)"
+                                                        value=""
+                                                        selected="{Boolean}true"/>
+                                                    <title1
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Title 1"
+                                                        value="title-1"/>
+                                                    <title2
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Title 2"
+                                                        value="title-2"/>
+                                                    <title3
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Title 3"
+                                                        value="title-3"/>
+                                                    <title4
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Title 4"
+                                                        value="title-4"/>
+                                                </items>
+                                            </typographyVariant>
+
+                                            <link jcr:primaryType="nt:unstructured" granite:hide="{Boolean}true"/>
+                                            <id   jcr:primaryType="nt:unstructured" granite:hide="{Boolean}true"/>
+
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </properties>
+                    <styling
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Styling"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <common
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                path="/apps/academy-codenova/components/common/dialogfields/stylingtabminimal"/>
+                        </items>
+                    </styling>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

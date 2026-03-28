@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/container">
+    <items jcr:primaryType="nt:unstructured">
+        <hideOnMobile
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+            text="Hide on Mobile"
+            name="./hideOnMobile"
+            value="{Boolean}true"
+            uncheckedValue="{Boolean}false"/>
+        <hideOnDesktop
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+            text="Hide on Desktop"
+            name="./hideOnDesktop"
+            value="{Boolean}true"
+            uncheckedValue="{Boolean}false"/>
+    </items>
+</jcr:root>

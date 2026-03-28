@@ -1,0 +1,23 @@
+<sly data-sly-test.hideMobClass="${properties.hideOnMobile ? 'hide-mobile' : ''}"></sly>
+<sly data-sly-test.hideDeskClass="${properties.hideOnDesktop ? 'hide-desktop' : ''}"></sly>
+<sly data-sly-set.brClass=""></sly>
+<sly data-sly-set.brSide=""></sly>
+<sly data-sly-test="${properties.borderRadius}" data-sly-set.brClass="${['cl-br-', properties.borderRadius] @ join=''}"></sly>
+<sly data-sly-test="${properties.borderRadiusSide}" data-sly-set.brSide="${['cl-br-', properties.borderRadiusSide] @ join=''}"></sly>
+
+<sly data-sly-test.hasImage="${properties.fileReference || properties.fileName}"></sly>
+
+<div
+	class="${['cl-atomic-image', properties.aspectRatio, brClass, brSide, properties.objectFit, properties.componentWidth, properties.opacity, properties.margin, properties.marginX, hideMobClass, hideDeskClass] @ join=' '}"
+>
+	<sly data-sly-test="${wcmmode.edit && !hasImage}">
+		<img
+			src="/etc.clientlibs/mvnreponse/clientlibs/clientlib-site/resources/images/placeholder.png"
+			alt="Image placeholder"
+			class="cmp-image__image cl-image-placeholder"
+		/>
+	</sly>
+	<sly data-sly-test="${hasImage}">
+		<sly data-sly-resource="${resource @ resourceType='core/wcm/components/image/v3/image'}" />
+	</sly>
+</div>
