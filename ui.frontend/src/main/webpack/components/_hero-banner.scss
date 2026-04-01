@@ -11,22 +11,31 @@
 
 	&__breadcrumb {
 		padding-top: $space-sm;
-		padding-inline: max(30px, (100vw - 1240px) / 2 + 30px);
+		padding-inline: max(15px, (100vw - 1240px) / 2 + 15px);
 	}
 
 	&__slides {
 		position: relative;
 
-		> [data-hero-slide] {
-			display: none;
+		.swiper-wrapper {
+			align-items: stretch;
 		}
 
-		> [data-hero-slide].is-active {
-			display: grid;
-		}
+		.swiper-slide {
+			height: auto;
 
-		&:not(.is-initialized) > [data-hero-slide]:first-child {
-			display: grid;
+			> .cl-hero-slide {
+				height: 100%;
+			}
+
+			@include mobile {
+				> .cl-hero-slide {
+					height: auto;
+					min-height: 0;
+					width: 100%;
+					max-width: 100%;
+				}
+			}
 		}
 	}
 
@@ -59,7 +68,9 @@
 		border: none;
 		padding: 0;
 		cursor: pointer;
-		transition: width 0.2s, background-color 0.2s;
+		transition:
+			width 0.2s,
+			background-color 0.2s;
 
 		&--active {
 			width: 16px;
@@ -163,18 +174,47 @@
 		padding-block-end: $space-md;
 		overflow: visible;
 
+		&__slides .swiper-slide {
+			width: 100%;
+			max-width: 100%;
+			box-sizing: border-box;
+		}
+
+		.cl-hero-slide__image-col .cl-atomic-image {
+			width: 100%;
+			height: 100%;
+			max-width: none;
+			max-height: none;
+			aspect-ratio: unset;
+		}
+
+		.cl-hero-slide__image-col .cmp-image__image,
+		.cl-hero-slide__image-col picture img {
+			width: 100%;
+			height: 100%;
+		}
+
 		&__nav {
 			position: static;
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			padding-left: 30px;
-			padding-right: 0;
+			padding-left: 15px;
+			padding-right: 15px;
 			padding-block: $space-sm 0;
 
 			.cl-hero-banner__dots {
 				display: flex;
 			}
+		}
+	}
+
+	// In AEM edit mode, prevent Swiper's flex layout from disrupting the single-slide preview
+	body.aem-AuthorLayer-Edit &,
+	body.aem-AuthorLayer-Design &,
+	body.aem-AuthorLayer-Layout & {
+		&__slides .swiper-wrapper {
+			display: block;
 		}
 	}
 }
@@ -244,6 +284,8 @@
 	&__image-col {
 		position: relative;
 		overflow: hidden;
+		box-sizing: border-box;
+		height: 420px;
 
 		> div {
 			width: 100%;
@@ -269,21 +311,60 @@
 		min-height: auto;
 		gap: $space-sm;
 		padding-block: $space-sm;
+		padding-inline: 0;
 
-		&--img-right,
-		&--img-left {
+		&--img-right {
+			.cl-hero-slide__content {
+				order: 1;
+				padding-inline: 15px;
+				padding-block: $space-sm;
+			}
+
 			.cl-hero-slide__image-col {
 				order: 2;
-				height: 300px;
-				padding-left: 30px;
+				justify-self: end;
+				align-self: stretch;
+				box-sizing: border-box;
+				width: 95vw;
+				max-width: 95vw;
+				min-width: 0;
+				height: 250px;
+				min-height: 250px;
+				max-height: none;
+				padding-inline: 0;
 				padding-right: 0;
+			}
+		}
+
+		&--img-left {
+			.cl-hero-slide__image-col {
+				order: 1;
+				justify-self: start;
+				align-self: stretch;
+				box-sizing: border-box;
+				width: 98vw;
+				max-width: 98vw;
+				min-width: 0;
+				height: 250px;
+				min-height: 250px;
+				max-height: none;
+				padding-inline: 0;
 			}
 
 			.cl-hero-slide__content {
-				order: 1;
-				padding-inline: 30px;
+				order: 2;
+				padding-inline: 15px;
 				padding-block: $space-sm;
 			}
+		}
+
+		// Rounded only on the side next to copy; outer vertical edge stays square (xl = 60px)
+		&--img-right .cl-hero-slide__image-col {
+			border-radius: 60px 0 0 60px;
+		}
+
+		&--img-left .cl-hero-slide__image-col {
+			border-radius: 0 60px 60px 0;
 		}
 	}
 }

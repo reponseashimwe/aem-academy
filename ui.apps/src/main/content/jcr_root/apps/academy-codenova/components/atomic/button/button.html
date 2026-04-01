@@ -16,32 +16,34 @@
 		data-sly-set.brSide="${['cl-br-', properties.borderRadiusSide] @ join=''}"
 	></sly>
 
-	<div class="${['cl-btn-wrapper', properties.margin, properties.marginX, hideMobClass, hideDeskClass] @ join=' '}">
-		<sly data-sly-test="${wcmmode.edit && !button.text}">
-			<div
-				class="cq-placeholder"
-				data-emptytext="${component.title}"
-			></div>
-		</sly>
-		<sly data-sly-test="${button.text}">
-			<a
-				class="${['btn', properties.variant, properties.size, properties.width, brClass, brSide, iconLeft ? 'btn--icon-left' : '', iconRight ? 'btn--icon-right' : ''] @ join=' '}"
-				href="${button.link}"
-				target="${isNewWindow ? '_blank' : '_self'}"
-				rel="${isNewWindow ? 'noopener noreferrer' : ''}"
-			>
-				<i
-					class="${iconClass}"
-					data-sly-test="${iconLeft}"
-					aria-hidden="true"
-				></i>
-				<span class="btn__text">${button.text}</span>
-				<i
-					class="${iconClass}"
-					data-sly-test="${iconRight}"
-					aria-hidden="true"
-				></i>
-			</a>
-		</sly>
-	</div>
+	<sly data-sly-test="${button.text || wcmmode.edit}">
+		<div class="${['cl-btn-wrapper', properties.margin, properties.marginX, hideMobClass, hideDeskClass] @ join=' '}">
+			<sly data-sly-test="${wcmmode.edit && !button.text}">
+				<div
+					class="cq-placeholder"
+					data-emptytext="${component.title}"
+				></div>
+			</sly>
+			<sly data-sly-test="${button.text}">
+				<a
+					class="${['btn', properties.variant, properties.size, properties.width, brClass, brSide, iconLeft ? 'btn--icon-left' : '', iconRight ? 'btn--icon-right' : ''] @ join=' '}"
+					href="${button.link}"
+					target="${isNewWindow ? '_blank' : '_self'}"
+					rel="${isNewWindow ? 'noopener noreferrer' : ''}"
+				>
+					<i
+						class="${iconClass}"
+						data-sly-test="${iconLeft}"
+						aria-hidden="true"
+					></i>
+					<span class="btn__text">${button.text}</span>
+					<i
+						class="${iconClass}"
+						data-sly-test="${iconRight}"
+						aria-hidden="true"
+					></i>
+				</a>
+			</sly>
+		</div>
+	</sly>
 </sly>

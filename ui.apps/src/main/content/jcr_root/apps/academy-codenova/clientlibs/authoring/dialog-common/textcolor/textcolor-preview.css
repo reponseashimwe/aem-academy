@@ -20,8 +20,11 @@
 	flex-shrink: 0;
 }
 
+/* Default option uses value="" in dialog; Coral often omits empty value attr, so [value=""] never matches */
 .textcolor-picker coral-selectlist-item[value=""]::before,
-.textcolor-picker coral-selectlist-item[value="default"]::before {
+.textcolor-picker coral-selectlist-item[value="default"]::before,
+.textcolor-picker coral-selectlist-item:not([value])::before,
+.textcolor-picker coral-selectlist-item:first-of-type::before {
 	background-color: var(--cl-color-default);
 }
 

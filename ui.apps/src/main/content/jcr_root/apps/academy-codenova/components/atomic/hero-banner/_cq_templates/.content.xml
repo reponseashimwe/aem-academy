@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    showBreadcrumb="{Boolean}true">
+    <breadcrumb
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="academy-codenova/components/atomic/breadcrumb"/>
+    <slides
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="academy-codenova/components/atomic/hero-slides"
+        currentSlideIndex="0">
+        <slides jcr:primaryType="nt:unstructured">
+            <item0
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="academy-codenova/components/atomic/hero-slide"
+                label="Slide 1"
+                hidden="{Boolean}false"
+                imagePosition="right">
+                <pretitle
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="academy-codenova/components/atomic/title"
+                    jcr:title="Pretitle"
+                    type="h2"
+                    typographyVariant="title-3"/>
+                <title
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="academy-codenova/components/atomic/title"
+                    jcr:title="Main Title"
+                    type="h2"
+                    typographyVariant="title-2"/>
+                <caption
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="academy-codenova/components/atomic/text"
+                    text="&lt;p&gt;Caption text&lt;/p&gt;"
+                    textVariant="caption"/>
+                <btn1
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="academy-codenova/components/atomic/button"
+                    jcr:title="Iscriviti al corso"
+                    linkURL="#"
+                    variant="btn--primary"
+                    size="btn--md"
+                    customIcon="arrow_forward"
+                    iconPosition="right"/>
+                <btn2
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="academy-codenova/components/atomic/button"
+                    jcr:title="Scarica la brochure"
+                    linkURL="#"
+                    variant="btn--secondary"
+                    size="btn--md"
+                    customIcon="download"
+                    iconPosition="right"/>
+                <image
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="academy-codenova/components/atomic/image"
+                    aspectRatio="cl-ar-21-9"/>
+            </item0>
+        </slides>
+    </slides>
+</jcr:root>

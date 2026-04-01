@@ -1,34 +1,30 @@
+<sly data-sly-use.slide="hero-slide-use.js">
 <sly data-sly-test="${wcmmode.edit || properties.hidden != 'true'}">
-	<div
-		class="${['cl-hero-slide', properties.imagePosition == 'left' ? 'cl-hero-slide--img-left' : 'cl-hero-slide--img-right'] @ join=' '}"
-		data-hero-slide
-	>
-		<div class="cl-hero-slide__content">
-			<div
-				class="cl-hero-slide__pretitle"
-				data-sly-resource="${'pretitle' @ resourceType='academy-codenova/components/atomic/title'}"
-			></div>
+<div
+	class="${['cl-hero-slide', slide.imagePosition == 'left' ? 'cl-hero-slide--img-left' : 'cl-hero-slide--img-right'] @ join=' '}"
+	data-hero-slide
+>
+	<div class="cl-hero-slide__content">
 
-			<div
-				class="cl-hero-slide__title"
-				data-sly-resource="${'title' @ resourceType='academy-codenova/components/atomic/title'}"
-			></div>
+		<div class="cl-hero-slide__pretitle"
+		     data-sly-resource="${'pretitle' @ resourceType='academy-codenova/components/atomic/title'}"></div>
 
-			<div
-				class="cl-hero-slide__caption"
-				data-sly-resource="${'caption' @ resourceType='academy-codenova/components/atomic/text'}"
-			></div>
+		<div class="cl-hero-slide__title"
+		     data-sly-resource="${'title' @ resourceType='academy-codenova/components/atomic/title'}"></div>
 
-			<div class="cl-hero-slide__buttons">
-				<div data-sly-resource="${'btn1' @ resourceType='academy-codenova/components/atomic/button'}"></div>
-				<div data-sly-resource="${'btn2' @ resourceType='academy-codenova/components/atomic/button'}"></div>
-			</div>
+		<div class="cl-hero-slide__caption"
+		     data-sly-resource="${'caption' @ resourceType='academy-codenova/components/atomic/text'}"></div>
+
+		<div class="cl-hero-slide__buttons">
+			<div data-sly-resource="${'btn1' @ resourceType='academy-codenova/components/atomic/button'}"></div>
+			<div data-sly-resource="${'btn2' @ resourceType='academy-codenova/components/atomic/button'}"></div>
 		</div>
 
-		<div
-			class="${['cl-hero-slide__image-col', 'cl-br-xl', properties.imagePosition == 'left' ? 'cl-br-right' : 'cl-br-left'] @ join=' '}"
-		>
-			<sly data-sly-resource="${'image' @ resourceType='academy-codenova/components/atomic/image'}" />
-		</div>
 	</div>
+
+	<div class="${['cl-hero-slide__image-col', 'cl-br-xl', slide.imagePosition == 'left' ? 'cl-br-right' : 'cl-br-left'] @ join=' '}">
+		<sly data-sly-resource="${'image' @ resourceType='academy-codenova/components/atomic/image'}" />
+	</div>
+</div>
+</sly>
 </sly>
