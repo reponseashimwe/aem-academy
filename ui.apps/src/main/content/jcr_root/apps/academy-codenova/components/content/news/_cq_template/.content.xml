@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    showDecorator="{Boolean}true">
+
+    <title
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="academy-codenova/components/atomic/title"
+        jcr:title="News"
+        type="h2"
+        typographyVariant="title-3"
+        showDecorator="true"/>
+
+    <description
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="academy-codenova/components/atomic/text"
+        text="&lt;p&gt;This section presents a collection of academic-style articles focused on key topics related to university life and higher education. &lt;strong&gt;The selected works explore relevant issues such as student well-being&lt;/strong&gt;, technological innovation, sustainability, and international experiences. Together, they provide a broad overview of current trends and challenges shaping modern universities.&lt;/p&gt;"/>
+
+    <slider
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="academy-codenova/components/atomic/slider"
+        loop="true"/>
+
+</jcr:root>

@@ -2,7 +2,7 @@
 	<sly data-sly-test.hideMobClass="${properties.hideOnMobile ? 'hide-mobile' : ''}"></sly>
 	<sly data-sly-test.hideDeskClass="${properties.hideOnDesktop ? 'hide-desktop' : ''}"></sly>
 
-<div class="${['cmp-title', properties.textColorClass, properties.margin, properties.marginX, hideMobClass, hideDeskClass] @ join=' '}">
+<div class="${['cmp-title', properties.showDecorator == 'true' ? 'cmp-title--has-decorator' : '', properties.textColorClass, properties.margin, properties.marginX, hideMobClass, hideDeskClass] @ join=' '}">
 		<sly data-sly-test="${wcmmode.edit && !title.text}">
 			<div
 				class="cq-placeholder"

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured">
+    <utilLinks jcr:primaryType="nt:unstructured">
+        <item0 jcr:primaryType="nt:unstructured" label="Panoramica" url="#"/>
+        <item1 jcr:primaryType="nt:unstructured" label="Piano di studi" url="#"/>
+        <item2 jcr:primaryType="nt:unstructured" label="Stage e professioni" url="#"/>
+        <item3 jcr:primaryType="nt:unstructured" label="Esperienze internazionali" url="#"/>
+        <item4 jcr:primaryType="nt:unstructured" label="Iscrizioni" url="#"/>
+        <item5 jcr:primaryType="nt:unstructured" label="Approfondimenti" url="#"/>
+    </utilLinks>
+</jcr:root>

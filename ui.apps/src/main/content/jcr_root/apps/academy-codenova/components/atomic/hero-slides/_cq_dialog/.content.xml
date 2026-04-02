@@ -154,33 +154,10 @@
                                 </items>
                             </autoplayDelayContainer>
 
-                            <loop
+                            <commonSettings
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                text="Loop slides"
-                                fieldDescription="When the last slide is reached, wrap back to the first. On by default."
-                                name="./loop"
-                                value="true"
-                                uncheckedValue="false"
-                                checked="{Boolean}true"/>
-
-                            <hideDots
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                text="Hide pagination dots"
-                                fieldDescription="Hides the dot indicators below the slides. Dots are visible by default."
-                                name="./hideDots"
-                                value="true"
-                                uncheckedValue="false"/>
-
-                            <hideNavigation
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                text="Hide previous / next buttons"
-                                fieldDescription="Hides the arrow navigation buttons. Buttons are visible by default."
-                                name="./hideNavigation"
-                                value="true"
-                                uncheckedValue="false"/>
+                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                path="/apps/academy-codenova/components/common/dialogfields/slidersettings"/>
 
                         </items>
                     </sliderSettingsTab>
