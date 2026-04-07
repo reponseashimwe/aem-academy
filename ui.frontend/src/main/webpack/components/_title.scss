@@ -3,14 +3,6 @@
 }
 
 .cmp-title--has-decorator {
-	&::before {
-		content: "";
-		display: block;
-		width: 100%;
-		height: 1px;
-		background: rgba($color-primary, 0.2);
-	}
-
 	.cmp-title__text {
 		display: inline-block;
 		padding-top: $space-sm;

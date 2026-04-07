@@ -9,4 +9,6 @@
     <filter root="/content/dam/mvnreponse/asset.jpg" mode="merge"/>
     <filter root="/content/experience-fragments/mvnreponse" mode="merge"/>
     <filter root="/content/codenova" mode="merge"/>
+    <filter root="/content/cq:tags/academy" mode="merge"/>
+    <filter root="/content/academy-codenova" mode="merge"/>
 </workspaceFilter>

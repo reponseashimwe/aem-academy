@@ -1,0 +1,93 @@
+<sly data-sly-use.course="com.reponse.mvn.core.models.CoursePageModel"/>
+
+<div class="cl-course-page">
+
+	<!-- Breadcrumb -->
+	<div class="cl-course-page__breadcrumb">
+		<div class="page-section">
+			<sly data-sly-resource="${'breadcrumb' @ resourceType='academy-codenova/components/atomic/breadcrumb'}"/>
+		</div>
+	</div>
+
+	<!-- Hero -->
+	<div class="cl-course-page__hero">
+		<img
+			class="cl-course-page__hero-img"
+			src="${currentPage.properties.fileReference || '/etc.clientlibs/mvnreponse/clientlibs/clientlib-site/resources/images/course-default.avif'}"
+			alt="${currentPage.title @ context='attribute'}"
+			loading="eager"/>
+		<sly data-sly-test="${wcmmode.edit && !currentPage.properties.fileReference}">
+			<div class="cl-course-page__hero-placeholder">
+				<i class="cl-icon-school" aria-hidden="true"></i>
+				<span>Set Course Image &mdash; Page Properties &rarr; Course Info</span>
+			</div>
+		</sly>
+	</div>
+
+	<!-- Main page body -->
+	<div class="page-section cl-course-page__inner">
+
+		<!-- Two-column -->
+		<div class="cl-course-page__body">
+
+			<!-- Left: title + abstract + editable parsys -->
+			<main class="cl-course-page__main">
+				<h1 class="cl-course-page__title">${currentPage.title @ context='html'}</h1>
+				<p class="cl-course-page__abstract" data-sly-test="${currentPage.properties.abstract}">
+					${currentPage.properties.abstract @ context='html'}
+				</p>
+				<div class="cl-course-page__content">
+					<sly data-sly-resource="${'par' @ resourceType='wcm/foundation/components/parsys'}"/>
+				</div>
+			</main>
+
+			<!-- Right: course details card -->
+			<aside class="cl-course-page__sidebar">
+				<div class="cl-course-meta-card">
+					<h3 class="cl-course-meta-card__heading">Course Details</h3>
+
+					<div class="cl-course-meta-card__row" data-sly-test="${course.formattedDate}">
+						<i class="cl-icon-calendar cl-course-meta-card__icon" aria-hidden="true"></i>
+						<div class="cl-course-meta-card__info">
+							<span class="cl-course-meta-card__label">Start Date</span>
+							<span class="cl-course-meta-card__value">${course.formattedDate}</span>
+						</div>
+					</div>
+
+					<div class="cl-course-meta-card__row" data-sly-test="${course.tagTitles}">
+						<i class="cl-icon-price-tags cl-course-meta-card__icon" aria-hidden="true"></i>
+						<div class="cl-course-meta-card__info">
+							<span class="cl-course-meta-card__label">Topics</span>
+							<div class="cl-course-meta-card__tags">
+								<sly data-sly-list.title="${course.tagTitles}">
+									<span class="cl-course-page__tag">${title}</span>
+								</sly>
+							</div>
+						</div>
+					</div>
+
+					<sly data-sly-test="${currentPage.properties.link}">
+						<div class="cl-course-meta-card__row">
+							<i class="cl-icon-arrow_forward cl-course-meta-card__icon" aria-hidden="true"></i>
+							<div class="cl-course-meta-card__info">
+								<span class="cl-course-meta-card__label">Course Link</span>
+								<a class="cl-course-meta-card__link"
+								   href="${currentPage.properties.link @ context='uri'}"
+								   target="_blank" rel="noopener noreferrer">View Course &rarr;</a>
+							</div>
+						</div>
+					</sly>
+				</div>
+			</aside>
+
+		</div><!-- /.cl-course-page__body -->
+
+		<!-- Related Courses — full-width news slider below the main content -->
+		<section class="cl-course-page__related">
+			<h2 class="cl-course-page__related-heading">Related Courses</h2>
+			<sly data-sly-resource="related-courses"/>
+		</section>
+
+	</div><!-- /.page-section -->
+
+</div><!-- /.cl-course-page -->
