@@ -4,4 +4,5 @@
     jcr:title="Hero Slides"
     jcr:description="Slides container for the Hero Banner."
     cq:isContainer="{Boolean}true"
-    componentGroup="Codeland - Atomic"/>
+    allowedChildren="[academy-codenova/components/atomic/hero-slide]"
+    componentGroup=".hidden"/>

@@ -101,6 +101,7 @@
                                 <allowedExpressionOption>decoration</allowedExpressionOption>
                                 <allowedExpressionOption>decorationTagName</allowedExpressionOption>
                                 <allowedExpressionOption>wcmmode</allowedExpressionOption>
+                                <allowedExpressionOption>resourceProperties</allowedExpressionOption>
                             </allowedExpressionOptions>
                         </configuration>
                     </execution>

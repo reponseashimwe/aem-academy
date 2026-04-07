@@ -57,6 +57,14 @@
                                                 </items>
                                             </typographyVariant>
 
+                                            <showDecorator
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                fieldDescription="Show the primary-coloured line decorator above this title."
+                                                name="./showDecorator"
+                                                text="Show Title Decorator"
+                                                value="true"
+                                                uncheckedValue="false"/>
                                             <textColor
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/include"

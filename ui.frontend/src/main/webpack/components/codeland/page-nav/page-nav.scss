@@ -1,0 +1,82 @@
+// ============================================================
+// Page Navigation – horizontal tab bar below the hero banner
+// Scoped to .cl-page-nav so it never affects footer or other
+// utility-links instances.
+// ============================================================
+
+.cl-page-nav {
+	background-color: $color-white;
+	border-bottom: 1px solid rgba($color-primary, 0.12);
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	&__inner {
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+	}
+
+	&__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		align-items: center;
+		gap: 0;
+		white-space: nowrap;
+	}
+
+	&__item {
+		flex-shrink: 0;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	&__link {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 18px 20px;
+		font-size: 14px;
+		font-weight: 400;
+		color: $color-primary;
+		text-decoration: none;
+		border-bottom: 3px solid transparent;
+		transition: border-color 0.15s, font-weight 0.15s;
+		white-space: nowrap;
+		cursor: pointer;
+
+		&--nolink {
+			cursor: default;
+		}
+
+		&:hover {
+			border-bottom-color: rgba($color-primary, 0.35);
+		}
+
+		// First item treated as active by default (can be driven by JS later)
+		.cl-page-nav__item:first-child & {
+			font-weight: 700;
+			border-bottom-color: $color-primary;
+		}
+	}
+
+	&__empty {
+		display: block;
+		padding: 16px 0;
+		color: $color-text-muted;
+		font-size: 13px;
+	}
+
+	@include mobile {
+		&__link {
+			padding: 14px 16px;
+			font-size: 13px;
+		}
+	}
+}

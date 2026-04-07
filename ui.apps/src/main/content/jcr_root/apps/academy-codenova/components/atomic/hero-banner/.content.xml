@@ -4,4 +4,5 @@
     jcr:title="Hero Banner"
     jcr:description="Hero section with up to 6 slides. Drop Hero Slide components inside."
     cq:isContainer="{Boolean}true"
+    allowedParents="[*/components/foundation/parsys,*/components/wcm/foundation/components/responsivegrid,*/components/atomic/par]"
     componentGroup="Codeland - Atomic"/>

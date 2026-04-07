@@ -2,6 +2,23 @@
 	font-family: $font-family-primary;
 }
 
+.cmp-title--has-decorator {
+	&::before {
+		content: "";
+		display: block;
+		width: 100%;
+		height: 1px;
+		background: rgba($color-primary, 0.2);
+	}
+
+	.cmp-title__text {
+		display: inline-block;
+		padding-top: $space-sm;
+		border-top: 4px solid $color-primary;
+		min-width: 294px;
+	}
+}
+
 .cmp-title.text-primary .cmp-title__text,
 .cmp-title__text.text-primary {
 	color: $color-text !important;
@@ -21,4 +38,3 @@
 .cmp-title__text.text-light {
 	color: $color-light !important;
 }
-

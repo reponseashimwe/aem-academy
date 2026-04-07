@@ -1,16 +1,40 @@
-<sly data-sly-test="${wcmmode.edit}">
-	<div>
-		<span style="font-family: monospace; text-transform: uppercase;">[Configure Slides]</span>
-	</div>
-</sly>
+<sly data-sly-use.model="${'com.reponse.mvn.core.models.HeroSlidesModel'}">
 
-<div
-	class="cl-hero-banner__slides"
+<div class="cl-hero-banner__slides swiper"
 	data-hero-slides
->
-	<sly data-sly-list.child="${resource.children}">
-		<sly data-sly-test="${child.resourceType == 'academy-codenova/components/atomic/hero-slide'}">
-			<sly data-sly-resource="${child}" />
+	data-autoplay="${model.autoplay ? 'true' : 'false'}"
+	data-interval="${model.autoplayDelay}"
+	data-effect="${model.effect}"
+	data-loop="${model.loop ? 'true' : 'false'}"
+	data-hide-dots="${model.hideDots ? 'true' : 'false'}"
+	data-hide-nav="${model.hideNavigation ? 'true' : 'false'}">
+
+	<div class="swiper-wrapper">
+
+		<!-- Empty-state placeholder shown only in edit mode when no slides exist -->
+		<sly data-sly-test="${model.slides.empty && wcmmode.edit}">
+			<div class="swiper-slide">
+				<div class="cl-hero-slide cl-hero-slide--img-right" data-hero-slide>
+					<div class="cl-hero-slide__content">
+						<p style="font-family: monospace; color: #01334b; padding: 2rem;">
+							No slides yet — open the dialog and add slides via the Slides tab.
+						</p>
+					</div>
+				</div>
+			</div>
 		</sly>
-	</sly>
+
+		<sly data-sly-list.slide="${model.slides}">
+			<!-- parent filters visibility; hero-slide.html just renders -->
+			<sly data-sly-test="${wcmmode.edit ? slide.current : !slide.hidden}">
+				<div class="swiper-slide">
+					<sly data-sly-resource="${slide.contentPath @ resourceType='academy-codenova/components/atomic/hero-slide'}"/>
+				</div>
+			</sly>
+		</sly>
+
+	</div>
+
 </div>
+
+</sly>
