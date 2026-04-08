@@ -1,0 +1,91 @@
+<sly data-sly-use.course="com.reponse.mvn.core.models.CoursePageModel"/>
+
+<div class="cl-course-page">
+
+	<!-- Breadcrumb -->
+	<div class="cl-course-page__breadcrumb">
+		<div class="page-section">
+			<sly data-sly-resource="${'breadcrumb' @ resourceType='academy-codenova/components/atomic/breadcrumb'}"/>
+		</div>
+	</div>
+
+	<!-- Hero — full width, no rounded corners -->
+	<div class="cl-course-page__hero" data-sly-test="${currentPage.properties.fileReference}">
+		<img
+			class="cl-course-page__hero-img"
+			src="${currentPage.properties.fileReference}"
+			alt="${currentPage.title @ context='attribute'}"
+			loading="eager"/>
+	</div>
+
+	<!-- Main page body -->
+	<div class="page-section cl-course-page__inner">
+
+		<!-- Two-column: main content (left) + course details sidebar (right) -->
+		<div class="cl-course-page__body">
+
+			<!-- Left: title + abstract + editable content -->
+			<main class="cl-course-page__main">
+				<h1 class="cl-course-page__title">${currentPage.title @ context='html'}</h1>
+				<p class="cl-course-page__abstract" data-sly-test="${currentPage.properties.abstract}">
+					${currentPage.properties.abstract @ context='html'}
+				</p>
+				<div class="cl-course-page__content">
+					<sly data-sly-resource="${'par' @ resourceType='wcm/foundation/components/parsys'}"/>
+				</div>
+			</main>
+
+			<!-- Right: course details card -->
+			<aside class="cl-course-page__sidebar">
+				<div class="cl-course-meta-card">
+					<h3 class="cl-course-meta-card__heading">Course Details</h3>
+
+					<div class="cl-course-meta-card__row" data-sly-test="${course.formattedDate}">
+						<i class="cl-icon-calendar cl-course-meta-card__icon" aria-hidden="true"></i>
+						<div class="cl-course-meta-card__info">
+							<span class="cl-course-meta-card__label">Start Date</span>
+							<span class="cl-course-meta-card__value">${course.formattedDate}</span>
+						</div>
+					</div>
+
+					<div class="cl-course-meta-card__row" data-sly-test="${course.tagTitles}">
+						<i class="cl-icon-price-tags cl-course-meta-card__icon" aria-hidden="true"></i>
+						<div class="cl-course-meta-card__info">
+							<span class="cl-course-meta-card__label">Topics</span>
+							<div class="cl-course-meta-card__tags">
+								<sly data-sly-list.title="${course.tagTitles}">
+									<span class="cl-course-page__tag">${title}</span>
+								</sly>
+							</div>
+						</div>
+					</div>
+
+					<sly data-sly-test="${currentPage.properties.link}">
+						<div class="cl-course-meta-card__row">
+							<i class="cl-icon-arrow_forward cl-course-meta-card__icon" aria-hidden="true"></i>
+							<div class="cl-course-meta-card__info">
+								<span class="cl-course-meta-card__label">Course Link</span>
+								<a class="cl-course-meta-card__link"
+								   href="${currentPage.properties.link @ context='uri'}"
+								   target="_blank" rel="noopener noreferrer">View Course &rarr;</a>
+							</div>
+						</div>
+					</sly>
+				</div>
+			</aside>
+
+		</div><!-- /.cl-course-page__body -->
+
+		<!-- Related Courses — below content, full-width list -->
+		<section class="cl-course-page__related">
+			<h2 class="cl-course-page__related-heading">Related Courses</h2>
+			<div class="cl-course-list" data-courses-url="${currentPage.path}/jcr:content/related-courses.courses.json">
+				<ul class="cl-course-list__items">
+					<!-- Populated by news-list.js -->
+				</ul>
+			</div>
+		</section>
+
+	</div><!-- /.page-section -->
+
+</div><!-- /.cl-course-page -->

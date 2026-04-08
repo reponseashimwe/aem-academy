@@ -135,6 +135,27 @@ main,
 	}
 }
 
+.cl-section {
+	padding-block: 48px;
+
+	@include mobile {
+		padding-block: 32px;
+	}
+
+	&[data-decorated="true"] {
+		padding-block-start: 0;
+
+		&::before {
+			content: "";
+			display: block;
+			width: 100vw;
+			margin-inline-start: calc(50% - 50vw);
+			height: 1px;
+			background: rgba($color-primary, 0.2);
+		}
+	}
+}
+
 .page-content {
 	min-height: 300px;
 }

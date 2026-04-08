@@ -1,3 +1,5 @@
+<sly data-sly-use.model="${'com.reponse.mvn.core.models.CourseListModel'}">
+
 <div class="cl-news__slider-wrap">
 	<div
 		class="swiper cl-news__slides"
@@ -6,121 +8,48 @@
 	>
 		<div class="swiper-wrapper">
 
-			<div class="swiper-slide">
-				<article class="cl-news-card">
-					<div class="cl-news-card__image">
-						<img src="https://picsum.photos/seed/news01/558/380" alt="The Impact of Online Learning" loading="lazy" />
-					</div>
-					<div class="cl-news-card__body">
-						<time class="cl-news-card__date">March 12, 2025</time>
-						<div class="cl-news-card__tags">
-							<span class="cl-news-card__tag">LATEST</span>
-							<span class="cl-news-card__tag">AI</span>
+			<sly data-sly-test="${model.courses.empty && wcmmode.edit}">
+				<div class="swiper-slide">
+					<article class="cl-news-card">
+						<div class="cl-news-card__content" style="padding: 2rem; font-family: monospace; color: #01334b;">
+							No courses found — check the Courses Root Path in the dialog.
 						</div>
-						<h3 class="cl-news-card__title">The Impact of Online Learning</h3>
-						<p class="cl-news-card__desc">This article explores how online learning environments affect...</p>
-						<a href="#" class="cl-news-card__link">Show More <i class="cl-icon-arrow_forward"></i></a>
-					</div>
-				</article>
-			</div>
+					</article>
+				</div>
+			</sly>
 
-			<div class="swiper-slide">
-				<article class="cl-news-card">
-					<div class="cl-news-card__image">
-						<img src="https://picsum.photos/seed/news02/558/380" alt="Mental Health Challenges" loading="lazy" />
-					</div>
-					<div class="cl-news-card__body">
-						<time class="cl-news-card__date">June 15, 2025</time>
-						<div class="cl-news-card__tags">
-							<span class="cl-news-card__tag">LATEST</span>
-							<span class="cl-news-card__tag">CHALLENGES</span>
-							<span class="cl-news-card__tag">HEALTH</span>
+			<sly data-sly-list.course="${model.courses}">
+				<div class="swiper-slide">
+					<article class="cl-news-card">
+						<div class="cl-news-card__image">
+							<img data-sly-test="${course.fileReference}"
+								src="${course.fileReference}"
+								alt="${course.title @ context='attribute'}"
+								loading="lazy"/>
 						</div>
-						<h3 class="cl-news-card__title">Mental Health Challenges</h3>
-						<p class="cl-news-card__desc">The paper examines the rising mental health concerns among university...</p>
-						<a href="#" class="cl-news-card__link">Show More <i class="cl-icon-arrow_forward"></i></a>
-					</div>
-				</article>
-			</div>
-
-			<div class="swiper-slide">
-				<article class="cl-news-card">
-					<div class="cl-news-card__image">
-						<img src="https://picsum.photos/seed/news03/558/380" alt="The Role of AI in Universities" loading="lazy" />
-					</div>
-					<div class="cl-news-card__body">
-						<time class="cl-news-card__date">August 20, 2025</time>
-						<div class="cl-news-card__tags">
-							<span class="cl-news-card__tag">AI</span>
-							<span class="cl-news-card__tag">ROLES</span>
+						<div class="cl-news-card__body">
+							<time class="cl-news-card__date">${course.formattedStartDate}</time>
+							<div class="cl-news-card__tags">
+								<sly data-sly-list.tag="${course.tags}">
+									<span class="cl-news-card__tag">${tag}</span>
+								</sly>
+							</div>
+							<h3 class="cl-news-card__title">${course.title}</h3>
+							<p class="cl-news-card__desc">${course.abstract}</p>
+							<a href="${course.link}" class="cl-news-card__link">
+								Show More <i class="cl-icon-arrow_forward"></i>
+							</a>
 						</div>
-						<h3 class="cl-news-card__title">The Role of AI in Universities</h3>
-						<p class="cl-news-card__desc">This article discusses how artificial intelligence is transforming teaching...</p>
-						<a href="#" class="cl-news-card__link">Show More <i class="cl-icon-arrow_forward"></i></a>
-					</div>
-				</article>
-			</div>
-
-			<div class="swiper-slide">
-				<article class="cl-news-card">
-					<div class="cl-news-card__image">
-						<img src="https://picsum.photos/seed/news04/558/380" alt="Student Exchange Programs" loading="lazy" />
-					</div>
-					<div class="cl-news-card__body">
-						<time class="cl-news-card__date">September 12, 2025</time>
-						<div class="cl-news-card__tags">
-							<span class="cl-news-card__tag">BENEFITS</span>
-							<span class="cl-news-card__tag">EXCHANGE</span>
-						</div>
-						<h3 class="cl-news-card__title">Student Exchange Programs</h3>
-						<p class="cl-news-card__desc">The study investigates the benefits of international exchange programs for...</p>
-						<a href="#" class="cl-news-card__link">Show More <i class="cl-icon-arrow_forward"></i></a>
-					</div>
-				</article>
-			</div>
-
-			<div class="swiper-slide">
-				<article class="cl-news-card">
-					<div class="cl-news-card__image">
-						<img src="https://picsum.photos/seed/news05/558/380" alt="Sustainability Efforts" loading="lazy" />
-					</div>
-					<div class="cl-news-card__body">
-						<time class="cl-news-card__date">November 5, 2025</time>
-						<div class="cl-news-card__tags">
-							<span class="cl-news-card__tag">EFFICIENCY</span>
-							<span class="cl-news-card__tag">SUSTAINABILITY</span>
-						</div>
-						<h3 class="cl-news-card__title">Sustainability Efforts in Campuses</h3>
-						<p class="cl-news-card__desc">This study examines how universities are implementing eco-friendly...</p>
-						<a href="#" class="cl-news-card__link">Show More <i class="cl-icon-arrow_forward"></i></a>
-					</div>
-				</article>
-			</div>
-
-			<div class="swiper-slide">
-				<article class="cl-news-card">
-					<div class="cl-news-card__image">
-						<img src="https://picsum.photos/seed/news06/558/380" alt="Digital Transformation" loading="lazy" />
-					</div>
-					<div class="cl-news-card__body">
-						<time class="cl-news-card__date">December 8, 2025</time>
-						<div class="cl-news-card__tags">
-							<span class="cl-news-card__tag">INNOVATION</span>
-							<span class="cl-news-card__tag">TECH</span>
-						</div>
-						<h3 class="cl-news-card__title">Digital Transformation in Education</h3>
-						<p class="cl-news-card__desc">The research explores how digital tools are reshaping the academic...</p>
-						<a href="#" class="cl-news-card__link">Show More <i class="cl-icon-arrow_forward"></i></a>
-					</div>
-				</article>
-			</div>
+					</article>
+				</div>
+			</sly>
 
 		</div>
 	</div>
 
 	<div class="cl-news__nav">
-		<div class="cl-news__dots" data-news-dots data-sly-test="${properties.hideDots != 'true'}"></div>
-		<div class="cl-slider__arrows" data-sly-test="${properties.hideNavigation != 'true'}">
+		<div class="cl-news__dots" data-news-dots data-sly-test="${!model.hideDots}"></div>
+		<div class="cl-slider__arrows" data-sly-test="${!model.hideNavigation}">
 			<button
 				class="cl-slider__arrow cl-news__arrow--prev"
 				data-news-prev
@@ -138,3 +67,5 @@
 		</div>
 	</div>
 </div>
+
+</sly>

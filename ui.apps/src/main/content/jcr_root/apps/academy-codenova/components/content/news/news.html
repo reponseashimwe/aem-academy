@@ -1,4 +1,9 @@
-<section class="cl-news section">
+<section
+	class="cl-news cl-section"
+	data-decorated="${properties.decoration}"
+	data-courses-url="${resource.path}.courses.json"
+	data-default-img="/etc.clientlibs/mvnreponse/clientlibs/clientlib-site/resources/images/course-default.avif"
+>
 	<div class="cl-news__inner">
 		<div
 			class="cl-news__title"
@@ -9,6 +14,31 @@
 			class="cl-news__description"
 			data-sly-resource="${'description' @ resourceType='academy-codenova/components/atomic/text'}"
 		></div>
+
+		<div class="cl-news__controls">
+			<div
+				class="cl-news__sort-wrap"
+				data-news-sort-wrap
+				style="display: none"
+			>
+				<label class="cl-news__sort-label">Sort by</label>
+				<select
+					class="cl-news__sort-select"
+					data-news-sort
+				>
+					<option value="default">Default</option>
+					<option value="startDate_asc">Start Date — Oldest First</option>
+					<option value="startDate_desc">Start Date — Newest First</option>
+					<option value="title_asc">Title — A to Z</option>
+					<option value="title_desc">Title — Z to A</option>
+				</select>
+			</div>
+			<div
+				class="cl-news__tag-filter"
+				data-news-tag-filter
+				style="display: none"
+			></div>
+		</div>
 
 		<div
 			class="cl-news__slider"

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        jcr:primaryType="cq:PageContent"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:title="Data Science Fundamentals"
+        sling:resourceType="academy-codenova/components/structure/course-page"
+        cq:template="/apps/academy-codenova/templates/course-page"
+        startDate="2026-04-15"
+        abstract="Learn the core techniques of data analysis, statistical modelling, and data visualisation used by data scientists across research and industry."
+        link="/content/academy-codenova/courses/data-science-fundamentals"
+        cq:tags="[academy:topic/data,academy:topic/technology]"
+        fileReference="/content/dam/mvnreponse/asset.jpg">
+        <par
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/parsys"/>
+        <related-courses
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="academy-codenova/components/content/news"
+            coursesRoot="/content/codehills/courses"
+            sortBy="startDate_desc"/>
+    </jcr:content>
+</jcr:root>
