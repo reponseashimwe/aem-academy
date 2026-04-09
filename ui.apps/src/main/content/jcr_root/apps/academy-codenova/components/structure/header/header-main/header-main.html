@@ -31,8 +31,7 @@
 			>
 				<ul class="cl-header__nav-list">
 					<li
-						data-sly-repeat.page="${nav.rootPage.listChildren}"
-						data-sly-test="${!page.hideInNav}"
+						data-sly-repeat.page="${nav.visibleRootChildren}"
 					>
 						<a
 							href="${page.path @ extension='html'}"
@@ -104,8 +103,7 @@
 		>
 			<ul class="cl-header__mobile-list">
 				<li
-					data-sly-repeat.page="${nav.rootPage.listChildren}"
-					data-sly-test="${!page.hideInNav}"
+					data-sly-repeat.page="${nav.visibleRootChildren}"
 				>
 					<a
 						href="${page.path @ extension='html'}"

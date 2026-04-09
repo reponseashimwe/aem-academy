@@ -30,8 +30,9 @@
 			})
 			.join("");
 
-		var date = course.startDate
-			? '<span class="cl-course-list__date"><i class="cl-icon-calendar"></i>' + formatDate(course.startDate) + "</span>"
+		var dateLabel = course.formattedStartDate || (course.startDate ? formatDate(course.startDate) : "");
+		var date = dateLabel
+			? '<span class="cl-course-list__date"><i class="cl-icon-calendar"></i>' + dateLabel + "</span>"
 			: "";
 
 		var meta = date || tags
