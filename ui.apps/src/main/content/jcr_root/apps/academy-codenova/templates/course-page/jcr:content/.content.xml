@@ -1,23 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:PageContent"
-    sling:resourceType="academy-codenova/components/structure/course-page"
-    cq:template="/apps/academy-codenova/templates/course-page">
+    sling:resourceType="academy-codenova/components/structure/course-page">
 
-    <par
+    <breadcrumb
         jcr:primaryType="nt:unstructured"
-        sling:resourceType="wcm/foundation/components/parsys">
-        <intro_text
-            jcr:primaryType="nt:unstructured"
-            sling:resourceType="foundation/components/text"
-            textIsRich="true"
-            text="&lt;p&gt;Add your course description and details here.&lt;/p&gt;"/>
-    </par>
+        sling:resourceType="academy-codenova/components/atomic/breadcrumb"
+        startLevel="{Long}1"/>
 
-    <related-courses
+    <image
         jcr:primaryType="nt:unstructured"
-        sling:resourceType="academy-codenova/components/content/news"
-        coursesRoot="/content/codehills/courses"
-        sortBy="startDate"/>
+        sling:resourceType="academy-codenova/components/atomic/course-hero-image"/>
+
+    <meta
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="academy-codenova/components/atomic/course-meta"/>
+
+    <title
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="academy-codenova/components/atomic/title"
+        type="h1"
+        typographyVariant="title-3"/>
+
+    <abstract
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="academy-codenova/components/atomic/text"
+        text="&lt;p&gt;Add your course abstract here.&lt;/p&gt;"/>
+
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="academy-codenova/components/atomic/text"
+        text="&lt;p&gt;Lorem ipsum dolor sit amet, &lt;strong&gt;consectetur adipiscing elit&lt;/strong&gt;. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&lt;/p&gt;&lt;p&gt;Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;First key takeaway for learners&lt;/li&gt;&lt;li&gt;Second outcome with practical focus&lt;/li&gt;&lt;li&gt;Third point to summarize essentials&lt;/li&gt;&lt;/ul&gt;"/>
+
+    <parsys
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="wcm/foundation/components/parsys"/>
 
 </jcr:root>

@@ -35,13 +35,13 @@ import Swiper from "swiper/bundle";
 		return (
 			'<div class="swiper-slide">' +
 			'<article class="cl-news-card">' +
-			'<div class="cl-news-card__image">' + img + "</div>" +
+			'<div class="cl-news-card__image"><a class="cl-news-card__image-link" href="' + (course.link || "#") + '">' + img + "</a></div>" +
 			'<div class="cl-news-card__body">' +
-			'<time class="cl-news-card__date">' + formatDate(course.startDate) + "</time>" +
+			'<time class="cl-news-card__date">' + (course.formattedStartDate || formatDate(course.startDate) || "") + "</time>" +
 			'<div class="cl-news-card__tags">' + tags + "</div>" +
-			'<h3 class="cl-news-card__title">' + (course.title || "") + "</h3>" +
+			'<h3 class="cl-news-card__title"><a class="cl-news-card__title-link" href="' + (course.link || "#") + '">' + (course.title || "") + "</a></h3>" +
 			'<p class="cl-news-card__desc">' + (course.abstract || "") + "</p>" +
-			'<a href="' + (course.link || "#") + '" class="cl-news-card__link">Show More <i class="cl-icon-arrow_forward"></i></a>' +
+			'<a href="' + (course.showMoreLink || course.link || "#") + '" class="cl-news-card__link">Show More <i class="cl-icon-arrow_forward"></i></a>' +
 			"</div>" +
 			"</article>" +
 			"</div>"
@@ -109,10 +109,13 @@ import Swiper from "swiper/bundle";
 		});
 	}
 
-	function filterByTag(courses, tag) {
-		if (!tag) return courses;
+	function filterByTags(courses, activeTags) {
+		if (!activeTags || activeTags.length === 0) return courses;
 		return courses.filter(function (c) {
-			return (c.tags || []).indexOf(tag) !== -1;
+			var courseTags = c.tags || [];
+			return activeTags.some(function (t) {
+				return courseTags.indexOf(t) !== -1;
+			});
 		});
 	}
 
@@ -122,8 +125,8 @@ import Swiper from "swiper/bundle";
 		if (!coursesUrl) return;
 
 		var defaultImg = el.dataset.defaultImg || "";
-		var allCourses = [];   // full list from server — updated on each sort re-fetch
-		var activeTag  = null; // visitor-selected tag — preserved across sort changes
+		var allCourses  = [];  // full list from server — updated on each sort re-fetch
+		var activeTags  = []; // visitor-selected tags (OR) — preserved across sort changes
 
 		var sortWrap    = el.querySelector("[data-news-sort-wrap]");
 		var sortSelect  = el.querySelector("[data-news-sort]");
@@ -148,14 +151,34 @@ import Swiper from "swiper/bundle";
 			});
 			tagFilterEl.innerHTML = html;
 
+			var allBtn = tagFilterEl.querySelector('[data-tag=""]');
+
 			tagFilterEl.addEventListener("click", function (e) {
 				var btn = e.target.closest("[data-tag]");
 				if (!btn) return;
-				activeTag = btn.dataset.tag || null;
-				tagFilterEl.querySelectorAll("[data-tag]").forEach(function (b) {
-					b.classList.toggle("cl-news__tag-chip--active", b === btn);
-				});
-				renderCourses(el, filterByTag(allCourses, activeTag), defaultImg);
+
+				if (btn === allBtn) {
+					// "All" clears every other selection
+					activeTags = [];
+					tagFilterEl.querySelectorAll("[data-tag]").forEach(function (b) {
+						b.classList.toggle("cl-news__tag-chip--active", b === allBtn);
+					});
+				} else {
+					// Toggle this tag in the active set (OR logic)
+					var tag = btn.dataset.tag;
+					var idx = activeTags.indexOf(tag);
+					if (idx === -1) {
+						activeTags.push(tag);
+					} else {
+						activeTags.splice(idx, 1);
+					}
+					btn.classList.toggle("cl-news__tag-chip--active", idx === -1);
+
+					// Keep "All" active only when nothing else is selected
+					allBtn.classList.toggle("cl-news__tag-chip--active", activeTags.length === 0);
+				}
+
+				renderCourses(el, filterByTags(allCourses, activeTags), defaultImg);
 			});
 		}
 
@@ -167,7 +190,7 @@ import Swiper from "swiper/bundle";
 				fetchCourses(coursesUrl, sortKey)
 					.then(function (data) {
 						allCourses = data.courses || [];
-						renderCourses(el, filterByTag(allCourses, activeTag), defaultImg);
+						renderCourses(el, filterByTags(allCourses, activeTags), defaultImg);
 					})
 					.catch(function (err) {
 						console.error("News/Courses slider: sort fetch failed", err);

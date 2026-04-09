@@ -1,0 +1,67 @@
+<div
+	class="cl-course-page__meta"
+	data-sly-use.course="com.reponse.mvn.core.models.CourseModel"
+>
+	<div class="cl-course-page__meta-main">
+		<span
+			class="cl-course-page__date"
+			data-sly-test="${course.formattedDate}"
+		>
+			<i
+				class="cl-icon-calendar"
+				aria-hidden="true"
+			></i>
+			${course.formattedDate}
+		</span>
+		<span
+			class="cl-course-page__date cl-course-page__date--empty"
+			data-sly-test="${wcmmode.edit && !course.formattedDate}"
+		>
+			<i
+				class="cl-icon-calendar"
+				aria-hidden="true"
+			></i>
+			N/A
+		</span>
+		<div
+			class="cl-course-page__tags-row"
+			data-sly-test="${!course.tagTitles.empty}"
+		>
+			<i
+				class="cl-icon-price-tags cl-course-page__tags-icon"
+				aria-hidden="true"
+			></i>
+			<sly data-sly-list.tagTitle="${course.tagTitles}">
+				<span class="cl-course-page__tag">${tagTitle}</span>
+			</sly>
+		</div>
+		<div
+			class="cl-course-page__tags-row cl-course-page__tags-row--empty"
+			data-sly-test="${wcmmode.edit && course.tagTitles.empty}"
+		>
+			<i
+				class="cl-icon-price-tags cl-course-page__tags-icon"
+				aria-hidden="true"
+			></i>
+			N/A
+		</div>
+	</div>
+	<a
+		class="cl-course-page__meta-link"
+		href="${course.link @ context='uri'}"
+		target="_blank"
+		rel="noopener noreferrer"
+		data-sly-test="${course.link}"
+	>
+		Link
+		<i
+			class="cl-icon-arrow_forward"
+			aria-hidden="true"
+		></i>
+	</a>
+	<span
+		class="cl-course-page__meta-link-empty"
+		data-sly-test="${wcmmode.edit && !course.link}"
+		>No link</span
+	>
+</div>

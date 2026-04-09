@@ -1,8 +1,14 @@
 package com.reponse.mvn.core.models;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.api.resource.ValueMap;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
@@ -14,9 +20,14 @@ public class NavigationModel {
     private Resource resource;
 
     public Page getRootPage() {
-
         PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
+        if (pageManager == null) {
+            return null;
+        }
         Page currentPage = pageManager.getContainingPage(resource);
+        if (currentPage == null) {
+            return null;
+        }
 
         Page root = currentPage;
 
@@ -27,31 +38,39 @@ public class NavigationModel {
         return root;
     }
 
-    public boolean isHomePage() {
-        PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
-        if (pageManager == null) {
-            return false;
+    public List<Page> getVisibleRootChildren() {
+        Page root = getRootPage();
+        if (root == null) {
+            return Collections.emptyList();
         }
 
-        Page currentPage = pageManager.getContainingPage(resource);
+        List<Page> visible = new ArrayList<>();
+        Iterator<Page> children = root.listChildren();
+        while (children.hasNext()) {
+            Page child = children.next();
+            if (child == null) {
+                continue;
+            }
+            if (child.isHideInNav()) {
+                continue;
+            }
+            ValueMap vm = child.getProperties();
+            if (vm != null && vm.get("hideInNavigation", false)) {
+                continue;
+            }
+            visible.add(child);
+        }
+        return visible;
+    }
+
+    public boolean isHomePage() {
+        PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
+        Page currentPage = pageManager != null ? pageManager.getContainingPage(resource) : null;
         Page rootPage = getRootPage();
 
         if (currentPage == null || rootPage == null) {
             return false;
         }
-
-        String currentPath = currentPage.getPath();
-        String rootPath = rootPage.getPath();
-
-        if (currentPath.equals(rootPath)) {
-            return true;
-        }
-        
-        if (currentPath.startsWith(rootPath + "/")
-                && currentPage.getDepth() == rootPage.getDepth() + 2) {
-            return true;
-        }
-
-        return false;
+        return currentPage.getPath().equals(rootPage.getPath());
     }
 }

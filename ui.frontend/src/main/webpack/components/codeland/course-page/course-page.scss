@@ -1,65 +1,18 @@
 .cl-course-page {
 
-	// ── Breadcrumb ──────────────────────────────────────────────────────────
+	// ── Breadcrumb — compact, no border ─────────────────────────────────────
 	&__breadcrumb {
-		padding-block: $space-sm;
-		border-bottom: 1px solid rgba($color-primary, 0.08);
+		padding-top: $space-sm;
+		padding-bottom: 6px;
 	}
 
-	// ── Hero — full width, no border-radius, outside page-section ────────────
-	&__hero {
-		position: relative;
-		width: 100%;
-		height: 480px;
-		overflow: hidden;
-		background-color: rgba($color-primary, 0.06);
-
-		@include tablet {
-			height: 280px;
-		}
-
-		@include mobile {
-			height: 200px;
-		}
-	}
-
-	&__hero-img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		display: block;
-	}
-
-	// Edit-mode placeholder
-	&__hero-placeholder {
-		width: 100%;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		gap: $space-sm;
-		border-bottom: 2px dashed rgba($color-primary, 0.15);
-		color: rgba($color-primary, 0.35);
-		font-size: 14px;
-
-		i {
-			font-size: 40px;
-			opacity: 0.25;
-		}
-	}
-
-	// ── Inner wrapper (page-section for content below the hero) ──────────────
-	&__inner {
-		padding-top: $space-lg * 1.5;
-		padding-bottom: $space-lg * 2;
-	}
-
-	// ── Two-column body ───────────────────────────────────────────────────────
-	&__body {
+	// ── Two-column layout ────────────────────────────────────────────────────
+	&__layout {
 		display: grid;
 		grid-template-columns: 1fr 300px;
-		gap: $space-lg * 1.5;
+		gap: $space-lg;
+		padding-top: $space-md;
+		padding-bottom: $space-lg * 2;
 		align-items: start;
 
 		@include tablet {
@@ -67,286 +20,335 @@
 		}
 	}
 
-	// ── Main (left column) ────────────────────────────────────────────────────
+	// ── Main (left) column ───────────────────────────────────────────────────
 	&__main {
+		min-width: 0;
+
+		&:only-child {
+			grid-column: 1 / -1;
+		}
+	}
+
+	// ── Hero image ───────────────────────────────────────────────────────────
+	&__hero {
+		margin: 0 0 $space-md;
+		border-radius: 10px;
+		overflow: hidden;
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		background-color: rgba($color-primary, 0.06);
+
+		> img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+
+		.cl-atomic-image {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+
+			.cmp-image,
+			.cmp-image__image,
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+			}
+
+			.cl-image-placeholder {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+	}
+
+	// ── Meta row (author: edit chrome needs a real layout box — no display:contents on wrappers)
+	&__meta-editable {
+		display: block;
+		min-height: 1.5rem;
+		margin-bottom: $space-md;
+	}
+
+	&__meta {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: $space-sm;
+		padding: 4px 0 2px;
+	}
+
+	&__meta-main {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
 		min-width: 0;
 	}
 
-	// ── Title ─────────────────────────────────────────────────────────────────
-	&__title {
-		font-size: clamp(26px, 4.5vw, 44px);
+	// ── Date text with icon ───────────────────────────────────────────────────
+	&__date {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		font-size: 13px;
 		font-weight: 700;
-		line-height: 1.15;
 		color: $color-primary;
-		margin: 0 0 $space-md;
-		letter-spacing: -0.5px;
+		padding: 0;
+
+		i {
+			font-size: 13px;
+			color: $color-primary;
+			flex-shrink: 0;
+		}
+	}
+
+	&__date--empty {
+		font-size: 12px;
+		font-weight: 600;
+		color: rgba($color-primary, 0.72);
+	}
+
+	// ── Tags row: icon + chips ────────────────────────────────────────────────
+	&__tags-row {
+		display: inline-flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 6px;
+	}
+
+	&__tags-row--empty {
+		font-size: 12px;
+		font-weight: 600;
+		color: rgba($color-primary, 0.72);
+	}
+
+	&__tags-icon {
+		font-size: 13px;
+		color: rgba($color-primary, 0.65);
+		flex-shrink: 0;
+	}
+
+	// ── Tag chip ──────────────────────────────────────────────────────────────
+	&__tag {
+		display: inline-flex;
+		align-items: center;
+		height: 24px;
+		padding-inline: 10px;
+		border-radius: 5px;
+		background: $color-primary;
+		color: $color-white;
+		font-size: 10px;
+		font-weight: 700;
+		letter-spacing: 0.55px;
+		text-transform: uppercase;
+	}
+
+	&__meta-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding: 0 0 2px;
+		background: transparent;
+		color: $color-primary;
+		border-bottom: 1px solid $color-primary;
+		font-size: 14px;
+		font-weight: 400;
+		text-decoration: none;
+		transition: border-bottom-color 0.15s;
+		white-space: nowrap;
+		align-self: center;
+
+		i { font-size: 12px; }
+
+		&:hover {
+			border-bottom-color: rgba($color-primary, 0.45);
+		}
+
+		@include mobile {
+			align-self: flex-start;
+		}
+	}
+
+	&__meta-link-empty {
+		align-self: center;
+		font-size: 12px;
+		font-weight: 600;
+		color: rgba($color-primary, 0.68);
+		white-space: nowrap;
+
+		@include mobile {
+			align-self: flex-start;
+		}
+	}
+
+	&__meta-hint {
+		font-size: 12px;
+		color: rgba($color-primary, 0.45);
+		font-style: italic;
+	}
+
+	// ── Course title ──────────────────────────────────────────────────────────
+	&__title-wrap {
+		margin-top: $space-xs;
+		margin-bottom: $space-xs;
+
+		.cmp-title { margin: 0; }
+		.cmp-title__text { margin: 0; }
 	}
 
 	// ── Abstract ─────────────────────────────────────────────────────────────
 	&__abstract {
-		font-size: 17px;
-		line-height: 1.75;
-		color: rgba($color-primary, 0.65);
-		margin: 0 0 $space-lg;
-		padding-left: $space-md;
-		border-left: 3px solid $color-secondary;
+		margin-bottom: $space-md;
+		padding-left: 14px;
+		border-left: 3px solid rgba($color-primary, 0.28);
+
+		.cmp-text {
+			font-size: 14px;
+			line-height: 1.75;
+			color: rgba($color-primary, 0.62);
+			font-style: italic;
+
+			p { margin: 0 0 $space-sm; }
+		}
 	}
 
-	// ── Editable content area ─────────────────────────────────────────────────
+	// ── Parsys / body content ─────────────────────────────────────────────────
 	&__content {
+		min-height: 100px;
 		font-size: 15px;
 		line-height: 1.8;
 		color: rgba($color-primary, 0.85);
+		margin-top: $space-md;
+		padding-top: $space-md;
+		border-top: 1px solid rgba($color-primary, 0.07);
 
-		p {
-			margin: 0 0 $space-md;
-		}
+		p { margin: 0 0 $space-md; }
 
 		h2, h3, h4 {
 			color: $color-primary;
-			margin: $space-lg 0 $space-sm;
 			font-weight: 700;
+			margin: $space-lg 0 $space-sm;
 		}
 
 		ul, ol {
 			padding-left: $space-lg;
 			margin-bottom: $space-md;
-
-			li {
-				margin-bottom: $space-xs;
-			}
+			li { margin-bottom: $space-xs; }
 		}
 	}
 
-	// ── Sidebar (right column) ────────────────────────────────────────────────
+	&__intro-editable {
+		display: block;
+	}
+
+	&__par-editable {
+		display: block;
+	}
+
+	// ── Sidebar ───────────────────────────────────────────────────────────────
 	&__sidebar {
 		position: sticky;
 		top: $space-md;
+		padding: 12px;
 
 		@include tablet {
 			position: static;
-			order: -1; // show details before content on mobile
+			padding: 0;
 		}
 	}
 
-	// ── Tag chips ─────────────────────────────────────────────────────────────
-	&__tag {
-		display: inline-flex;
-		align-items: center;
-		height: 22px;
-		padding-inline: 10px;
-		border-radius: 9999px;
-		background-color: rgba($color-secondary, 0.3);
-		color: $color-primary;
+	&__sidebar-heading {
 		font-size: 11px;
-		font-weight: 600;
-		letter-spacing: 0.4px;
-		text-transform: uppercase;
-	}
-
-	// ── Related Courses section (bottom, below two-column body) ──────────────
-	&__related {
-		margin-top: $space-lg * 2;
-		padding-top: $space-lg * 1.5;
-		border-top: 1px solid rgba($color-primary, 0.08);
-	}
-
-	&__related-heading {
-		font-size: 22px;
 		font-weight: 700;
-		color: $color-primary;
-		margin: 0 0 $space-lg;
-		letter-spacing: -0.3px;
-	}
-}
-
-// ── Course Details Sidebar Card ───────────────────────────────────────────────
-.cl-course-meta-card {
-	background-color: rgba($color-primary, 0.025);
-	border: 1px solid rgba($color-primary, 0.08);
-	border-radius: 16px;
-	overflow: hidden;
-
-	&__heading {
-		font-size: 10px;
-		font-weight: 700;
-		letter-spacing: 1.2px;
+		letter-spacing: 1.1px;
 		text-transform: uppercase;
-		color: rgba($color-primary, 0.45);
-		margin: 0;
-		padding: $space-md $space-md $space-sm;
-		border-bottom: 1px solid rgba($color-primary, 0.07);
+		color: rgba($color-primary, 0.55);
+		margin: 0 0 10px;
+		padding-bottom: 4px;
 	}
 
-	&__row {
-		display: flex;
-		align-items: flex-start;
-		gap: $space-sm;
-		padding: $space-sm $space-md;
-
-		& + & {
-			border-top: 1px solid rgba($color-primary, 0.05);
-		}
-	}
-
-	&__icon {
-		font-size: 16px;
-		color: $color-secondary;
-		margin-top: 3px;
-		flex-shrink: 0;
-		width: 18px;
-		text-align: center;
-	}
-
-	&__info {
-		display: flex;
-		flex-direction: column;
-		gap: 3px;
-		min-width: 0;
-	}
-
-	&__label {
-		font-size: 10px;
-		font-weight: 700;
-		letter-spacing: 0.6px;
-		text-transform: uppercase;
-		color: rgba($color-primary, 0.4);
-		line-height: 1;
-	}
-
-	&__value {
-		font-size: 14px;
-		font-weight: 600;
-		color: $color-primary;
-		line-height: 1.4;
-	}
-
-	&__tags {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 5px;
-		margin-top: 4px;
-	}
-
-	&__link {
-		font-size: 13px;
-		font-weight: 600;
-		color: darken($color-secondary, 25%);
-		text-decoration: none;
-		line-height: 1.4;
-
-		&:hover {
-			text-decoration: underline;
-		}
-	}
-}
-
-// ── Related Courses list (bottom grid) ───────────────────────────────────────
-.cl-course-list {
-
-	&__items {
+	// ── Related courses list ─────────────────────────────────────────────────
+	&__related-list {
 		list-style: none;
 		margin: 0;
 		padding: 0;
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: $space-md;
-
-		@include tablet {
-			grid-template-columns: repeat(2, 1fr);
-		}
-
-		@include mobile {
-			grid-template-columns: 1fr;
-		}
-	}
-
-	&__link {
 		display: flex;
 		flex-direction: column;
-		height: 100%;
+	}
+
+	&__related-item {
+		border-bottom: 0;
+	}
+
+	&__related-link {
+		display: flex;
+		gap: $space-sm;
+		padding: 10px 0;
 		text-decoration: none;
 		color: inherit;
-		border-radius: 12px;
-		overflow: hidden;
-		border: 1px solid rgba($color-primary, 0.08);
-		transition: transform 0.18s ease, box-shadow 0.18s ease;
-
+		transition: transform 0.15s ease, opacity 0.15s ease;
 		&:hover {
-			transform: translateY(-3px);
-			box-shadow: 0 8px 24px rgba($color-primary, 0.1);
+			opacity: 0.85;
+			transform: translateX(2px);
 		}
 	}
 
-	&__img {
-		width: 100%;
-		aspect-ratio: 16 / 9;
-		overflow: hidden;
-		background-color: rgba($color-primary, 0.06);
+	&__related-thumb {
+		width: 82px;
+		height: 60px;
 		flex-shrink: 0;
+		border-radius: 6px;
+		overflow: hidden;
+		background: rgba($color-primary, 0.06);
 
 		img {
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
 			display: block;
-			transition: transform 0.3s ease;
+			transition: transform 0.25s ease;
 		}
 	}
 
-	&__link:hover &__img img {
-		transform: scale(1.04);
+	&__related-link:hover &__related-thumb img {
+		transform: scale(1.05);
 	}
 
-	&__body {
-		padding: $space-sm $space-md $space-md;
+	&__related-info {
 		flex: 1;
+		min-width: 0;
 		display: flex;
 		flex-direction: column;
+		justify-content: flex-start;
+		gap: 3px;
+		padding-top: 2px;
 	}
 
-	&__title {
+	&__related-title {
 		font-size: 14px;
-		font-weight: 600;
-		line-height: 1.45;
-		color: $color-primary;
-		margin: 0 0 $space-xs;
-		flex: 1;
+		font-weight: 700;
+		line-height: 1.35;
+		color: $color-primary !important;
+		margin: 0;
+		display: -webkit-box;
+		line-clamp: 2;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
 	}
 
-	&__meta {
-		display: flex;
-		align-items: center;
-		flex-wrap: wrap;
-		gap: 6px;
-		margin-top: $space-xs;
-	}
-
-	&__date {
+	&__related-date {
 		display: inline-flex;
 		align-items: center;
 		gap: 4px;
 		font-size: 11px;
-		color: rgba($color-primary, 0.45);
-		font-weight: 500;
-
-		i {
-			font-size: 11px;
-			color: $color-secondary;
-		}
-	}
-
-	&__tag {
-		display: inline-flex;
-		align-items: center;
-		height: 18px;
-		padding-inline: 7px;
-		border-radius: 9999px;
-		background-color: rgba($color-secondary, 0.3);
-		color: $color-primary;
-		font-size: 10px;
+		color: rgba($color-primary, 0.58);
 		font-weight: 600;
-		letter-spacing: 0.3px;
-		text-transform: uppercase;
+
+		i { font-size: 11px; color: $color-primary; }
 	}
 }

@@ -22,10 +22,18 @@
 				<div class="swiper-slide">
 					<article class="cl-news-card">
 						<div class="cl-news-card__image">
-							<img data-sly-test="${course.fileReference}"
-								src="${course.fileReference}"
-								alt="${course.title @ context='attribute'}"
-								loading="lazy"/>
+							<a href="${course.link @ context='uri'}" class="cl-news-card__image-link">
+							<sly data-sly-test.cardImg="${course.fileReference}">
+								<img src="${cardImg}"
+									alt="${course.title @ context='attribute'}"
+									loading="lazy"/>
+							</sly>
+							<sly data-sly-test="${!cardImg}">
+								<img src="/etc.clientlibs/mvnreponse/clientlibs/clientlib-site/resources/images/course-default.avif"
+									alt="${course.title @ context='attribute'}"
+									loading="lazy"/>
+							</sly>
+							</a>
 						</div>
 						<div class="cl-news-card__body">
 							<time class="cl-news-card__date">${course.formattedStartDate}</time>
@@ -34,9 +42,11 @@
 									<span class="cl-news-card__tag">${tag}</span>
 								</sly>
 							</div>
-							<h3 class="cl-news-card__title">${course.title}</h3>
+							<h3 class="cl-news-card__title">
+								<a href="${course.link @ context='uri'}" class="cl-news-card__title-link">${course.title}</a>
+							</h3>
 							<p class="cl-news-card__desc">${course.abstract}</p>
-							<a href="${course.link}" class="cl-news-card__link">
+							<a href="${course.showMoreLink @ context='uri'}" class="cl-news-card__link">
 								Show More <i class="cl-icon-arrow_forward"></i>
 							</a>
 						</div>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Course Meta"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <col
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <startDate
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
+                                fieldLabel="Start Date"
+                                fieldDescription="Meta row and listings only. Abstract and parsys are separate components. Same field as Page Properties → Course meta."
+                                name="./startDate"
+                                displayedFormat="DD MMMM YYYY"
+                                valueFormat="YYYY-MM-DD[T00:00:00.000Z]"/>
+                            <startDateTypeHint
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                name="./startDate@TypeHint"
+                                value="Date"/>
+
+                            <tags
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="cq/gui/components/coral/common/form/tagfield"
+                                fieldLabel="Course Tags"
+                                fieldDescription="Topic chips and related-course matching."
+                                name="./cq:tags"
+                                multiple="{Boolean}true"
+                                rootPath="/content/cq:tags"/>
+
+                            <link
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                fieldLabel="Enroll / Course Link"
+                                fieldDescription="Enroll Now CTA."
+                                name="./link"
+                                rootPath="/content"/>
+
+                        </items>
+                    </col>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>
