@@ -110,7 +110,7 @@ public class CoursePageFieldSyncPostProcessor implements SlingPostProcessor {
             }
         }
 
-        // Keep page tags and meta tags mirrored. Page cq:tags is the primary source.
+        // Keep page tags and meta tags mirrored. When meta was saved, meta wins; otherwise page wins.
         if (metaRes != null) {
             ModifiableValueMap metaMap = metaRes.adaptTo(ModifiableValueMap.class);
             if (metaMap != null) {
@@ -125,7 +125,14 @@ public class CoursePageFieldSyncPostProcessor implements SlingPostProcessor {
                     metaTags = new String[0];
                 }
 
-                String[] mergedTags = pageHasTags ? pageTags : (metaHasTags ? metaTags : new String[0]);
+                String[] mergedTags;
+                if (metaTouched) {
+                    mergedTags = metaHasTags ? metaTags : new String[0];
+                } else if (pageHasTags) {
+                    mergedTags = pageTags;
+                } else {
+                    mergedTags = metaHasTags ? metaTags : new String[0];
+                }
 
                 if (!sameTags(pageTags, mergedTags)) {
                     pageMap.put("cq:tags", mergedTags);

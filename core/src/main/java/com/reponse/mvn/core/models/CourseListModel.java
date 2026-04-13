@@ -124,7 +124,6 @@ public class CourseListModel {
                     Resource metaRes = content.getChild("meta");
                     Resource dateRes = content.getChild("date");
                     Resource tagsRes = content.getChild("tags");
-                    Resource imgChildRes = content.getChild("image");
                     Resource abstractRes = content.getChild("abstract");
 
                     Calendar cal = CourseModel.Fields.resolveStartCalendar(metaRes, dateRes, tagsRes, vm);
@@ -151,8 +150,8 @@ public class CourseListModel {
                         tags.add(label);
                     }
 
-                    String fileRef = CourseModel.Fields.resolveImageUrl(
-                            request, imgChildRes, modelFactory, resolver, vm.get("fileReference", ""));
+                    String fileRef = CourseModel.Fields.resolvePagePrimaryImage(
+                            request, content, modelFactory, resolver);
 
                     String abstractText = CourseModel.Fields.resolveAbstractText(abstractRes, vm);
                     if (abstractText.isEmpty() && coursePage.getDescription() != null) {
@@ -247,12 +246,10 @@ public class CourseListModel {
             }
         }
 
-        boolean noFilter = filterTags == null || filterTags.length == 0;
         if (maxItems > 0) {
             map.put("p.limit", String.valueOf(maxItems));
-        } else if (noFilter) {
-            map.put("p.limit", "6");
         } else {
+            // Dialog: "Leave empty to show all" — no default cap when maxItems is unset
             map.put("p.limit", "-1");
         }
         return map;
