@@ -1,0 +1,35 @@
+{
+  "jcr:primaryType": "oak:QueryIndexDefinition",
+  "type": "lucene",
+  "async": "async",
+  "compatVersion": 2,
+  "evaluatePathRestrictions": true,
+  "reindex": false,
+  "includedPaths": [
+    "/content"
+  ],
+  "queryPaths": [
+    "/content"
+  ],
+  "indexRules": {
+    "jcr:primaryType": "nt:unstructured",
+    "cq:Page": {
+      "jcr:primaryType": "nt:unstructured",
+      "properties": {
+        "jcr:primaryType": "nt:unstructured",
+        "resourceType": {
+          "jcr:primaryType": "nt:unstructured",
+          "name": "jcr:content/sling:resourceType",
+          "propertyIndex": true
+        },
+        "startDate": {
+          "jcr:primaryType": "nt:unstructured",
+          "name": "jcr:content/startDate",
+          "propertyIndex": true,
+          "ordered": true,
+          "type": "Date"
+        }
+      }
+    }
+  }
+}

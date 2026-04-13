@@ -70,6 +70,12 @@
                             <artifactId>core.wcm.components.config</artifactId>
                         </dependency>
                     </dependencies>
+                    <!-- AEM CND models /oak:index as nt:folder; oak:QueryIndexDefinition children are valid at runtime. -->
+                    <validatorsSettings>
+                        <jackrabbit-nodetypes>
+                            <isDisabled>true</isDisabled>
+                        </jackrabbit-nodetypes>
+                    </validatorsSettings>
                 </configuration>
             </plugin>
             <plugin>

@@ -41,6 +41,7 @@
                         <filter><root>/content</root></filter>
                         <filter><root>/content/dam</root></filter>
                         <filter><root>/content/dam/mvnreponse</root></filter>
+                        <filter><root>/oak:index</root></filter>
                     </filters>
                 </configuration>
             </plugin>

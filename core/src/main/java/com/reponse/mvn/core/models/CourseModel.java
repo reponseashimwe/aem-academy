@@ -57,6 +57,11 @@ public class CourseModel {
 
     private static final String COURSE_PAGE_RT   = "academy-codenova/components/structure/course-page";
     private static final String COURSE_META_RT   = "academy-codenova/components/atomic/course-meta";
+    /**
+     * Core Components v3 page featured image node ({@link com.adobe.cq.wcm.core.components.models.Page#NN_PAGE_FEATURED_IMAGE}).
+     * JCR node names are case-sensitive; older content may use {@code cq:featuredImage}.
+     */
+    private static final String NN_PAGE_FEATURED_IMAGE = "cq:featuredimage";
     private static final String DEFAULT_DATE_FMT = "MMMM d, yyyy";
     private static final int MAX_RELATED = 6;
 
@@ -111,11 +116,14 @@ public class CourseModel {
         link = Fields.resolveLink(metaRes, tagsRes, pageVm);
 
         if (COURSE_PAGE_RT.equals(res.getResourceType())) {
-            Resource imageRes = res.getChild("image");
-            fileReference = Fields.resolveImageUrl(
-                    request, imageRes, modelFactory, res.getResourceResolver(), cvm.get("fileReference", ""));
+            fileReference = Fields.resolvePagePrimaryImage(request, res, modelFactory, res.getResourceResolver());
+        } else if (COURSE_META_RT.equals(rt)) {
+            Resource parent = res.getParent();
+            fileReference = parent != null
+                    ? Fields.resolvePagePrimaryImage(request, parent, modelFactory, res.getResourceResolver())
+                    : Fields.mapOrEmpty(res.getResourceResolver(), cvm.get("fileReference", ""));
         } else {
-            fileReference = cvm.get("fileReference", "");
+            fileReference = Fields.mapOrEmpty(res.getResourceResolver(), cvm.get("fileReference", ""));
         }
 
         if (COURSE_PAGE_RT.equals(rt)) {
@@ -236,9 +244,7 @@ public class CourseModel {
                         human = humFmt.format(cal.getTime());
                     }
 
-                    Resource imgChild = cc.getChild("image");
-                    String img = Fields.resolveImageUrl(
-                            request, imgChild, modelFactory, resolver, ccvm.get("fileReference", ""));
+                    String img = Fields.resolvePagePrimaryImage(request, cc, modelFactory, resolver);
 
                     Resource abstractChild = cc.getChild("abstract");
                     String abs = Fields.resolveAbstractText(abstractChild, ccvm);
@@ -304,6 +310,74 @@ public class CourseModel {
         private Fields() {
         }
 
+        /**
+         * Featured image node(s) under {@code jcr:content}, then hero {@code image} (without falling back to root
+         * {@code fileReference} while resolving that node), then {@code jcr:content} {@code fileReference}.
+         */
+        static String resolvePagePrimaryImage(SlingHttpServletRequest request, Resource jcrContent,
+                ModelFactory modelFactory, ResourceResolver resolver) {
+            if (jcrContent == null) {
+                return "";
+            }
+            ValueMap vm = jcrContent.getValueMap();
+            String vmFileRef = vm.get("fileReference", "");
+
+            String[] featuredNames = new String[] {
+                    CourseModel.NN_PAGE_FEATURED_IMAGE,
+                    "cq:featuredImage",
+                    "featuredimage"
+            };
+            for (String name : featuredNames) {
+                Resource featured = jcrContent.getChild(name);
+                if (featured != null) {
+                    String fromFeatured = resolveImageResourceOnly(request, featured, modelFactory, resolver);
+                    if (!isBlank(fromFeatured)) {
+                        return fromFeatured;
+                    }
+                }
+            }
+
+            String featuredProp = vm.get("cq:featuredImage", String.class);
+            if (!isBlank(featuredProp)) {
+                String p = featuredProp.trim();
+                if (p.startsWith("/content/")) {
+                    return mapOrEmpty(resolver, p);
+                }
+            }
+
+            Resource hero = jcrContent.getChild("image");
+            String fromHero = resolveImageResourceOnly(request, hero, modelFactory, resolver);
+            if (!isBlank(fromHero)) {
+                return fromHero;
+            }
+
+            return mapOrEmpty(resolver, vmFileRef);
+        }
+
+        /** {@code fileReference} on this resource, then Core Image model — no parent / jcr:content fallback. */
+        static String resolveImageResourceOnly(SlingHttpServletRequest request, Resource imageRes,
+                ModelFactory modelFactory, ResourceResolver resolver) {
+            if (imageRes == null) {
+                return "";
+            }
+            ValueMap im = imageRes.getValueMap();
+            String ref = im.get("fileReference", "");
+            if (!isBlank(ref)) {
+                return mapOrEmpty(resolver, ref);
+            }
+            if (request != null && modelFactory != null) {
+                try {
+                    Image image = modelFactory.getModelFromWrappedRequest(request, imageRes, Image.class);
+                    if (image != null && !isBlank(image.getSrc())) {
+                        return image.getSrc();
+                    }
+                } catch (Exception e) {
+                    FL.debug("resolveImageResourceOnly: Core Image model failed for {}", imageRes.getPath(), e);
+                }
+            }
+            return "";
+        }
+
         static String resolveImageUrl(SlingHttpServletRequest request, Resource imageRes,
                 ModelFactory modelFactory, ResourceResolver resolver, String jcrContentFileRefFallback) {
             if (imageRes == null) {
@@ -331,7 +405,7 @@ public class CourseModel {
             return s == null || s.trim().isEmpty();
         }
 
-        private static String mapOrEmpty(ResourceResolver resolver, String path) {
+        static String mapOrEmpty(ResourceResolver resolver, String path) {
             if (isBlank(path)) {
                 return "";
             }

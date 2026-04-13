@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
+    <filter root="/oak:index" mode="merge"/>
     <filter root="/apps/academy-codenova"/>
     <filter root="/apps/academy-codenova copy"/>
     <filter root="/apps/mvnreponse/clientlibs"/>
