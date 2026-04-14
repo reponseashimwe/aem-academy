@@ -5,8 +5,9 @@
     <filter root="/content/dam/mvnreponse" mode="merge">
         <exclude pattern="/content/dam/mvnreponse(/.*)?"/>
         <include pattern="/content/dam/mvnreponse/jcr:content(/.*)?"/>
+        <include pattern="/content/dam/mvnreponse/asset\.jpg(/.*)?"/>
+        <include pattern="/content/dam/mvnreponse/course.*(/.*)?"/>
     </filter>
-    <filter root="/content/dam/mvnreponse/asset.jpg" mode="merge"/>
     <filter root="/content/experience-fragments/mvnreponse" mode="merge"/>
     <filter root="/content/codenova" mode="merge"/>
     <filter root="/content/cq:tags/academy" mode="merge"/>

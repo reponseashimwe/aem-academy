@@ -1,0 +1,51 @@
+title,startDate,abstract,tags,link,fileReference
+Introduction to Python Programming,2026-06-01,Master Python from fundamentals to advanced concepts,technology,https://www.learnpython.org,/content/dam/academy/courses/course-1.png
+Advanced JavaScript Frameworks,2026-06-15,Build modern web apps with React Vue and Angular,web,https://developer.mozilla.org/en-US/docs/Web/JavaScript,/content/dam/academy/courses/course-2.png
+Machine Learning Fundamentals,Jun 1 2026,Understand ML algorithms and build predictive models,ml;ai,https://www.coursera.org/learn/machine-learning,/content/dam/academy/courses/course-3.png
+,2026-07-01,INVALID — empty title should fail,technology,,
+Docker and Kubernetes Essentials,2026-07-10,Container orchestration for production workloads,devops;cloud,https://docs.docker.com/get-started/overview/,/content/dam/academy/courses/course-4.png
+React Native Mobile Development,07/20/2026,Cross-platform mobile apps with React Native,mobile;web,https://reactnative.dev/docs/getting-started,/content/dam/academy/courses/course-5.png
+Cybersecurity Foundations,2026-08-01,Protect systems and data from modern threats,security,https://www.cybrary.it,/content/dam/academy/courses/course-6.png
+Deep Learning with TensorFlow,2026-08-10,Neural networks and deep learning in practice,ml;ai,https://www.tensorflow.org/learn,/content/dam/academy/courses/course-7.png
+Advanced Cloud Architecture,not-a-valid-date,INVALID — unparseable startDate should fail,cloud,,
+AWS Cloud Practitioner,2026-08-20,Amazon Web Services fundamentals and certification prep,cloud,https://aws.amazon.com/certification/certified-cloud-practitioner/,/content/dam/academy/courses/course-8.png
+GraphQL API Design,1 Sep 2026,Schema-first API design with GraphQL and Apollo,web;technology,https://graphql.org/learn/,/content/dam/academy/courses/course-9.png
+Vue.js Complete Guide,2026-09-05,Build reactive UIs with Vue 3 and the Composition API,web,https://vuejs.org/guide/introduction.html,,
+iOS App Development with Swift,2026-09-15,Build native iOS applications using Swift and SwiftUI,mobile,https://developer.apple.com/swift/,/content/dam/academy/courses/course-10.png
+Ethical Hacking Basics,September 20 2026,Penetration testing and vulnerability assessment,security,https://www.cybrary.it/course/ethical-hacking/,/content/dam/academy/courses/course-11.png
+Data Visualization with D3.js,2026-09-25,Transform data into compelling interactive charts,data;web,https://d3js.org,/content/dam/academy/courses/course-12.png
+   ,2026-10-01,INVALID — whitespace-only title should fail,technology,,
+Node.js Microservices Architecture,2026-10-05,Design and deploy scalable Node.js microservices,web;devops,https://nodejs.org/en/docs/guides/,/content/dam/academy/courses/course-13.png
+Android Development with Kotlin,10/15/2026,Modern Android development with Kotlin and Jetpack,mobile;technology,https://developer.android.com/kotlin,/content/dam/academy/courses/course-14.png
+PostgreSQL Advanced Queries,2026-10-20,Master complex queries CTEs and query optimization,data,https://www.postgresql.org/docs/,/content/dam/academy/courses/course-15.png
+CI/CD Pipeline Design,2026-11-01,Automate build test and deploy workflows,devops,https://www.atlassian.com/continuous-delivery,/content/dam/academy/courses/course-16.png
+TypeScript from Zero to Hero,Nov 5 2026,Type-safe JavaScript development at scale,web,https://www.typescriptlang.org/docs/,/content/dam/academy/courses/course-17.png
+Serverless Architecture Patterns,2026-11-10,Build event-driven apps with AWS Lambda and Azure Functions,cloud;devops,https://www.serverless.com/framework/docs/,/content/dam/academy/courses/course-18.png
+Redis for High Performance,2026-11-15,Caching pub-sub and data structures with Redis,data;technology,https://redis.io/docs/getting-started/,/content/dam/academy/courses/course-19.png
+Blockchain Development Fundamentals,November 20 2026,Distributed ledger smart contracts and DApps,blockchain;technology,https://ethereum.org/en/developers/docs/,/content/dam/academy/courses/course-20.png
+Angular Complete Course,2026-11-25,Enterprise SPA development with Angular 17,web,https://angular.io/docs,,
+Python for Data Science,2026-12-01,NumPy Pandas Matplotlib and scikit-learn in practice,data;ml,https://pandas.pydata.org/docs/,/content/dam/academy/courses/course-1.png
+Infrastructure as Code,32/01/2026,INVALID — impossible date 32/01/2026 should fail,devops;cloud,,
+Terraform Infrastructure Automation,2026-12-10,End-to-end infrastructure automation with Terraform and Ansible,devops,https://developer.hashicorp.com/terraform/docs,/content/dam/academy/courses/course-2.png
+Flutter Cross-Platform Development,2026-12-15,Build iOS and Android apps with Flutter and Dart,mobile;technology,https://flutter.dev/docs,/content/dam/academy/courses/course-3.png
+MongoDB Aggregation Pipeline,2026-12-20,Advanced data processing with MongoDB aggregations,data,https://www.mongodb.com/docs/manual/aggregation/,/content/dam/academy/courses/course-4.png
+Next.js Full Stack Development,January 5 2027,Server-side rendering and static generation with Next.js,web;technology,https://nextjs.org/docs,/content/dam/academy/courses/course-5.png
+Kubernetes Security Hardening,2027-01-10,Secure Kubernetes clusters in production environments,security;devops,https://kubernetes.io/docs/concepts/security/,/content/dam/academy/courses/course-6.png
+Apache Kafka Streaming,2027-01-15,Real-time data streaming with Apache Kafka,data;technology,https://kafka.apache.org/documentation/,/content/dam/academy/courses/course-7.png
+SwiftUI for iOS Development,2027-01-20,Modern declarative UI for Apple platforms,mobile,https://developer.apple.com/xcode/swiftui/,/content/dam/academy/courses/course-8.png
+Go Programming Language Essentials,1/25/2027,Concurrent systems programming in Go,technology,https://go.dev/doc/,/content/dam/academy/courses/course-9.png
+Rust Systems Programming,2027-02-01,Memory-safe systems programming with Rust,technology;security,https://doc.rust-lang.org/book/,/content/dam/academy/courses/course-10.png
+Spring Boot Microservices,2027-02-05,Production-ready Java microservices with Spring Boot,web;technology,https://spring.io/guides,/content/dam/academy/courses/course-11.png
+React Testing and Quality,February 10 2027,Unit integration and end-to-end testing for React apps,web,https://testing-library.com/docs/react-testing-library/intro/,/content/dam/academy/courses/course-12.png
+Elasticsearch Search Engine,2027-02-15,Full-text search analytics and observability,data;technology,https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html,,
+DevSecOps Practices,2027-02-20,Integrate security into DevOps pipelines from day one,security;devops,https://www.devsecops.org,/content/dam/academy/courses/course-13.png
+WebAssembly Fundamentals,2027-03-01,High-performance web applications with WebAssembly,web,https://webassembly.org,/content/dam/academy/courses/course-14.png
+Solidity and Smart Contracts,,No date here — date is optional so this row is valid,blockchain;technology,https://docs.soliditylang.org,/content/dam/academy/courses/course-15.png
+,2027-03-10,INVALID — another empty title should fail,data,,
+Svelte.js Modern Framework,2027-03-15,Blazing-fast web apps with Svelte and SvelteKit,web,https://svelte.dev/docs,/content/dam/academy/courses/course-16.png
+Cloud Native Development Patterns,2027-03-20,12-factor apps containers and service meshes,cloud;devops,https://www.cncf.io,/content/dam/academy/courses/course-17.png
+Deno Runtime Essentials,March 25 2027,Secure TypeScript runtime for server-side development,web,https://deno.land/manual,/content/dam/academy/courses/course-18.png
+Tailwind CSS Mastery,2027-04-01,Utility-first CSS and component design systems,web;design,https://tailwindcss.com/docs,/content/dam/academy/courses/course-19.png
+GraphQL Federation Architecture,2027-04-05,Build distributed GraphQL APIs with schema federation,web,https://www.apollographql.com/docs/federation/,/content/dam/academy/courses/course-20.png
+Zero Trust Security Architecture,4/10/2027,Modern perimeter-less security architecture,security;cloud,https://www.nist.gov/publications/zero-trust-architecture,/content/dam/academy/courses/course-1.png
+Full Stack TypeScript Development,2027-04-15,End-to-end TypeScript with React and Node backends,web;technology,https://www.typescriptlang.org/docs/,/content/dam/academy/courses/course-2.png
