@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    xmlns:cq="http://www.day.com/jcr/cq/1.0"
+    xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:PageContent"
+    jcr:title="Course Importer"
+    sling:resourceType="granite/ui/components/shell/page">
+
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="academy-codenova/components/tools/course-importer">
+
+        <!--/* Granite UI pathbrowser field definitions — included by name in the HTL */-->
+
+        <filePath
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+            fieldLabel="DAM File Path"
+            name="filePath"
+            rootPath="/content/dam"
+            required="{Boolean}true"
+            value="/content/dam/mvnreponse/courses-test.csv"
+            emptyText="/content/dam/mvnreponse/courses-test.csv"
+            fieldDescription="Upload the .xlsx or .csv to the DAM first, then browse to it."/>
+
+        <targetPath
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+            fieldLabel="Target Path"
+            name="targetPath"
+            rootPath="/content"
+            value="/content/codehills/courses"
+            emptyText="/content/codehills/courses"
+            fieldDescription="Parent page where course pages will be created. Defaults to /content/codehills/courses."/>
+
+    </content>
+
+</jcr:root>

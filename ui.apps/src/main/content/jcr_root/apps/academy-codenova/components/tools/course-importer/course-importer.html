@@ -1,0 +1,194 @@
+<!--/* Course Importer — content area, rendered inside granite/ui/components/shell/page */-->
+
+<div class="foundation-layout-panel">
+
+    <!--/* ── Breadcrumb / page header ───────────────────────────────────────── */-->
+    <div class="foundation-layout-panel-header">
+        <div style="padding:12px 24px 0">
+            <coral-breadcrumbs>
+                <coral-breadcrumbs-item><a href="/aem/tools.html">Tools</a></coral-breadcrumbs-item>
+                <coral-breadcrumbs-item>Course</coral-breadcrumbs-item>
+                <coral-breadcrumbs-item>Import</coral-breadcrumbs-item>
+            </coral-breadcrumbs>
+        </div>
+        <div style="padding:10px 24px 16px">
+            <h1 style="margin:0;font-size:1.375rem;font-weight:600;color:#2c2c2c">
+                Course Importer
+            </h1>
+        </div>
+    </div>
+
+    <!--/* ── Body ────────────────────────────────────────────────────────────── */-->
+    <div class="foundation-layout-panel-bodywrapper">
+        <div class="foundation-layout-panel-body coral-Body" style="padding:2rem 2.5rem">
+            <div style="max-width:640px">
+
+                <p style="color:#707070;margin:0 0 1.5rem;font-size:.9375rem">
+                    Import course pages from a CSV or Excel (.xlsx) file in the DAM.
+                </p>
+
+                <!--/* Download template */-->
+                <div style="margin-bottom:2rem">
+                    <button type="button" id="downloadTemplateBtn"
+                            class="coral-Button coral-Button--secondary">
+                        <coral-icon icon="download" size="XS"></coral-icon>
+                        &nbsp;Download Template CSV
+                    </button>
+                </div>
+
+                <!--/* ── Import form ──────────────────────────────────────────── */-->
+                <form id="courseImportForm" class="coral-Form coral-Form--vertical"
+                      novalidate>
+
+                    <!--/* DAM File Path — Granite UI native path browser (node defined in jcr:content) */-->
+                    <sly data-sly-resource="filePath"/>
+
+                    <!--/* Duplicate Handling */-->
+                    <div class="coral-Form-fieldwrapper" style="margin-bottom:1.25rem">
+                        <label class="coral-Form-fieldlabel" for="duplicateHandling">
+                            Duplicate Handling
+                        </label>
+                        <coral-select id="duplicateHandling" name="duplicateHandling" style="width:100%">
+                            <coral-select-item value="SKIP" selected>SKIP — leave existing pages untouched</coral-select-item>
+                            <coral-select-item value="OVERRIDE">OVERRIDE — update existing pages</coral-select-item>
+                            <coral-select-item value="ALLOW">ALLOW — always create (append suffix if needed)</coral-select-item>
+                        </coral-select>
+                    </div>
+
+                    <!--/* Target Path — Granite UI native path browser (node defined in jcr:content) */-->
+                    <sly data-sly-resource="targetPath"/>
+
+                    <div style="margin-top:2rem">
+                        <button type="submit" id="importBtn"
+                                class="coral-Button coral-Button--primary coral-Button--large">
+                            <coral-icon icon="uploadToCloud" size="S"></coral-icon>
+                            &nbsp;Start Import
+                        </button>
+                    </div>
+
+                </form>
+
+                <!--/* Result feedback */-->
+                <div id="importResult"
+                     style="display:none;margin-top:1.5rem;padding:1rem 1.25rem;
+                            border-radius:4px;font-family:monospace;font-size:.875rem;
+                            white-space:pre-wrap;line-height:1.6">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+(function () {
+    'use strict';
+
+    /* ── Template download (client-side CSV blob) ────────────────────────────
+     * Columns match what rowsToMaps() normalises to (all lowercase).
+     * Two real rows from the test data set.
+     * ──────────────────────────────────────────────────────────────────────── */
+    document.getElementById('downloadTemplateBtn').addEventListener('click', function () {
+        var rows = [
+            'title,startdate,abstract,tags,link,filereference',
+            '"Introduction to Python Programming",2026-06-01,' +
+                '"Master Python from fundamentals to advanced concepts",' +
+                'technology,https://www.learnpython.org,' +
+                '/content/dam/academy/courses/course-1.png',
+            '"Advanced JavaScript Frameworks",2026-06-15,' +
+                '"Build modern web apps with React Vue and Angular",' +
+                'web;technology,https://developer.mozilla.org/en-US/docs/Web/JavaScript,' +
+                '/content/dam/academy/courses/course-2.png'
+        ];
+        var csv  = rows.join('\n') + '\n';
+        var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        var url  = URL.createObjectURL(blob);
+        var a    = document.createElement('a');
+        a.href     = url;
+        a.download = 'course-import-template.csv';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    });
+
+    /* ── Helpers ─────────────────────────────────────────────────────────────
+     * Granite UI pathbrowser may render the input as name="filePath"
+     * OR name="./filePath" depending on the context — check both.
+     * ──────────────────────────────────────────────────────────────────────── */
+    function fieldVal(name) {
+        var el = document.querySelector('[name="' + name + '"]') ||
+                 document.querySelector('[name="./' + name + '"]');
+        return el ? el.value.trim() : '';
+    }
+
+    /* ── Form submit ─────────────────────────────────────────────────────────── */
+    document.getElementById('courseImportForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var btn    = document.getElementById('importBtn');
+        var result = document.getElementById('importResult');
+
+        var filePath   = fieldVal('filePath');
+        var dupMode    = document.getElementById('duplicateHandling').value;
+        var targetPath = fieldVal('targetPath');
+
+        if (!filePath) {
+            showResult('error', 'DAM File Path is required.');
+            return;
+        }
+
+        btn.setAttribute('disabled', '');
+        btn.textContent = 'Submitting\u2026';
+        result.style.display = 'none';
+
+        var body = new URLSearchParams({
+            filePath:          filePath,
+            duplicateHandling: dupMode,
+            targetPath:        targetPath
+        });
+
+        fetch('/libs/granite/csrf/token.json')
+            .then(function (r) { return r.json(); })
+            .then(function (csrf) {
+                return fetch('/bin/academy/course-import', {
+                    method:  'POST',
+                    headers: { 'CSRF-Token': csrf.token },
+                    body:    body
+                });
+            })
+            .then(function (r) { return r.json(); })
+            .then(function (json) {
+                if (json.status === 'queued') {
+                    showResult('ok',
+                        'Job queued successfully!\n' +
+                        'Job ID: ' + json.jobId + '\n\n' +
+                        'Monitor progress in:\n' +
+                        'crx-quickstart/logs/project-academy-reponse.log'
+                    );
+                } else {
+                    showResult('error', 'Error: ' + (json.message || JSON.stringify(json)));
+                }
+            })
+            .catch(function (err) {
+                showResult('error', 'Request failed: ' + err);
+            })
+            .finally(function () {
+                btn.removeAttribute('disabled');
+                btn.innerHTML =
+                    '<coral-icon icon="uploadToCloud" size="S"></coral-icon>' +
+                    '&nbsp;Start Import';
+            });
+    });
+
+    function showResult(type, msg) {
+        var result = document.getElementById('importResult');
+        result.style.display = 'block';
+        result.style.background = type === 'ok' ? '#e6f4ea' : '#fdecea';
+        result.style.border     = type === 'ok' ? '1px solid #a8d5b5' : '1px solid #f5c2c2';
+        result.style.color      = type === 'ok' ? '#1e4d2b'  : '#7f1d1d';
+        result.textContent      = msg;
+    }
+
+}());
+</script>
