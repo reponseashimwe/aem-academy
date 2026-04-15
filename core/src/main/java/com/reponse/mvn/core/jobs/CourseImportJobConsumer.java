@@ -1,7 +1,9 @@
 package com.reponse.mvn.core.jobs;
 
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -24,84 +26,48 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Sling Job Consumer — imports course pages from a CSV or Excel (.xlsx) file in the AEM DAM.
- */
 @Component(
     service = JobConsumer.class,
-    property = { JobConsumer.PROPERTY_TOPICS + "=" + CourseImportJobConsumer.JOB_TOPIC }
+    property = { JobConsumer.PROPERTY_TOPICS + "=com/reponse/mvn/course/import" }
 )
 public class CourseImportJobConsumer implements JobConsumer {
-
     private static final Logger LOG = LoggerFactory.getLogger(CourseImportJobConsumer.class);
-
-    // ── Job topic & property keys ─────────────────────────────────────────────
-
-    public static final String JOB_TOPIC = "com/reponse/mvn/course/import";
-
-    public static final String PROP_FILE_PATH          = "filePath";
-    public static final String PROP_DUPLICATE_HANDLING = "duplicateHandling";
-    public static final String PROP_TARGET_PATH        = "targetPath";
-
     public static final String DEFAULT_TARGET_PATH = "/content/codehills/courses";
-
-    // ── JCR & component constants ─────────────────────────────────────────────
-
-    private static final String TYPE_CQ_PAGE         = "cq:Page";
-    private static final String TYPE_CQ_PAGE_CONTENT = "cq:PageContent";
-    private static final String TYPE_NT_UNSTRUCTURED  = "nt:unstructured";
-
-    private static final String RT_COURSE_PAGE = "academy-codenova/components/structure/course-page";
-    private static final String RT_BREADCRUMB  = "academy-codenova/components/atomic/breadcrumb";
-    private static final String RT_IMAGE       = "academy-codenova/components/atomic/image";
-    private static final String RT_COURSE_META = "academy-codenova/components/atomic/course-meta";
-    private static final String RT_TITLE       = "academy-codenova/components/atomic/title";
-    private static final String RT_TEXT        = "academy-codenova/components/atomic/text";
-    private static final String RT_PARSYS      = "wcm/foundation/components/parsys";
-    private static final String CQ_TEMPLATE    = "/apps/academy-codenova/templates/course-page";
-
-    // ── OSGi reference ────────────────────────────────────────────────────────
-
     @Reference
     private SlingRepository repository;
 
-    // ── JobConsumer ───────────────────────────────────────────────────────────
-
     @Override
     public JobResult process(Job job) {
-        String filePath   = job.getProperty(PROP_FILE_PATH, String.class);
-        String dupMode    = ImportUtils.nvl(job.getProperty(PROP_DUPLICATE_HANDLING, String.class), "SKIP");
-        String targetPath = ImportUtils.nvl(job.getProperty(PROP_TARGET_PATH, String.class), DEFAULT_TARGET_PATH);
-
+        String filePath = job.getProperty("filePath", String.class);
+        String dupMode = ImportUtils.nvl(job.getProperty("duplicateHandling", String.class), "SKIP");
+        String targetPath = ImportUtils.nvl(job.getProperty("targetPath", String.class), DEFAULT_TARGET_PATH);
+        String histStatus = "FAILED";
+        int histCreated = 0, histUpdated = 0, histFailed = 0, histSkipped = 0;
         if (filePath == null || filePath.trim().isEmpty()) {
             LOG.error("[FAIL] No filePath in job properties");
+            writeHistory(job, histStatus, histCreated, histUpdated, histFailed, histSkipped);
             return JobResult.FAILED;
         }
-        filePath   = filePath.trim();
-        dupMode    = dupMode.trim().toUpperCase(Locale.ENGLISH);
+        filePath = filePath.trim();
+        dupMode = dupMode.trim().toUpperCase(Locale.ENGLISH);
         targetPath = targetPath.trim();
-
         if (!"SKIP".equals(dupMode) && !"OVERRIDE".equals(dupMode) && !"ALLOW".equals(dupMode)) {
             dupMode = "SKIP";
         }
-
         Session session = null;
         try {
             @SuppressWarnings("deprecation")
             Session adminSession = repository.loginAdministrative(null);
             session = adminSession;
-
             if (!session.nodeExists(targetPath)) {
                 LOG.error("[FAIL] Target path does not exist: {}", targetPath);
                 return JobResult.FAILED;
             }
-
             InputStream stream = getAssetStream(session, filePath);
             if (stream == null) {
                 LOG.error("[FAIL] Asset not found or unreadable: {}", filePath);
                 return JobResult.FAILED;
             }
-
             List<String[]> rawRows;
             String lower = filePath.toLowerCase(Locale.ENGLISH);
             if (lower.endsWith(".csv")) {
@@ -112,15 +78,13 @@ public class CourseImportJobConsumer implements JobConsumer {
                 LOG.error("[FAIL] Unsupported file type (expected .csv or .xlsx): {}", filePath);
                 return JobResult.FAILED;
             }
-
             List<Map<String, String>> rows = ImportUtils.rowsToMaps(rawRows);
             if (rows.isEmpty()) {
                 LOG.warn("[FILE] rows=0 — nothing to import from {}", filePath);
+                histStatus = "OK";
                 return JobResult.OK;
             }
-
             LOG.info("[FILE] rows={} columns={}", rows.size(), rows.get(0).size());
-
             int created = 0, updated = 0, skipped = 0, failed = 0;
             for (int i = 0; i < rows.size(); i++) {
                 int rowNum = i + 2;
@@ -136,21 +100,67 @@ public class CourseImportJobConsumer implements JobConsumer {
                     LOG.warn("[ROW {}][FAIL] Unexpected error — {}", rowNum, e.getMessage());
                 }
             }
-
             session.save();
             LOG.info("[DONE] created={} updated={} skipped={} failed={} total={}",
                      created, updated, skipped, failed, rows.size());
+            histStatus = "OK";
+            histCreated = created;
+            histUpdated = updated;
+            histFailed = failed;
+            histSkipped = skipped;
             return JobResult.OK;
-
         } catch (Exception e) {
             LOG.error("[FAIL] Fatal error in CourseImportJob — {}", e.getMessage(), e);
             return JobResult.FAILED;
         } finally {
             if (session != null) session.logout();
+            writeHistory(job, histStatus, histCreated, histUpdated, histFailed, histSkipped);
         }
     }
 
-    // ── Asset stream resolution ───────────────────────────────────────────────
+    private void writeHistory(Job job, String status, int created, int updated, int failed, int skipped) {
+        Session s = null;
+        try {
+            @SuppressWarnings("deprecation")
+            Session adminSession = repository.loginAdministrative(null);
+            s = adminSession;
+            if (!s.nodeExists("/var/reponse")) {
+                s.getNode("/var").addNode("reponse", "nt:unstructured");
+                s.save();
+            }
+            if (!s.nodeExists("/var/reponse/course-import-history")) {
+                s.getNode("/var/reponse").addNode("course-import-history", "nt:unstructured");
+                s.save();
+            }
+            String iso = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(new Date());
+            String nodeName = "run-" + System.currentTimeMillis();
+            Node run = s.getNode("/var/reponse/course-import-history").addNode(nodeName, "nt:unstructured");
+            run.setProperty("status", status);
+            run.setProperty("created", (long) created);
+            run.setProperty("updated", (long) updated);
+            run.setProperty("failed", (long) failed);
+            run.setProperty("skipped", (long) skipped);
+            run.setProperty("completedAt", iso);
+            Calendar jobCreated = job.getCreated();
+            run.setProperty("createdAt", jobCreated != null
+                ? new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(jobCreated.getTime()) : iso);
+            String scheduledAt = job.getProperty("scheduledAt", String.class);
+            String triggeredBy = job.getProperty("triggeredBy", String.class);
+            String fp = job.getProperty("filePath", String.class);
+            String tp = job.getProperty("targetPath", String.class);
+            run.setProperty("scheduledAt", scheduledAt != null ? scheduledAt : "");
+            run.setProperty("triggeredBy", triggeredBy != null ? triggeredBy : "manual");
+            run.setProperty("filePath", fp != null ? fp : "");
+            run.setProperty("targetPath", tp != null ? tp : "");
+            s.save();
+            LOG.info("[HISTORY] Recorded run {} — status={} created={} updated={} failed={} skipped={}",
+                     nodeName, status, created, updated, failed, skipped);
+        } catch (Exception e) {
+            LOG.warn("[HISTORY] Failed to write run record: {}", e.getMessage());
+        } finally {
+            if (s != null) s.logout();
+        }
+    }
 
     private InputStream getAssetStream(Session session, String filePath) {
         try {
@@ -173,25 +183,20 @@ public class CourseImportJobConsumer implements JobConsumer {
             return null;
         }
     }
-
-    // ── Row processing ────────────────────────────────────────────────────────
-
     private enum RowResult { CREATED, UPDATED, SKIPPED, FAILED }
 
     private RowResult processRow(Session session, Map<String, String> row, int rowNum,
-                                  String targetPath, String mode) throws RepositoryException {
-        String title        = row.getOrDefault("title", "").trim();
+                                 String targetPath, String mode) throws RepositoryException {
+        String title = row.getOrDefault("title", "").trim();
         String startDateStr = row.getOrDefault("startdate", "").trim();
         String abstractText = row.getOrDefault("abstract", "").trim();
-        String tagsRaw      = row.getOrDefault("tags", "").trim();
-        String link         = row.getOrDefault("link", "").trim();
-        String fileRef      = row.getOrDefault("filereference", "").trim();
-
+        String tagsRaw = row.getOrDefault("tags", "").trim();
+        String link = row.getOrDefault("link", "").trim();
+        String fileRef = row.getOrDefault("filereference", "").trim();
         if (title.isEmpty()) {
             LOG.warn("[ROW {}][FAIL] Missing required field: title", rowNum);
             return RowResult.FAILED;
         }
-
         Calendar startDate = null;
         if (!startDateStr.isEmpty()) {
             startDate = ImportUtils.parseDate(startDateStr);
@@ -200,16 +205,11 @@ public class CourseImportJobConsumer implements JobConsumer {
                 return RowResult.FAILED;
             }
         }
-
         String[] tags = ImportUtils.normalizeTags(tagsRaw);
-        for (String tag : tags) {
-            ensureTag(session, tag);
-        }
-
-        String slug     = ImportUtils.generateSlug(title);
+        for (String tag : tags) ensureTag(session, tag);
+        String slug = ImportUtils.generateSlug(title);
         String pagePath = targetPath + "/" + slug;
-        boolean exists  = session.nodeExists(pagePath);
-
+        boolean exists = session.nodeExists(pagePath);
         if (exists) {
             switch (mode) {
                 case "OVERRIDE":
@@ -227,108 +227,72 @@ public class CourseImportJobConsumer implements JobConsumer {
                     return RowResult.SKIPPED;
             }
         }
-
         createPage(session, pagePath, title, startDate, abstractText, tags, link, fileRef);
         LOG.info("[ROW {}][SUCCESS] Created: {}", rowNum, slug);
         return RowResult.CREATED;
     }
 
-    // ── JCR page creation ─────────────────────────────────────────────────────
-
     private void createPage(Session session, String pagePath, String title, Calendar startDate,
-                             String abstractText, String[] tags, String link, String fileRef)
+                            String abstractText, String[] tags, String link, String fileRef)
             throws RepositoryException {
-
         String parentPath = pagePath.substring(0, pagePath.lastIndexOf('/'));
-        String pageName   = pagePath.substring(pagePath.lastIndexOf('/') + 1);
-
-        Node parent  = session.getNode(parentPath);
-        Node page    = parent.addNode(pageName, TYPE_CQ_PAGE);
-        Node content = page.addNode("jcr:content", TYPE_CQ_PAGE_CONTENT);
-
+        String pageName = pagePath.substring(pagePath.lastIndexOf('/') + 1);
+        Node parent = session.getNode(parentPath);
+        Node page = parent.addNode(pageName, "cq:Page");
+        Node content = page.addNode("jcr:content", "cq:PageContent");
         content.setProperty("jcr:title", title);
-        content.setProperty("sling:resourceType", RT_COURSE_PAGE);
-        content.setProperty("cq:template", CQ_TEMPLATE);
-
-        Node breadcrumbNode = content.addNode("breadcrumb", TYPE_NT_UNSTRUCTURED);
-        breadcrumbNode.setProperty("sling:resourceType", RT_BREADCRUMB);
-        breadcrumbNode.setProperty("startLevel", 1L);
-
-        Node imageNode = content.addNode("image", TYPE_NT_UNSTRUCTURED);
-        imageNode.setProperty("sling:resourceType", RT_IMAGE);
-        if (!fileRef.isEmpty()) imageNode.setProperty("fileReference", fileRef);
-
-        Node metaNode = content.addNode("meta", TYPE_NT_UNSTRUCTURED);
-        metaNode.setProperty("sling:resourceType", RT_COURSE_META);
-        if (startDate != null) metaNode.setProperty("startDate", startDate);
-        if (tags.length > 0) metaNode.setProperty("cq:tags", tags);
-        if (!link.isEmpty()) metaNode.setProperty("link", link);
-
-        Node titleNode = content.addNode("title", TYPE_NT_UNSTRUCTURED);
-        titleNode.setProperty("sling:resourceType", RT_TITLE);
-        titleNode.setProperty("type", "h1");
-        titleNode.setProperty("typographyVariant", "title-3");
-        titleNode.setProperty("jcr:title", title);
-        titleNode.setProperty("text", title);
-
-        Node abstractNode = content.addNode("abstract", TYPE_NT_UNSTRUCTURED);
-        abstractNode.setProperty("sling:resourceType", RT_TEXT);
-        abstractNode.setProperty("text", ImportUtils.toHtml(abstractText));
-
-        Node parsysNode = content.addNode("parsys", TYPE_NT_UNSTRUCTURED);
-        parsysNode.setProperty("sling:resourceType", RT_PARSYS);
+        content.setProperty("sling:resourceType", "academy-codenova/components/structure/course-page");
+        content.setProperty("cq:template", "/apps/academy-codenova/templates/course-page");
+        applyCourseContent(content, title, startDate, abstractText, tags, link, fileRef);
     }
 
     private void updatePage(Session session, String pagePath, String title, Calendar startDate,
-                             String abstractText, String[] tags, String link, String fileRef)
+                            String abstractText, String[] tags, String link, String fileRef)
             throws RepositoryException {
-
         Node content = session.getNode(pagePath + "/jcr:content");
         content.setProperty("jcr:title", title);
+        applyCourseContent(content, title, startDate, abstractText, tags, link, fileRef);
+    }
 
+    private void applyCourseContent(Node content, String title, Calendar startDate, String abstractText,
+                                    String[] tags, String link, String fileRef)
+            throws RepositoryException {
         Node breadcrumbNode = getOrCreate(content, "breadcrumb");
-        breadcrumbNode.setProperty("sling:resourceType", RT_BREADCRUMB);
+        breadcrumbNode.setProperty("sling:resourceType", "academy-codenova/components/atomic/breadcrumb");
         breadcrumbNode.setProperty("startLevel", 1L);
-
         Node imageNode = getOrCreate(content, "image");
-        imageNode.setProperty("sling:resourceType", RT_IMAGE);
+        imageNode.setProperty("sling:resourceType", "academy-codenova/components/atomic/image");
         if (!fileRef.isEmpty()) imageNode.setProperty("fileReference", fileRef);
-
         Node metaNode = getOrCreate(content, "meta");
-        metaNode.setProperty("sling:resourceType", RT_COURSE_META);
+        metaNode.setProperty("sling:resourceType", "academy-codenova/components/atomic/course-meta");
         if (startDate != null) metaNode.setProperty("startDate", startDate);
         if (tags.length > 0) metaNode.setProperty("cq:tags", tags);
         if (!link.isEmpty()) metaNode.setProperty("link", link);
-
         Node titleNode = getOrCreate(content, "title");
-        titleNode.setProperty("sling:resourceType", RT_TITLE);
+        titleNode.setProperty("sling:resourceType", "academy-codenova/components/atomic/title");
         titleNode.setProperty("type", "h1");
         titleNode.setProperty("typographyVariant", "title-3");
         titleNode.setProperty("jcr:title", title);
         titleNode.setProperty("text", title);
-
         Node abstractNode = getOrCreate(content, "abstract");
-        abstractNode.setProperty("sling:resourceType", RT_TEXT);
+        abstractNode.setProperty("sling:resourceType", "academy-codenova/components/atomic/text");
         abstractNode.setProperty("text", ImportUtils.toHtml(abstractText));
-
-        if (!content.hasNode("parsys")) {
-            content.addNode("parsys", TYPE_NT_UNSTRUCTURED)
-                   .setProperty("sling:resourceType", RT_PARSYS);
-        }
+        Node parsysNode = getOrCreate(content, "parsys");
+        parsysNode.setProperty("sling:resourceType", "wcm/foundation/components/parsys");
     }
 
     private Node getOrCreate(Node parent, String name) throws RepositoryException {
-        return parent.hasNode(name) ? parent.getNode(name) : parent.addNode(name, TYPE_NT_UNSTRUCTURED);
+        if (parent.hasNode(name)) return parent.getNode(name);
+        return parent.addNode(name, "nt:unstructured");
     }
 
-    // ── Tag auto-creation ─────────────────────────────────────────────────────
-
     private void ensureTag(Session session, String tagId) {
-        if (tagId == null || tagId.trim().isEmpty()) return;
-        tagId = tagId.trim();
-        int colonIdx = tagId.indexOf(':');
+        if (tagId == null) return;
+        String normalizedTag = tagId.trim();
+        if (normalizedTag.isEmpty()) return;
+        int colonIdx = normalizedTag.indexOf(':');
         if (colonIdx <= 0) {
-            LOG.warn("[TAG] Skipping invalid tag ID (missing namespace): '{}'", tagId);
+            LOG.warn("[TAG] Skipping invalid tag ID (missing namespace): '{}'", normalizedTag);
             return;
         }
         try {
@@ -336,9 +300,9 @@ public class CourseImportJobConsumer implements JobConsumer {
                 LOG.warn("[TAG] /content/cq:tags not found — skipping tag creation");
                 return;
             }
-            String namespace  = tagId.substring(0, colonIdx);
-            String[] parts    = tagId.substring(colonIdx + 1).split("/");
-            String current    = "/content/cq:tags/" + namespace;
+            String namespace = normalizedTag.substring(0, colonIdx);
+            String[] parts = normalizedTag.substring(colonIdx + 1).split("/");
+            String current = "/content/cq:tags/" + namespace;
             createTagNode(session, current, namespace);
             for (String part : parts) {
                 if (!part.isEmpty()) {
@@ -347,12 +311,11 @@ public class CourseImportJobConsumer implements JobConsumer {
                 }
             }
         } catch (RepositoryException e) {
-            LOG.warn("[TAG] Failed to ensure tag '{}': {}", tagId, e.getMessage());
+            LOG.warn("[TAG] Failed to ensure tag '{}': {}", normalizedTag, e.getMessage());
         }
     }
 
-    private void createTagNode(Session session, String path, String nameSegment)
-            throws RepositoryException {
+    private void createTagNode(Session session, String path, String nameSegment) throws RepositoryException {
         if (session.nodeExists(path)) return;
         String parentPath = path.substring(0, path.lastIndexOf('/'));
         if (!session.nodeExists(parentPath)) return;
@@ -363,5 +326,4 @@ public class CourseImportJobConsumer implements JobConsumer {
         tag.setProperty("jcr:title", title);
         LOG.info("[TAG] Created {}", path);
     }
-
 }

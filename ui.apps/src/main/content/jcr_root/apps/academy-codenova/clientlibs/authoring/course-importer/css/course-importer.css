@@ -1,0 +1,61 @@
+.form-field {
+    margin-bottom: 1.1rem;
+}
+
+.import-form {
+    margin-top: 1rem;
+    max-width: 960px;
+}
+
+.coral-Form-field--label {
+    display: block;
+    font-size: .875rem;
+    font-weight: 600;
+    color: #2c2c2c;
+    margin-bottom: .35rem;
+}
+
+.form-field-hint {
+    margin: .25rem 0 0;
+    font-size: .8rem;
+    color: #707070;
+}
+
+.import-form .coral-Form-field {
+    display: block;
+    max-width: none;
+}
+
+.import-form .coral-Form-fieldlabel {
+    float: none;
+    display: block;
+    width: 100%;
+    margin: 0 0 .35rem 0;
+    text-align: left;
+}
+
+.import-form .coral-Form-fieldwrapper {
+    display: block;
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+}
+
+.import-form .coral-InputGroup,
+.import-form .coral-PathBrowser {
+    width: 100%;
+}
+
+.import-form .coral-InputGroup-input {
+    width: 100%;
+}
+
+.import-form .coral-InputGroup-button {
+    flex: 0 0 auto;
+}
+
+.import-form .coral3-PathBrowser,
+.import-form .coral3-PathBrowser-field {
+    width: 100%;
+    max-width: none;
+}

@@ -22,16 +22,6 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Accepts POST {@code /bin/academy/course-import} and enqueues a Sling Job
- * that imports course pages from a CSV or Excel (.xlsx) file in the AEM DAM.
- *
- * <p><b>POST parameters:</b>
- * <ul>
- *   <li>{@code filePath} — DAM asset path to .csv or .xlsx (required)</li>
- *   <li>{@code duplicateHandling} — SKIP | OVERRIDE | ALLOW (default: SKIP)</li>
- *   <li>{@code targetPath} — parent page path (default: /content/codehills/courses)</li>
- * </ul>
- * Returns JSON: {@code {"status":"queued","jobId":"..."}} or an error object.
- * </p>
  */
 @Component(
     service = Servlet.class,
@@ -47,8 +37,6 @@ public class CourseImportTriggerServlet extends SlingAllMethodsServlet {
 
     @Reference
     private JobManager jobManager;
-
-    // ── POST — enqueue job ────────────────────────────────────────────────────
 
     @Override
     protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response)
@@ -82,12 +70,13 @@ public class CourseImportTriggerServlet extends SlingAllMethodsServlet {
 
         // Build job properties
         Map<String, Object> props = new HashMap<>();
-        props.put(CourseImportJobConsumer.PROP_FILE_PATH,          filePath);
-        props.put(CourseImportJobConsumer.PROP_DUPLICATE_HANDLING, dupHandling);
-        props.put(CourseImportJobConsumer.PROP_TARGET_PATH,        targetPath);
+        props.put("filePath", filePath);
+        props.put("duplicateHandling", dupHandling);
+        props.put("targetPath", targetPath);
+        props.put("triggeredBy", "manual");
 
         try {
-            Job job = jobManager.addJob(CourseImportJobConsumer.JOB_TOPIC, props);
+            Job job = jobManager.addJob("com/reponse/mvn/course/import", props);
             if (job != null) {
                 String jobId = job.getId();
                 String shortId = jobId.substring(jobId.lastIndexOf('/') + 1);
@@ -103,8 +92,6 @@ public class CourseImportTriggerServlet extends SlingAllMethodsServlet {
             w.print("{\"status\":\"error\",\"message\":\"" + escJson(e.getMessage()) + "\"}");
         }
     }
-
-    // ── Helpers ───────────────────────────────────────────────────────────────
 
     private String param(SlingHttpServletRequest req, String name, String defaultValue) {
         String v = req.getParameter(name);
