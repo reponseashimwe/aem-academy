@@ -1,0 +1,354 @@
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html" />
+<sly data-sly-call="${clientLib.css @ categories='academy-codenova.authoring.course-importer'}" />
+
+<div class="foundation-layout-panel">
+	<div class="foundation-layout-panel-header">
+		<div style="padding: 10px 24px 16px">
+			<h1 style="margin: 0; font-size: 1.375rem; font-weight: 600; color: #2c2c2c">Course Importer</h1>
+		</div>
+	</div>
+	<div class="foundation-layout-panel-bodywrapper">
+		<div
+			class="foundation-layout-panel-body coral-Body"
+			style="padding: 2rem 2.5rem"
+		>
+			<div style="width: 100%">
+				<div style="margin-bottom: 2rem">
+					<button
+						type="button"
+						id="downloadTemplateBtn"
+						class="coral-Button coral-Button--secondary"
+					>
+						<coral-icon
+							icon="download"
+							size="XS"
+						></coral-icon
+						>&nbsp;Download Template CSV
+					</button>
+				</div>
+				<div
+					id="configStatus"
+					style="
+						margin-bottom: 1.5rem;
+						padding: 0.75rem 1rem;
+						border-radius: 4px;
+						background: #f4f4f4;
+						font-size: 0.875rem;
+						color: #555;
+						line-height: 1.6;
+					"
+				>
+					Loading&hellip;
+				</div>
+
+				<coral-tabview
+					id="importTabs"
+					style="margin-top: 1rem"
+				>
+					<coral-tablist>
+						<coral-tab selected>On Demand</coral-tab>
+						<coral-tab>Run History</coral-tab>
+					</coral-tablist>
+					<coral-panelstack>
+						<coral-panel>
+							<form
+								id="onDemandForm"
+								class="import-form"
+								novalidate
+							>
+								<div
+									class="form-field"
+									style="margin-bottom: 1.1rem"
+								>
+									<sly data-sly-resource="${'filePath'}"></sly>
+								</div>
+								<div
+									class="form-field"
+									style="margin-bottom: 1.1rem"
+								>
+									<sly data-sly-resource="${'targetPath'}"></sly>
+								</div>
+								<div
+									class="form-field"
+									style="margin-bottom: 1.1rem"
+								>
+									<label
+										class="coral-Form-field--label"
+										for="onDemandDupHandling"
+										>Duplicate Handling</label
+									>
+									<coral-select
+										id="onDemandDupHandling"
+										name="duplicateHandling"
+										style="width: 100%"
+									>
+										<coral-select-item value="SKIP"
+											>SKIP — leave existing pages untouched</coral-select-item
+										>
+										<coral-select-item value="OVERRIDE"
+											>OVERRIDE — update existing pages</coral-select-item
+										>
+										<coral-select-item value="ALLOW"
+											>ALLOW — always create (append suffix)</coral-select-item
+										>
+									</coral-select>
+								</div>
+								<button
+									type="button"
+									id="onDemandBtn"
+									class="coral-Button coral-Button--primary coral-Button--large"
+								>
+									<coral-icon
+										icon="uploadToCloud"
+										size="S"
+									></coral-icon
+									>&nbsp;Start Import
+								</button>
+								<div
+									id="importProgressWrap"
+									style="display: none; margin-top: 1rem"
+								>
+									<div class="import-progress-header">
+										<span
+											id="importProgressPercent"
+											class="import-progress-pct"
+										>0%</span>
+									</div>
+									<div class="import-progress-track">
+										<div
+											id="importProgressBar"
+											class="import-progress-bar"
+										></div>
+									</div>
+									<div
+										id="importProgressText"
+										class="import-progress-text"
+									></div>
+								</div>
+								<div
+									id="rowLogWrap"
+									style="display: none; margin-top: 1rem"
+								>
+									<h3 style="margin: 0.5rem 0; font-size: 0.9rem">Row Processing</h3>
+									<div class="row-log-list">
+										<table
+											is="coral-table"
+											class="row-log-table"
+											style="width: 100%"
+										>
+											<colgroup>
+												<col
+													is="coral-table-column"
+													fixedwidth
+												/>
+												<col is="coral-table-column" />
+												<col
+													is="coral-table-column"
+													fixedwidth
+												/>
+												<col is="coral-table-column" />
+											</colgroup>
+											<thead is="coral-table-head">
+												<tr is="coral-table-row">
+													<th is="coral-table-headercell">#</th>
+													<th is="coral-table-headercell">Title</th>
+													<th is="coral-table-headercell">Status</th>
+													<th is="coral-table-headercell">Message</th>
+												</tr>
+											</thead>
+											<tbody
+												is="coral-table-body"
+												id="rowLogList"
+											></tbody>
+										</table>
+									</div>
+								</div>
+							</form>
+						</coral-panel>
+						<coral-panel>
+							<div
+								id="historyContainer"
+								style="padding-top: 1rem"
+							>
+								<p
+									id="historyLoading"
+									style="color: #707070; font-size: 0.875rem"
+								>
+									Loading history&hellip;
+								</p>
+								<div
+									id="historyTableWrap"
+									style="display: none; overflow-x: auto"
+								>
+									<table
+										is="coral-table"
+										style="width: 100%"
+									>
+										<colgroup>
+											<col
+												is="coral-table-column"
+												fixedwidth
+											/>
+											<col
+												is="coral-table-column"
+												fixedwidth
+											/>
+											<col is="coral-table-column" />
+											<col is="coral-table-column" />
+											<col is="coral-table-column" />
+											<col
+												is="coral-table-column"
+												fixedwidth
+											/>
+											<col
+												is="coral-table-column"
+												fixedwidth
+											/>
+											<col
+												is="coral-table-column"
+												fixedwidth
+											/>
+											<col
+												is="coral-table-column"
+												fixedwidth
+											/>
+											<col
+												is="coral-table-column"
+												fixedwidth
+											/>
+										</colgroup>
+										<thead is="coral-table-head">
+											<tr is="coral-table-row">
+												<th is="coral-table-headercell">Status</th>
+												<th is="coral-table-headercell">Triggered</th>
+												<th is="coral-table-headercell">Created At</th>
+												<th is="coral-table-headercell">Scheduled At</th>
+												<th is="coral-table-headercell">File</th>
+												<th
+													is="coral-table-headercell"
+													style="text-align: center"
+												>
+													Created
+												</th>
+												<th
+													is="coral-table-headercell"
+													style="text-align: center"
+												>
+													Updated
+												</th>
+												<th
+													is="coral-table-headercell"
+													style="text-align: center"
+												>
+													Failed
+												</th>
+												<th
+													is="coral-table-headercell"
+													style="text-align: center"
+												>
+													Skipped
+												</th>
+												<th
+													is="coral-table-headercell"
+													style="text-align: center"
+												>
+													View
+												</th>
+											</tr>
+										</thead>
+										<tbody
+											is="coral-table-body"
+											id="historyBody"
+										></tbody>
+									</table>
+								</div>
+								<p
+									id="historyEmpty"
+									style="display: none; color: #707070; font-size: 0.875rem; margin: 0.5rem 0"
+								>
+									No runs recorded yet.
+								</p>
+							</div>
+						</coral-panel>
+					</coral-panelstack>
+				</coral-tabview>
+
+				<div
+					id="mainResult"
+					style="
+						display: none;
+						margin-top: 1rem;
+						padding: 0.9rem 1.1rem;
+						border-radius: 4px;
+						font-size: 0.875rem;
+						white-space: pre-wrap;
+						line-height: 1.6;
+					"
+				></div>
+
+				<div id="importToast" class="import-toast">
+					<div class="toast-check-circle">&#10003;</div>
+					<span id="importToastMsg" class="toast-msg"></span>
+					<button type="button" id="importToastClose" class="toast-close">&#10005;</button>
+				</div>
+
+				<coral-dialog
+					id="historyRowDialog"
+					variant="default"
+					closable
+					aria-label="Row details"
+					class="history-row-dialog"
+				>
+					<coral-dialog-header>Run Row Details</coral-dialog-header>
+					<coral-dialog-content>
+						<div
+							class="history-dialog-summary"
+							id="historyDialogSummary"
+						></div>
+						<div class="history-dialog-table-wrap">
+							<table
+								is="coral-table"
+								style="width: 100%"
+							>
+								<colgroup>
+									<col
+										is="coral-table-column"
+										fixedwidth
+									/>
+									<col is="coral-table-column" />
+									<col
+										is="coral-table-column"
+										fixedwidth
+									/>
+									<col is="coral-table-column" />
+								</colgroup>
+								<thead is="coral-table-head">
+									<tr is="coral-table-row">
+										<th is="coral-table-headercell">#</th>
+										<th is="coral-table-headercell">Row Title</th>
+										<th is="coral-table-headercell">Status</th>
+										<th is="coral-table-headercell">Message</th>
+									</tr>
+								</thead>
+								<tbody
+									is="coral-table-body"
+									id="historyDialogBody"
+								></tbody>
+							</table>
+						</div>
+					</coral-dialog-content>
+					<coral-dialog-footer>
+						<button
+							is="coral-button"
+							variant="primary"
+							coral-close
+						>
+							Close
+						</button>
+					</coral-dialog-footer>
+				</coral-dialog>
+			</div>
+		</div>
+	</div>
+</div>
+<sly data-sly-call="${clientLib.js @ categories='academy-codenova.authoring.course-importer'}" />

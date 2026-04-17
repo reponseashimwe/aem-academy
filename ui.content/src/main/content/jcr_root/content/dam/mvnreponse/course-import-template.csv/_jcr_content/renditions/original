@@ -1,0 +1,15 @@
+title,startDate,abstract,tags,link,fileReference
+# --- HOW TO FILL THIS TEMPLATE -------------------------------------------
+# title        : (required) Course title
+# startDate    : (optional) 2026-06-01 | 06/01/2026 | June 1 2026 | Jun 1 2026
+# abstract     : (optional) Plain text
+# tags         : (optional) Semicolon-separated short names: ai;ml;technology
+#                Full IDs also work: academy:topic/ai;custom:namespace/tag
+# link         : (optional) https://academy.codehills.com/courses/my-course
+# fileReference: (optional) /content/dam/academy/courses/course-1.png
+# --------------------------------------------------------------------------
+Introduction to Python Programming,2026-06-01,Learn Python from the ground up,technology,https://www.learnpython.org,/content/dam/academy/courses/course-1.png
+Machine Learning Fundamentals,June 1 2026,Build predictive models with ML algorithms,ai;ml,https://www.coursera.org/learn/machine-learning,/content/dam/academy/courses/course-2.png
+Docker and Kubernetes Essentials,06/15/2026,Container orchestration for production,devops;cloud,https://docs.docker.com/get-started/overview/,/content/dam/academy/courses/course-3.png
+Cybersecurity Foundations,2026-08-01,Protect systems from modern threats,security,https://www.cybrary.it,/content/dam/academy/courses/course-4.png
+React Native Mobile Development,07/20/2026,Cross-platform mobile apps with React Native,mobile;web,https://reactnative.dev/docs/getting-started,

@@ -8,10 +8,14 @@
         jcr:description="Master SEO, social media, content marketing, and analytics to build data-driven digital marketing campaigns that grow brands and drive measurable results."
         sling:resourceType="academy-codenova/components/structure/course-page"
         cq:template="/apps/academy-codenova/templates/course-page">
+        <breadcrumb
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="academy-codenova/components/atomic/breadcrumb"
+            startLevel="{Long}1"/>
         <image
             jcr:primaryType="nt:unstructured"
             sling:resourceType="academy-codenova/components/atomic/image"
-            fileReference="/content/dam/mvnreponse/asset.jpg"/>
+            fileReference="/content/dam/academy/courses/course-4.png"/>
         <meta
             jcr:primaryType="nt:unstructured"
             sling:resourceType="academy-codenova/components/atomic/course-meta"

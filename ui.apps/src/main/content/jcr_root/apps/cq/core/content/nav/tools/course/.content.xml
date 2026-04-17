@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Course"
+    id="academy-codenova-course">
+
+    <import
+        jcr:primaryType="nt:unstructured"
+        jcr:title="Import"
+        jcr:description="Import courses from a CSV or Excel file in the DAM"
+        id="academy-codenova-course-import"
+        href="/apps/academy-codenova/tools/course/import.html"
+        icon="uploadToCloud"/>
+
+</jcr:root>

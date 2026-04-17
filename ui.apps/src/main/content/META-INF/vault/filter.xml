@@ -6,4 +6,5 @@
     <filter root="/apps/mvnreponse/clientlibs"/>
     <filter root="/apps/mvnreponse/components"/>
     <filter root="/apps/mvnreponse/i18n"/>
+    <filter root="/apps/cq/core/content/nav/tools" mode="merge"/>
 </workspaceFilter>

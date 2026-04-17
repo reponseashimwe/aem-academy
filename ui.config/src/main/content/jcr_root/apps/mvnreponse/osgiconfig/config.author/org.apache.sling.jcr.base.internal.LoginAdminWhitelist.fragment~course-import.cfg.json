@@ -1,0 +1,4 @@
+{
+  "whitelist.name": "course-import",
+  "whitelist.bundles": [ "mvn-reponse.core" ]
+}
