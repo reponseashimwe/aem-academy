@@ -177,9 +177,11 @@
     function renderProgress(progress) {
         var processed = progress.processedRows || 0;
         var total = progress.totalRows || 0;
+        var isFinal = progress.status === 'COMPLETED' || progress.status === 'FAILED';
+        var rowEvents = Array.isArray(progress.rowEvents) ? progress.rowEvents : [];
         var percent = total > 0 ? Math.min(100, Math.round((processed / total) * 100)) : 0;
         document.getElementById('importProgressWrap').style.display = 'block';
-        document.getElementById('rowLogWrap').style.display = 'block';
+        document.getElementById('rowLogWrap').style.display = isFinal && rowEvents.length ? 'block' : 'none';
         document.getElementById('importProgressBar').style.width = percent + '%';
         document.getElementById('importProgressPercent').textContent = percent + '%';
         document.getElementById('importProgressText').innerHTML =
@@ -190,7 +192,7 @@
             '<span class="stat-badge stat-badge--skipped">' + (progress.skipped || 0) + ' skipped</span>';
 
         var rowLogList = document.getElementById('rowLogList');
-        rowLogList.innerHTML = (progress.rowEvents || []).map(createRowEventHtml).join('');
+        rowLogList.innerHTML = rowEvents.map(createRowEventHtml).join('');
         rowLogList.parentElement.scrollTop = rowLogList.parentElement.scrollHeight;
     }
 
@@ -215,7 +217,7 @@
                     }
                 })
                 .catch(function () { });
-        }, 1000);
+        }, 100);
     }
 
     function readCommonValues(scopeEl) {

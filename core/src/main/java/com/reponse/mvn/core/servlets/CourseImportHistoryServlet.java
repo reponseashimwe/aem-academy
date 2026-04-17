@@ -138,7 +138,7 @@ public class CourseImportHistoryServlet extends SlingSafeMethodsServlet {
         r.updated       = state.updated;
         r.failed        = state.failed;
         r.skipped       = state.skipped;
-        r.rowEvents     = MAPPER.writeValueAsString(state.rowEvents);
+        r.rowEvents     = "[]";
         return r;
     }
 

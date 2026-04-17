@@ -1,11 +1,7 @@
 package com.reponse.mvn.core.jobs;
 
-import com.reponse.mvn.core.jobs.data.RowEvent;
 import org.osgi.service.component.annotations.Component;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Component(service = CourseImportProgressStore.class, immediate = true)
@@ -19,7 +15,6 @@ public class CourseImportProgressStore {
         public final int           updated;
         public final int           failed;
         public final int           skipped;
-        public final List<RowEvent> rowEvents;
         public final String        filePath;
         public final String        triggeredBy;
         public final String        createdAt;
@@ -27,7 +22,6 @@ public class CourseImportProgressStore {
 
         public ProgressState(String status, int processedRows, int totalRows,
                              int created, int updated, int failed, int skipped,
-                             List<RowEvent> rowEvents,
                              String filePath, String triggeredBy,
                              String createdAt, String scheduledAt) {
             this.status        = status;
@@ -37,7 +31,6 @@ public class CourseImportProgressStore {
             this.updated       = updated;
             this.failed        = failed;
             this.skipped       = skipped;
-            this.rowEvents     = Collections.unmodifiableList(new ArrayList<>(rowEvents));
             this.filePath      = filePath;
             this.triggeredBy   = triggeredBy;
             this.createdAt     = createdAt;

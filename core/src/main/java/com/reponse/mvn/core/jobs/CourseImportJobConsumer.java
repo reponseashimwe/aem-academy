@@ -76,7 +76,7 @@ public class CourseImportJobConsumer implements JobConsumer {
         try {
             historyNodePath = initHistory(job, filePath, targetPath);
             progressStore.put(jobId, new CourseImportProgressStore.ProgressState(
-                "QUEUED", 0, 0, 0, 0, 0, 0, rowEvents, filePath, triggeredBy, createdAt, scheduledAt));
+                "QUEUED", 0, 0, 0, 0, 0, 0, filePath, triggeredBy, createdAt, scheduledAt));
 
             @SuppressWarnings("deprecation")
             Session adminSession = repository.loginAdministrative(null);
@@ -111,7 +111,7 @@ public class CourseImportJobConsumer implements JobConsumer {
 
             List<Map<String, String>> rows = ImportUtils.rowsToMaps(rawRows);
             progressStore.put(jobId, new CourseImportProgressStore.ProgressState(
-                "RUNNING", 0, rows.size(), 0, 0, 0, 0, rowEvents, filePath, triggeredBy, createdAt, scheduledAt));
+                "RUNNING", 0, rows.size(), 0, 0, 0, 0, filePath, triggeredBy, createdAt, scheduledAt));
 
             if (rows.isEmpty()) {
                 LOG.warn("[FILE] rows=0 — nothing to import from {}", filePath);
@@ -142,7 +142,7 @@ public class CourseImportJobConsumer implements JobConsumer {
                 }
                 progressStore.put(jobId, new CourseImportProgressStore.ProgressState(
                     "RUNNING", i + 1, rows.size(), created, updated, failed, skipped,
-                    rowEvents, filePath, triggeredBy, createdAt, scheduledAt));
+                    filePath, triggeredBy, createdAt, scheduledAt));
             }
 
             session.save();
