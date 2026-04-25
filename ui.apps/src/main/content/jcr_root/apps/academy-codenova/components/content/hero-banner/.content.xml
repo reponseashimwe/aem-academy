@@ -3,6 +3,6 @@
     jcr:primaryType="cq:Component"
     jcr:title="Hero Banner"
     jcr:description="Hero section with up to 6 slides. Drop Hero Slide components inside."
+    sling:resourceSuperType="academy-codenova/components/atomic/hero-banner"
     cq:isContainer="{Boolean}true"
-    allowedParents="[*/components/foundation/parsys,*/components/wcm/foundation/components/responsivegrid,*/components/atomic/par]"
-    componentGroup=".hidden"/>
+    componentGroup="Codeland - Content"/>

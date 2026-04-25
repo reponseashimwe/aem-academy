@@ -3,4 +3,4 @@
     jcr:primaryType="cq:Component"
     jcr:title="Codeland Header"
     jcr:description="Responsive header component with utility links, navigation, and search"
-    componentGroup="Codeland - Structure"/>
+    componentGroup="Codeland - Content"/>

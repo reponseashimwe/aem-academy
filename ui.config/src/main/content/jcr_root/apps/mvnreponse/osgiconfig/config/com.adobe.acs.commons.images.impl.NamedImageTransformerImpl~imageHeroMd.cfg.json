@@ -1,0 +1,7 @@
+{
+  "name": "image-hero-md",
+  "transforms": [
+    "resize:width=1024",
+    "quality:quality=80"
+  ]
+}

@@ -73,4 +73,17 @@ public class NavigationModel {
         }
         return currentPage.getPath().equals(rootPage.getPath());
     }
+
+    public boolean isContentPage() {
+        PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
+        Page currentPage = pageManager != null ? pageManager.getContainingPage(resource) : null;
+        return currentPage != null
+            && currentPage.getPath() != null
+            && currentPage.getPath().startsWith("/content/");
+    }
+
+    public String getRootPagePath() {
+        Page rootPage = getRootPage();
+        return rootPage != null && rootPage.getPath() != null ? rootPage.getPath() : "";
+    }
 }

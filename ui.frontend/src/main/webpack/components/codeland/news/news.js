@@ -27,9 +27,14 @@ import Swiper from "swiper/bundle";
 			})
 			.join("");
 
-		var imgSrc = course.fileReference || defaultImg || "";
+		var imgSrc = course.fileReference || course.fileOriginal || defaultImg || "";
+		var imgSrcSet = course.fileSrcSet || "";
+		var imgSizes = course.fileSizes || "(max-width: 768px) 88vw, 279px";
 		var img = imgSrc
-			? '<img src="' + imgSrc + '" alt="' + (course.title || "") + '" loading="lazy" />'
+			? '<picture>' +
+				(imgSrcSet ? '<source srcset="' + imgSrcSet + '" sizes="' + imgSizes + '" />' : '') +
+				'<img src="' + imgSrc + '" alt="' + (course.title || "") + '" loading="lazy" />' +
+			  '</picture>'
 			: "";
 
 		return (

@@ -1,0 +1,7 @@
+{
+  "name": "image-hero-sm",
+  "transforms": [
+    "resize:width=640",
+    "quality:quality=78"
+  ]
+}

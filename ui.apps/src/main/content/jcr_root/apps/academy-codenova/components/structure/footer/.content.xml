@@ -3,4 +3,4 @@
     jcr:primaryType="cq:Component"
     jcr:title="Codeland Footer"
     jcr:description="Static footer component"
-    componentGroup="Codeland - Structure"/>
+    componentGroup="Codeland - Content"/>

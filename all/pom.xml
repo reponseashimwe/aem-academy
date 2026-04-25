@@ -94,6 +94,11 @@
                             <type>zip</type>
                             <target>/apps/mvnreponse-vendor-packages/application/install</target>
                         </embedded>
+                        <embedded>
+                            <groupId>com.adobe.acs</groupId>
+                            <artifactId>acs-aem-commons-bundle</artifactId>
+                            <target>/apps/mvnreponse-vendor-packages/application/install</target>
+                        </embedded>
                     </embeddeds>
                 </configuration>
             </plugin>
@@ -211,6 +216,10 @@
             <groupId>com.adobe.cq</groupId>
             <artifactId>core.wcm.components.config</artifactId>
             <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>com.adobe.acs</groupId>
+            <artifactId>acs-aem-commons-bundle</artifactId>
         </dependency>
     </dependencies>
 </project>

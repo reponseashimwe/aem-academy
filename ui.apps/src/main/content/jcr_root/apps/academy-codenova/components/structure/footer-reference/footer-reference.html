@@ -1,4 +1,10 @@
-<sly
-	data-sly-resource="${'/content/codehills/jcr:content/codeland-footer'
-	@ resourceType='academy-codenova/components/structure/footer', wcmmode='disabled', decoration=false}"
-/>
+<sly data-sly-use.nav="com.reponse.mvn.core.models.NavigationModel"/>
+<sly data-sly-test.isContentPage="${nav.contentPage}">
+	<sly
+		data-sly-resource="${'/content/codehills/jcr:content/codeland-footer'
+		@ resourceType='academy-codenova/components/structure/footer', wcmmode='disabled', decoration=false}"
+	/>
+</sly>
+<div data-sly-test="${!isContentPage}" class="cl-template-placeholder cl-template-placeholder--footer">
+	Footer placeholder (template mode)
+</div>

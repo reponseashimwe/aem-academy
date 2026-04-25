@@ -23,16 +23,24 @@
 					<article class="cl-news-card">
 						<div class="cl-news-card__image">
 							<a href="${course.link @ context='uri'}" class="cl-news-card__image-link">
-							<sly data-sly-test.cardImg="${course.fileReference}">
-								<img src="${cardImg}"
+							<sly data-sly-test.cardImg="${course.fileReference ? course.fileReference : course.fileOriginal}"/>
+							<sly data-sly-test.cardSrcSet="${course.fileSrcSet}"/>
+							<sly data-sly-test.cardSizes="${course.fileSizes}"/>
+							<picture data-sly-test="${cardImg}">
+								<source
+									data-sly-test="${cardSrcSet}"
+									srcset="${cardSrcSet @ context='attribute'}"
+									sizes="${cardSizes @ context='attribute'}"/>
+								<img
+									src="${cardImg @ context='uri'}"
 									alt="${course.title @ context='attribute'}"
 									loading="lazy"/>
-							</sly>
-							<sly data-sly-test="${!cardImg}">
-								<img src="/etc.clientlibs/mvnreponse/clientlibs/clientlib-site/resources/images/course-default.avif"
-									alt="${course.title @ context='attribute'}"
-									loading="lazy"/>
-							</sly>
+							</picture>
+							<img
+								data-sly-test="${!cardImg}"
+								src="/etc.clientlibs/mvnreponse/clientlibs/clientlib-site/resources/images/course-default.avif"
+								alt="${course.title @ context='attribute'}"
+								loading="lazy"/>
 							</a>
 						</div>
 						<div class="cl-news-card__body">

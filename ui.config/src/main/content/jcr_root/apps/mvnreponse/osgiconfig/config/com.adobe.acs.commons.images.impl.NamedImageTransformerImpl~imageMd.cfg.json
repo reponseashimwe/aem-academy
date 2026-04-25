@@ -1,0 +1,7 @@
+{
+  "name": "image-md",
+  "transforms": [
+    "resize:width=640",
+    "quality:quality=75"
+  ]
+}

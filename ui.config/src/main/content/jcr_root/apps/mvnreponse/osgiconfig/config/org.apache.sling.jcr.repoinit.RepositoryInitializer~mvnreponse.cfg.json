@@ -2,6 +2,18 @@
     "scripts": [
         "create path (sling:OrderedFolder) /content/dam/mvnreponse",
         "create path (nt:unstructured) /content/dam/mvnreponse/jcr:content",
-        "set properties on /content/dam/mvnreponse/jcr:content\n  set cq:conf{String} to /conf/mvnreponse\n  set jcr:title{String} to \"MVN Reponse\"\nend"
+        "set properties on /content/dam/mvnreponse/jcr:content\n  set cq:conf{String} to /conf/mvnreponse\n  set jcr:title{String} to \"MVN Reponse\"\nend",
+
+        "create path (sling:Folder) /conf/mvnreponse",
+        "create path (sling:Folder) /conf/mvnreponse/settings",
+        "create path (cq:Page) /conf/mvnreponse/settings/wcm",
+        "create path (cq:Page) /conf/mvnreponse/settings/wcm/templates",
+        "create path (cq:Page) /conf/mvnreponse/settings/wcm/policies",
+
+        "set ACL on /conf/mvnreponse\n  allow jcr:read for everyone\n  allow jcr:read,jcr:write,jcr:versionManagement,jcr:lockManagement,jcr:modifyAccessControl,crx:replicate for template-authors\n  allow crx:replicate for content-authors\nend",
+
+        "set ACL on /conf/mvnreponse/settings/wcm/templates\n  allow jcr:read for everyone\n  allow jcr:read,jcr:write,jcr:versionManagement,jcr:lockManagement,jcr:modifyAccessControl,crx:replicate for template-authors\n  allow crx:replicate for content-authors\nend",
+
+        "set ACL on /conf/mvnreponse/settings/wcm/policies\n  allow jcr:read for everyone\n  allow jcr:read,jcr:write,jcr:versionManagement,jcr:lockManagement,jcr:modifyAccessControl,crx:replicate for template-authors\n  allow crx:replicate for content-authors\nend"
     ]
 }

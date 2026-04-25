@@ -23,7 +23,24 @@
 	</div>
 
 	<div class="${['cl-hero-slide__image-col', 'cl-br-xl', slide.imagePosition == 'left' ? 'cl-br-right' : 'cl-br-left'] @ join=' '}">
-		<sly data-sly-resource="${'image' @ resourceType='academy-codenova/components/atomic/image'}" />
+		<div class="cl-atomic-image" data-sly-test="${slide.heroDesktopSrc}">
+			<picture>
+				<source
+					data-sly-test="${slide.heroDesktopSrcSet}"
+					srcset="${slide.heroDesktopSrcSet @ context='attribute'}"
+					sizes="(max-width: 767px) 100vw, 50vw"/>
+				<img
+					src="${slide.heroDesktopSrc @ context='uri'}"
+					alt="${properties.alt @ context='attribute'}"
+					loading="lazy"/>
+			</picture>
+		</div>
+		<sly data-sly-test="${!slide.heroDesktopSrc && wcmmode.edit}">
+			<img
+				src="/etc.clientlibs/mvnreponse/clientlibs/clientlib-site/resources/images/placeholder.png"
+				alt="Hero image placeholder"
+				class="cmp-image__image cl-image-placeholder"/>
+		</sly>
 	</div>
 </div>
 </sly>
