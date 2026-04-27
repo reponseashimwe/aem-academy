@@ -18,15 +18,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.reponse</groupId>
-        <artifactId>mvn-reponse</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <groupId>com.reponse.mvn</groupId>
+        <artifactId>academy-codenova</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>mvn-reponse.it.tests</artifactId>
-    <name>MVN Reponse - Integration Tests</name>
-    <description>Integration Tests for MVN Reponse</description>
+    <artifactId>academy-codenova.it.tests</artifactId>
+    <name>Academy Codenova - Integration Tests</name>
+    <description>Integration Tests for Academy Codenova</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

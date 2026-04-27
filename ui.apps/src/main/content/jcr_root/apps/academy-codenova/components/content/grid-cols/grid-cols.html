@@ -1,0 +1,19 @@
+<sly data-sly-set.colNum="${properties.columns ? properties.columns : '2'}"></sly>
+<sly data-sly-set.sizeKey="${properties.columnSizes ? properties.columnSizes : 'equal'}"></sly>
+<sly data-sly-set.colClass="${['cl-grid-cols--cols-', colNum] @ join=''}"></sly>
+<sly data-sly-set.sizeClass="${['cl-grid-cols--', sizeKey] @ join=''}"></sly>
+
+<div class="${['cl-grid-cols', colClass, sizeClass, properties.margin] @ join=' ', context='attribute'}">
+	<div class="cl-grid-cols__col">
+		<sly data-sly-resource="${'par1' @ resourceType='wcm/foundation/components/parsys'}"/>
+	</div>
+	<div class="cl-grid-cols__col" data-sly-test="${colNum != '1'}">
+		<sly data-sly-resource="${'par2' @ resourceType='wcm/foundation/components/parsys'}"/>
+	</div>
+	<div class="cl-grid-cols__col" data-sly-test="${colNum == '3' || colNum == '4'}">
+		<sly data-sly-resource="${'par3' @ resourceType='wcm/foundation/components/parsys'}"/>
+	</div>
+	<div class="cl-grid-cols__col" data-sly-test="${colNum == '4'}">
+		<sly data-sly-resource="${'par4' @ resourceType='wcm/foundation/components/parsys'}"/>
+	</div>
+</div>

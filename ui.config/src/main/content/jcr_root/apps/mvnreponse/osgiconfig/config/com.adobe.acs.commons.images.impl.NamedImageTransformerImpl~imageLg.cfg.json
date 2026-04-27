@@ -1,7 +1,0 @@
-{
-  "name": "image-lg",
-  "transforms": [
-    "resize:width=960",
-    "quality:quality=75"
-  ]
-}

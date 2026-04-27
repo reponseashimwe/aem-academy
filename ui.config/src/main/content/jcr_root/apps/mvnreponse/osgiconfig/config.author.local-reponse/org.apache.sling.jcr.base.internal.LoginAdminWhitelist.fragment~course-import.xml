@@ -4,5 +4,5 @@
     xmlns:jcr="http://www.jcp.org/jcr/1.0"
     jcr:primaryType="sling:OsgiConfig"
     whitelist.name="course-import"
-    whitelist.bundles="[mvn-reponse.core]"
+    whitelist.bundles="[academy-codenova.core]"
     whitelist.bundles.regexp=""/>

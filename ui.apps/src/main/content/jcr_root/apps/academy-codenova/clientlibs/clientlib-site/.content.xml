@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:ClientLibraryFolder"
+    allowProxy="{Boolean}true"
+    categories="[academy-codenova.frontend.site]"
+    cssProcessor="[default:none,min:none]"
+    dependencies="[academy-codenova.frontend.dependencies]"
+    jsProcessor="[default:none,min:none]"/>

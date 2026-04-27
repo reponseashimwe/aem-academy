@@ -1,0 +1,45 @@
+.cl-grid-cols {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: $space-md;
+
+	// ── column counts ────────────────────────────────────────────
+	&--cols-1 {
+		grid-template-columns: 1fr;
+	}
+
+	&--cols-2 {
+		grid-template-columns: 1fr 1fr;
+
+		&.cl-grid-cols--big-left  { grid-template-columns: 2fr 1fr; }
+		&.cl-grid-cols--big-right { grid-template-columns: 1fr 2fr; }
+	}
+
+	&--cols-3 {
+		grid-template-columns: 1fr 1fr 1fr;
+
+		&.cl-grid-cols--big-left   { grid-template-columns: 2fr 1fr 1fr; }
+		&.cl-grid-cols--big-right  { grid-template-columns: 1fr 1fr 2fr; }
+		&.cl-grid-cols--big-center { grid-template-columns: 1fr 2fr 1fr; }
+	}
+
+	&--cols-4 {
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+	}
+
+	// ── column cell ──────────────────────────────────────────────
+	&__col {
+		min-width: 0; // prevent overflow in CSS grid
+
+		.par,
+		.parsys {
+			margin: 0;
+		}
+	}
+
+	// ── responsive ──────────────────────────────────────────────
+	@include mobile {
+		grid-template-columns: 1fr !important;
+		gap: $space-sm;
+	}
+}

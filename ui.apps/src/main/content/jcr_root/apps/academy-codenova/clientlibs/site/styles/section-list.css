@@ -1,0 +1,42 @@
+.cl-section-list {
+    background-color: #fff;
+}
+
+.cl-section-list__inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding-inline: 16px;
+    overflow: hidden;
+}
+
+.cl-section-list__title .cmp-title,
+.cl-section-list__title .cmp-title__text {
+    margin: 0;
+}
+
+.cl-section-list__description {
+    margin-top: 16px;
+}
+
+.cl-section-list__description .cmp-text {
+    margin: 0;
+}
+
+.cl-section-list__content {
+    margin-top: 24px;
+}
+
+.cl-section-list__extra {
+    margin-top: 24px;
+}
+
+.cl-section-list__extra:empty {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .cl-section-list__content,
+    .cl-section-list__extra {
+        margin-top: 16px;
+    }
+}

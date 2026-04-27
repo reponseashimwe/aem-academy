@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Component"
+    jcr:title="Hero Image"
+    jcr:description="Image for use inside hero slides. Serves widths optimised for the hero layout (374/650px) only."
+    sling:resourceSuperType="core/wcm/components/image/v3/image"
+    componentGroup="Codeland - Atomic"/>

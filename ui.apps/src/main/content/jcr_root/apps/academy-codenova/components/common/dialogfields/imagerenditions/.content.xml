@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Image Renditions"
+    sling:resourceType="granite/ui/components/coral/foundation/container"
+    margin="{Boolean}true">
+    <items jcr:primaryType="nt:unstructured">
+        <columns
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+            margin="{Boolean}true">
+            <items jcr:primaryType="nt:unstructured">
+                <column
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                    <items jcr:primaryType="nt:unstructured">
+
+                        <renditionsHeading
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/heading"
+                            level="{Long}3"
+                            text="Responsive Image Breakpoints"/>
+
+                        <renditionsDescription
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/well"
+                            text="Pick one rendition for each breakpoint. If one is empty, it falls back to the next larger breakpoint."/>
+
+                        <mobile
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                            fieldLabel="Mobile (up to 767px)"
+                            fieldDescription="Rendition for mobile devices"
+                            name="./renditions/mobile"
+                            emptyOption="{Boolean}true"
+                            emptyText="None">
+                            <datasource
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="academy-codenova/components/datasource/image-renditions"/>
+                        </mobile>
+
+                        <tablet
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                            fieldLabel="Tablet (768px - 1023px)"
+                            fieldDescription="Rendition for tablet devices"
+                            name="./renditions/tablet"
+                            emptyOption="{Boolean}true"
+                            emptyText="None">
+                            <datasource
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="academy-codenova/components/datasource/image-renditions"/>
+                        </tablet>
+
+                        <laptop
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                            fieldLabel="Laptop (1024px - 1279px)"
+                            fieldDescription="Rendition for laptop screens"
+                            name="./renditions/laptop"
+                            emptyOption="{Boolean}true"
+                            emptyText="None">
+                            <datasource
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="academy-codenova/components/datasource/image-renditions"/>
+                        </laptop>
+
+                        <desktop
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                            fieldLabel="Desktop (1280px - 1439px)"
+                            fieldDescription="Rendition for desktop screens"
+                            name="./renditions/desktop"
+                            emptyOption="{Boolean}true"
+                            emptyText="None">
+                            <datasource
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="academy-codenova/components/datasource/image-renditions"/>
+                        </desktop>
+
+                        <large
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                            fieldLabel="Large (1440px+)"
+                            fieldDescription="Rendition for large desktop screens"
+                            name="./renditions/large"
+                            emptyOption="{Boolean}true"
+                            emptyText="None">
+                            <datasource
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="academy-codenova/components/datasource/image-renditions"/>
+                        </large>
+
+                    </items>
+                </column>
+            </items>
+        </columns>
+    </items>
+</jcr:root>

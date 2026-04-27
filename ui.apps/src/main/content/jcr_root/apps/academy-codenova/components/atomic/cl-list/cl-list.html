@@ -1,0 +1,17 @@
+<sly data-sly-use.model="com.reponse.mvn.core.models.ClListModel">
+<sly data-sly-set.bulletType="${properties.bulletType ? properties.bulletType : 'numeric'}"></sly>
+<sly data-sly-set.bulletClass="${['cl-list--', bulletType] @ join=''}"></sly>
+<sly data-sly-set.tabularClass="${properties.tabular ? 'cl-list--tabular' : ''}"></sly>
+
+<div class="${['cl-list__body', bulletClass, tabularClass] @ join=' ', context='attribute'}">
+	<sly data-sly-test="${wcmmode.edit && !model.items}">
+		<div class="cq-placeholder" data-emptytext="${component.title}"></div>
+	</sly>
+	<ol class="cl-list__ol" data-sly-test="${model.items}">
+		<sly data-sly-list.item="${model.items}">
+			<li class="cl-list__item"><span class="cl-list__item-text">${item @ context='html'}</span></li>
+		</sly>
+	</ol>
+</div>
+
+</sly>

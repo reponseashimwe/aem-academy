@@ -1,7 +1,7 @@
 <footer
 	class="cl-footer cl-footer--mode-stable"
 	data-sly-use.nav="com.reponse.mvn.core.models.NavigationModel"
-	data-sly-test.isHomepage="${nav.isHomePage}"
+	data-sly-set.isHomepage="${nav.isHomePage}"
 >
 	<!-- 4-column grid -->
 	<div class="cl-footer__top">
@@ -37,8 +37,3 @@
 		</div>
 	</div>
 </footer>
-
-<sly
-	data-sly-resource="${nav.rootPage.path}/jcr:content/codeland-footer"
-	data-sly-test.isHomepage="${!isHomepage}"
-/>

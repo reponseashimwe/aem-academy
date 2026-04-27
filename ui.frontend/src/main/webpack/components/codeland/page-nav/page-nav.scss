@@ -46,7 +46,8 @@
 		font-weight: 400;
 		color: $color-primary;
 		text-decoration: none;
-		border-bottom: 3px solid transparent;
+		border-top: 3px solid transparent;
+		border-bottom: 0;
 		transition: border-color 0.15s, font-weight 0.15s;
 		white-space: nowrap;
 		cursor: pointer;
@@ -56,13 +57,12 @@
 		}
 
 		&:hover {
-			border-bottom-color: rgba($color-primary, 0.35);
+			border-top-color: rgba($color-primary, 0.35);
 		}
-
-		// First item treated as active by default (can be driven by JS later)
-		.cl-page-nav__item:first-child & {
+		
+		&--active {
 			font-weight: 700;
-			border-bottom-color: $color-primary;
+			border-top-color: $color-primary;
 		}
 	}
 

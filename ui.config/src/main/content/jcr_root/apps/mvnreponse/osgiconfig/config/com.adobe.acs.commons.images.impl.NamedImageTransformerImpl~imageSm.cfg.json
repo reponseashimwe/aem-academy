@@ -1,7 +1,0 @@
-{
-  "name": "image-sm",
-  "transforms": [
-    "resize:width=320",
-    "quality:quality=75"
-  ]
-}

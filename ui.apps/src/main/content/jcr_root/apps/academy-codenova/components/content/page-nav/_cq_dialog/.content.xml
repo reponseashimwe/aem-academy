@@ -19,10 +19,6 @@
                         sling:resourceType="granite/ui/components/coral/foundation/container"
                         margin="{Boolean}true">
                         <items jcr:primaryType="nt:unstructured">
-                            <fields
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/include"
-                                path="/apps/academy-codenova/components/common/dialogfields/utilitylinks"/>
                         </items>
                     </contentTab>
                 </items>

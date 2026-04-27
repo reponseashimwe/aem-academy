@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Grid Columns"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+
+                    <layout
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Layout"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Number of columns"
+                                fieldDescription="Choose how many columns to display."
+                                name="./columns">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <one
+                                        jcr:primaryType="nt:unstructured"
+                                        text="1 column"
+                                        value="1"/>
+                                    <two
+                                        jcr:primaryType="nt:unstructured"
+                                        text="2 columns"
+                                        value="2"
+                                        selected="{Boolean}true"/>
+                                    <three
+                                        jcr:primaryType="nt:unstructured"
+                                        text="3 columns"
+                                        value="3"/>
+                                    <four
+                                        jcr:primaryType="nt:unstructured"
+                                        text="4 columns"
+                                        value="4"/>
+                                </items>
+                            </columns>
+                            <columnSizes
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Column sizes"
+                                fieldDescription="Equal splits columns evenly. Large options give more space to one column (available for 2–3 columns)."
+                                name="./columnSizes">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <equal
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Equal"
+                                        value="equal"
+                                        selected="{Boolean}true"/>
+                                    <bigLeft
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Large left"
+                                        value="big-left"/>
+                                    <bigRight
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Large right"
+                                        value="big-right"/>
+                                    <bigCenter
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Large center (3 cols)"
+                                        value="big-center"/>
+                                </items>
+                            </columnSizes>
+                        </items>
+                    </layout>
+
+                    <styling
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Styling"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <common
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                path="/apps/academy-codenova/components/common/dialogfields/stylingtabminimal"/>
+                        </items>
+                    </styling>
+
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

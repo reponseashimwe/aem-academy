@@ -1,0 +1,15 @@
+<section class="${['cl-list', 'cl-section', properties.margin] @ join=' ', context='attribute'}" data-decorated="${properties.decoration}">
+	<div class="cl-list__inner">
+		<div
+			class="cl-list__description"
+			data-sly-resource="${'description' @ resourceType='academy-codenova/components/atomic/text'}"
+		></div>
+
+		<sly data-sly-resource="${'list' @ resourceType='academy-codenova/components/atomic/cl-list'}"/>
+
+		<div
+			class="cl-list__note"
+			data-sly-resource="${'note' @ resourceType='academy-codenova/components/atomic/text'}"
+		></div>
+	</div>
+</section>

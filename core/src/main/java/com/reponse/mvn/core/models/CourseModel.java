@@ -264,7 +264,7 @@ public class CourseModel {
                             : (course.getTitle() != null ? course.getTitle() : "");
 
                     found.add(new CourseListModel.CourseItem(
-                            courseTitle, iso, human, startEpoch, abs, lnk, lnk, img, img, "", "", tLabels));
+                            courseTitle, iso, human, startEpoch, abs, lnk, lnk, img, img, "", "", "", tLabels));
                 } catch (Exception e) {
                     LOG.warn("CourseModel: skipping related hit", e);
                 }

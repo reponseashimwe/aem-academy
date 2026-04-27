@@ -22,7 +22,7 @@ module.exports = merge(common, {
                         mergeRules: true,
                         normalizeCharset: true,
                         reduceInitial: true, // This is since IE11 does not support the value Initial
-                        svgo: true
+                        svgo: {}
                     }],
                 }
             }),

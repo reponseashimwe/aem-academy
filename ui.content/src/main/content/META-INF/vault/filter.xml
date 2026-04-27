@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
-    <filter root="/conf/mvnreponse" mode="merge"/>
-    <filter root="/content/mvnreponse" mode="merge"/>
-    <filter root="/content/dam/mvnreponse" mode="merge">
-        <exclude pattern="/content/dam/mvnreponse(/.*)?"/>
-        <include pattern="/content/dam/mvnreponse/jcr:content(/.*)?"/>
-        <include pattern="/content/dam/mvnreponse/asset\.jpg(/.*)?"/>
-        <include pattern="/content/dam/mvnreponse/course.*(/.*)?"/>
-    </filter>
-    <filter root="/content/experience-fragments/mvnreponse" mode="merge"/>
-    <filter root="/content/codenova" mode="merge"/>
-    <filter root="/content/cq:tags/academy" mode="merge"/>
-    <filter root="/content/academy-codenova" mode="merge"/>
+    <filter root="/conf/wknd" mode="merge"/>
+    <filter root="/content/wknd" mode="merge"/>
+    <filter root="/content/dam/wknd/asset.jpg" mode="merge"/>
+    <filter root="/content/dam/academy" mode="merge"/>
+    <filter root="/content/dam/academy/placeholder.png" mode="merge"/>
+    <filter root="/content/dam/academy/course-default.avif" mode="merge"/>
+    <filter root="/content/experience-fragments/wknd" mode="merge"/>
 </workspaceFilter>

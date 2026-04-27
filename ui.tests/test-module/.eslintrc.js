@@ -1,13 +1,26 @@
 module.exports = {
-    "plugins": [
-        "cypress",
-        "chai-friendly"
+    extends: [
+        'eslint:recommended',
+        'plugin:wdio/recommended'
     ],
-    "extends": [
-        "plugin:cypress/recommended"
+    env: {
+        commonjs: true,
+        es2017: true,
+        node: true,
+        mocha: true
+    },
+    parserOptions: {
+        ecmaVersion: 9
+    },
+    rules: {
+        'semi': ['error'],
+        'semi-spacing': ['error', { before: false, after: true }],
+        'semi-style': ['error', 'last'],
+        'quotes': ['error', 'single'],
+        'indent': ['error', 4],
+        'no-trailing-spaces': ['error']
+    },
+    'plugins': [
+        'wdio'
     ],
-    "rules": {
-        "no-unused-expressions": 0,
-        "chai-friendly/no-unused-expressions": 2
-    }
-}
+};

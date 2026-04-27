@@ -1,0 +1,39 @@
+<sly data-sly-use.image="com.adobe.cq.wcm.core.components.models.Image" />
+
+<sly data-sly-set.fileRef="${properties.fileReference}" />
+
+<div class="cl-atomic-image">
+	<img
+		data-sly-test="${wcmmode.edit && !fileRef && !image.src}"
+		src="/etc.clientlibs/academy-codenova/clientlibs/clientlib-site/resources/images/placeholder.png"
+		alt="Image placeholder"
+		class="cmp-image__image cl-image-placeholder"
+	/>
+
+	<picture data-sly-test="${fileRef}">
+		<source
+			media="(min-width: 768px)"
+			srcset="${fileRef}.transform/image-650x493/image.jpg 1x, ${fileRef}.transform/image-1300x986/image.jpg 2x"
+		/>
+
+		<source
+			media="(max-width: 767px)"
+			srcset="${fileRef}.transform/image-374x321/image.jpg 1x, ${fileRef}.transform/image-748x642/image.jpg 2x"
+		/>
+
+		<img
+			src="${fileRef}.transform/image-650x493/image.jpg"
+			alt="${image.alt @ context='attribute'}"
+			class="cmp-image__image"
+			loading="lazy"
+		/>
+	</picture>
+
+	<img
+		data-sly-test="${!fileRef && image.src}"
+		src="${image.src @ context='uri'}"
+		alt="${image.alt @ context='attribute'}"
+		class="cmp-image__image"
+		loading="lazy"
+	/>
+</div>

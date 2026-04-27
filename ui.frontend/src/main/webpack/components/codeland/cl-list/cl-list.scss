@@ -1,0 +1,123 @@
+.cl-list {
+	// ── inner container ───────────────────────────────────────────
+	&__inner {
+		max-width: 1240px;
+		margin: 0 auto;
+		padding-inline: 1pc;
+		overflow: hidden;
+	}
+
+	&__description {
+		.cmp-text {
+			margin: 0;
+		}
+	}
+
+	// ── list body (root of atomic/cl-list) ────────────────────────
+	&__body {
+		margin-top: $space-md;
+	}
+
+	&__note {
+		margin-top: $space-sm;
+
+		.cmp-text {
+			margin: 0;
+			font-size: 13px;
+			line-height: 1.5;
+		}
+	}
+
+	&__ol {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		counter-reset: cl-item;
+	}
+
+	&__item {
+		list-style: none;
+		color: $color-primary;
+		font-size: 14px;
+		line-height: 1.6;
+		padding: $space-xs 0;
+		display: grid;
+		grid-template-columns: 2rem 1fr;
+		gap: 4px;
+		align-items: baseline;
+
+		&::before {
+			font-weight: 700;
+			color: $color-primary;
+		}
+	}
+
+	// ── numeric: 1. 2. 3. ────────────────────────────────────────
+	&--numeric &__item {
+		counter-increment: cl-item;
+
+		&::before {
+			content: counter(cl-item) ".";
+		}
+	}
+
+	// ── italic / roman: i. ii. iii. ──────────────────────────────
+	&--italic &__item {
+		counter-increment: cl-item;
+
+		&::before {
+			content: counter(cl-item, lower-roman) ".";
+			font-style: italic;
+		}
+	}
+
+	// ── symbol: ■ ────────────────────────────────────────────────
+	&--symbol &__item {
+		&::before {
+			content: "■";
+			font-size: 8px;
+			padding-top: 5px;
+		}
+	}
+
+	// ── tabular: zero-padded rows in a bordered table layout ──────
+	&--tabular {
+		.cl-list__ol {
+			border: 1px solid $color-primary;
+			border-radius: 0;
+		}
+
+		.cl-list__item {
+			counter-increment: cl-item;
+			list-style: none;
+			border-bottom: 1px solid $color-primary;
+			padding: 0;
+			gap: 0;
+			grid-template-columns: 80px 1fr;
+			align-items: stretch;
+
+			&:last-child {
+				border-bottom: none;
+			}
+
+			&::before {
+				content: "0" counter(cl-item);
+				font-size: 18px;
+				font-weight: 700;
+				font-style: italic;
+				color: $color-primary;
+				border-right: 1px solid $color-primary;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				align-self: stretch;
+				padding: $space-sm $space-md;
+			}
+		}
+
+		.cl-list__item-text {
+			padding: $space-sm $space-md;
+			align-self: center;
+		}
+	}
+}

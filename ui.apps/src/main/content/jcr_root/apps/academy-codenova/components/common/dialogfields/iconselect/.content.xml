@@ -8,7 +8,7 @@
     class="icon-picker"
     fieldLabel="Icon"
     fieldDescription="Optional icon to display before label"
-    name="./customIcon"
+    name="./icon"
     granite:class="icon-picker">
     <items jcr:primaryType="nt:unstructured">
         <none

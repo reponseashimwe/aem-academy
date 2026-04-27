@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="WKND Tools"
+    jcr:description="Custom utilities for the WKND site.">
+    <course-importer
+        jcr:primaryType="nt:unstructured"
+        jcr:title="Course Importer"
+        jcr:description="Import courses from DAM CSV files."
+        icon="import"
+        href="/apps/wknd/components/tools/importer-console.html" />
+    <audit-logs
+        jcr:primaryType="nt:unstructured"
+        jcr:title="Import Audit Logs"
+        jcr:description="View historical reports and real-time logs of course imports."
+        icon="history"
+        href="/apps/wknd/components/tools/audit-logs.html" />
+</jcr:root>

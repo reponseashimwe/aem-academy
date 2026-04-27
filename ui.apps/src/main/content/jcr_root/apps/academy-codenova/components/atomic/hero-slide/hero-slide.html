@@ -1,7 +1,8 @@
-<sly data-sly-use.slide="hero-slide-use.js">
 <sly data-sly-test="${wcmmode.edit || properties.hidden != 'true'}">
+<sly data-sly-set.posClass="${properties.imagePosition == 'left' ? 'cl-hero-slide--img-left' : 'cl-hero-slide--img-right'}"></sly>
+<sly data-sly-set.brSide="${properties.imagePosition == 'left' ? 'cl-br-right' : 'cl-br-left'}"></sly>
 <div
-	class="${['cl-hero-slide', slide.imagePosition == 'left' ? 'cl-hero-slide--img-left' : 'cl-hero-slide--img-right'] @ join=' '}"
+	class="${['cl-hero-slide', posClass] @ join=' '}"
 	data-hero-slide
 >
 	<div class="cl-hero-slide__content">
@@ -22,26 +23,8 @@
 
 	</div>
 
-	<div class="${['cl-hero-slide__image-col', 'cl-br-xl', slide.imagePosition == 'left' ? 'cl-br-right' : 'cl-br-left'] @ join=' '}">
-		<div class="cl-atomic-image" data-sly-test="${slide.heroDesktopSrc}">
-			<picture>
-				<source
-					data-sly-test="${slide.heroDesktopSrcSet}"
-					srcset="${slide.heroDesktopSrcSet @ context='attribute'}"
-					sizes="(max-width: 767px) 100vw, 50vw"/>
-				<img
-					src="${slide.heroDesktopSrc @ context='uri'}"
-					alt="${properties.alt @ context='attribute'}"
-					loading="lazy"/>
-			</picture>
-		</div>
-		<sly data-sly-test="${!slide.heroDesktopSrc && wcmmode.edit}">
-			<img
-				src="/etc.clientlibs/mvnreponse/clientlibs/clientlib-site/resources/images/placeholder.png"
-				alt="Hero image placeholder"
-				class="cmp-image__image cl-image-placeholder"/>
-		</sly>
+	<div class="${['cl-hero-slide__image-col', 'cl-br-xl', brSide] @ join=' '}">
+		<div data-sly-resource="${'image' @ resourceType='academy-codenova/components/atomic/hero-image'}"></div>
 	</div>
 </div>
-</sly>
 </sly>

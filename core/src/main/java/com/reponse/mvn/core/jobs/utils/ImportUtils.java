@@ -119,7 +119,7 @@ public final class ImportUtils {
         for (String p : parts) {
             p = p.trim();
             if (!p.isEmpty()) {
-                result.add(p.contains(":") ? p : "academy:topic/" + p);
+                result.add(p.contains(":") ? p : "academy/topic" + p);
             }
         }
         return result.toArray(new String[0]);

@@ -1,0 +1,6 @@
+{
+  "name": "image-279x180",
+  "transforms": [
+    "resize:width=279&height=180&quality=100"
+  ]
+}

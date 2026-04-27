@@ -1,0 +1,23 @@
+<section class="cl-section-grid-cols cl-section" data-decorated="${properties.decoration}">
+	<a
+		class="cl-section-anchor"
+		data-sly-test="${properties.anchorTitle}"
+		id="${properties.anchorTitle @ context='attribute'}"
+		tabindex="-1"
+	></a>
+	<div class="cl-section-grid-cols__inner">
+
+		<div class="cl-section-grid-cols__title"
+			data-sly-resource="${'title' @ resourceType='academy-codenova/components/atomic/title'}"></div>
+
+		<div class="cl-section-grid-cols__description"
+			data-sly-resource="${'description' @ resourceType='academy-codenova/components/atomic/text'}"></div>
+
+		<div class="cl-section-grid-cols__content"
+			data-sly-resource="${'content' @ resourceType='academy-codenova/components/content/grid-cols'}"></div>
+
+		<div class="cl-section-grid-cols__note"
+			data-sly-resource="${'note' @ resourceType='academy-codenova/components/atomic/text'}"></div>
+
+	</div>
+</section>

@@ -1,0 +1,6 @@
+{
+  "name": "image-984x514",
+  "transforms": [
+    "resize:width=984&height=514&quality=100"
+  ]
+}

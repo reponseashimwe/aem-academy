@@ -3,11 +3,14 @@ package com.reponse.mvn.core.models;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.jcr.Session;
@@ -54,9 +57,6 @@ public class CourseListModel {
     private static final String DEFAULT_COURSES_ROOT = "/content/codehills/courses";
     private static final String COURSE_RESOURCE_TYPE  = "academy-codenova/components/structure/course-page";
     private static final String SLIDER_RESOURCE_TYPE  = "academy-codenova/components/atomic/slider";
-    private static final String COURSE_CARD_TRANSFORM_SM = "image-sm";
-    private static final String COURSE_CARD_TRANSFORM_MD = "image-md";
-    private static final String COURSE_CARD_TRANSFORM_LG = "image-lg";
 
     @OSGiService
     private QueryBuilder queryBuilder;
@@ -68,11 +68,14 @@ public class CourseListModel {
     private SlingHttpServletRequest request;
 
     private List<CourseItem> courses = new ArrayList<>();
+    private List<String> availableTags = new ArrayList<>();
+    private String selectedTag = "";
+    private String currentSortBy = "default";
     private boolean showSortControl;
     private boolean showTagFilter;
     private boolean hideDots;
     private boolean hideNavigation;
-    private static final String COURSE_IMAGE_SIZES = "(max-width: 768px) 88vw, 279px";
+    private static final String COURSE_IMAGE_SIZES = "289px";
 
     @PostConstruct
     protected void init() {
@@ -150,7 +153,17 @@ public class CourseListModel {
                         String label = tagId;
                         if (tagManager != null) {
                             Tag tag = tagManager.resolve(tagId);
-                            if (tag != null) label = tag.getTitle();
+                            if (tag != null) {
+                                label = tag.getTitle();
+                            } else {
+                                int idx = Math.max(tagId.lastIndexOf('/'), tagId.lastIndexOf(':'));
+                                if (idx >= 0 && idx < tagId.length() - 1) {
+                                    label = tagId.substring(idx + 1);
+                                }
+                                if (label.toLowerCase().startsWith("topic")) {
+                                    label = label.substring(5);
+                                }
+                            }
                         }
                         tags.add(label);
                     }
@@ -184,6 +197,7 @@ public class CourseListModel {
                             showMoreLink,
                             imageMeta.src,
                             imageMeta.original,
+                            imageMeta.transform289,
                             imageMeta.srcSet,
                             imageMeta.sizes,
                             tags
@@ -193,6 +207,29 @@ public class CourseListModel {
                 }
             }
             applySort(courses, sortBy);
+            currentSortBy = (sortBy != null && !sortBy.isEmpty()) ? sortBy : "default";
+
+            // Collect all unique tags before visitor-level tag filter
+            Set<String> tagSet = new LinkedHashSet<>();
+            for (CourseItem c : courses) {
+                tagSet.addAll(c.getTags());
+            }
+            List<String> tagList = new ArrayList<>(tagSet);
+            Collections.sort(tagList);
+            availableTags = tagList;
+
+            // Apply visitor-selected tag filter
+            String paramTag = request.getParameter("tag");
+            if (paramTag != null && !paramTag.trim().isEmpty()) {
+                selectedTag = paramTag.trim();
+                List<CourseItem> filtered = new ArrayList<>();
+                for (CourseItem c : courses) {
+                    if (c.getTags().contains(selectedTag)) {
+                        filtered.add(c);
+                    }
+                }
+                courses = filtered;
+            }
         } catch (Exception e) {
             LOG.error("CourseListModel: failed to build courses list", e);
         }
@@ -220,6 +257,18 @@ public class CourseListModel {
 
     public List<CourseItem> getCourses() {
         return courses;
+    }
+
+    public List<String> getAvailableTags() {
+        return availableTags;
+    }
+
+    public String getSelectedTag() {
+        return selectedTag;
+    }
+
+    public String getCurrentSortBy() {
+        return currentSortBy;
     }
 
     public boolean isShowSortControl() {
@@ -272,13 +321,14 @@ public class CourseListModel {
         private final String showMoreLink;
         private final String fileReference;
         private final String fileOriginal;
+        private final String fileTransform279x180;
         private final String fileSrcSet;
         private final String fileSizes;
         private final List<String> tags;
 
         public CourseItem(String title, String startDate, String formattedStartDate, long startDateEpoch,
                           String abstractText, String link, String showMoreLink, String fileReference,
-                          String fileOriginal, String fileSrcSet, String fileSizes, List<String> tags) {
+                          String fileOriginal, String fileTransform279x180, String fileSrcSet, String fileSizes, List<String> tags) {
             this.title              = title;
             this.startDate          = startDate;
             this.formattedStartDate = formattedStartDate;
@@ -288,6 +338,7 @@ public class CourseListModel {
             this.showMoreLink       = showMoreLink;
             this.fileReference      = fileReference;
             this.fileOriginal       = fileOriginal;
+            this.fileTransform279x180 = fileTransform279x180;
             this.fileSrcSet         = fileSrcSet;
             this.fileSizes          = fileSizes;
             this.tags               = tags;
@@ -304,70 +355,61 @@ public class CourseListModel {
         public String getShowMoreLink()        { return showMoreLink; }
         public String getFileReference()       { return fileReference; }
         public String getFileOriginal()        { return fileOriginal; }
+        public String getFileTransform279x180(){ return fileTransform279x180; }
         public String getFileSrcSet()          { return fileSrcSet; }
         public String getFileSizes()           { return fileSizes; }
         public List<String> getTags()          { return tags; }
     }
 
     private ImageMeta resolveCourseImage(Resource content, ResourceResolver resolver) {
-        if (content == null) {
-            return ImageMeta.empty();
-        }
-        String damAssetPath = resolveDamAssetPath(content);
-        if (damAssetPath.startsWith("/content/dam/")) {
-            String sm = buildNamedTransformUrl(damAssetPath, COURSE_CARD_TRANSFORM_SM, resolver);
-            String md = buildNamedTransformUrl(damAssetPath, COURSE_CARD_TRANSFORM_MD, resolver);
-            String lg = buildNamedTransformUrl(damAssetPath, COURSE_CARD_TRANSFORM_LG, resolver);
-            String srcSet = String.join(", ",
-                sm + " 320w",
-                md + " 640w",
-                lg + " 960w"
-            );
-            return new ImageMeta(md, mapOrEmpty(resolver, damAssetPath), srcSet, COURSE_IMAGE_SIZES);
-        }
+        if (content == null) return ImageMeta.empty();
 
-        Resource imageRes = content.getChild("image");
-        if (imageRes != null && modelFactory != null && request != null) {
-            try {
-                Image image = modelFactory.getModelFromWrappedRequest(request, imageRes, Image.class);
-                if (image != null) {
-                    String src = mapOrEmpty(resolver, image.getSrc());
-                    if (!src.isEmpty()) {
-                        return new ImageMeta(src, src, "", COURSE_IMAGE_SIZES);
-                    }
-                }
-            } catch (Exception e) {
-                LOG.debug("CourseListModel: failed to adapt image model at {}", imageRes.getPath(), e);
-            }
-        }
-        String fallback = CourseModel.Fields.resolvePagePrimaryImage(request, content, modelFactory, resolver);
-        return new ImageMeta(fallback, fallback, "", COURSE_IMAGE_SIZES);
-    }
-
-    private String resolveDamAssetPath(Resource content) {
         Resource imageRes = content.getChild("image");
         if (imageRes != null) {
-            String imageRef = imageRes.getValueMap().get("fileReference", "");
-            if (!imageRef.isEmpty()) {
-                return imageRef;
+            String fileRef = imageRes.getValueMap().get("fileReference", "");
+            if (!fileRef.isEmpty()) {
+                // Use ACS Commons named transforms from the DAM asset path.
+                String transformCard = mapOrEmpty(resolver, buildNamedTransform(fileRef, "image-279x180"));
+                return new ImageMeta(transformCard, mapOrEmpty(resolver, fileRef), transformCard, "", COURSE_IMAGE_SIZES);
+            }
+
+            // Image resource exists but no fileReference — try Core Components model adapter
+            if (modelFactory != null && request != null) {
+                try {
+                    Image image = modelFactory.getModelFromWrappedRequest(request, imageRes, Image.class);
+                    if (image != null) {
+                        String src = mapOrEmpty(resolver, image.getSrc());
+                        if (!src.isEmpty()) {
+                            return new ImageMeta(src, src, "", "", COURSE_IMAGE_SIZES);
+                        }
+                    }
+                } catch (Exception e) {
+                    LOG.debug("CourseListModel: failed to adapt image model at {}", imageRes.getPath(), e);
+                }
             }
         }
-        String pageRef = content.getValueMap().get("fileReference", "");
-        return pageRef != null ? pageRef : "";
+
+        String fallback = CourseModel.Fields.resolvePagePrimaryImage(request, content, modelFactory, resolver);
+        return new ImageMeta(fallback, fallback, "", "", COURSE_IMAGE_SIZES);
     }
 
-    private String buildNamedTransformUrl(String damAssetPath, String transformName, ResourceResolver resolver) {
-        String cleanPath = damAssetPath;
-        int queryIdx = cleanPath.indexOf('?');
-        if (queryIdx >= 0) {
-            cleanPath = cleanPath.substring(0, queryIdx);
+    private String buildNamedTransform(String assetPath, String transformName) {
+        if (assetPath == null || assetPath.trim().isEmpty() || transformName == null || transformName.trim().isEmpty()) {
+            return "";
         }
-        int dotIdx = cleanPath.lastIndexOf('.');
-        String ext = dotIdx > -1 && dotIdx < cleanPath.length() - 1
-            ? cleanPath.substring(dotIdx + 1)
-            : "jpg";
-        String transformed = cleanPath + ".transform/" + transformName + "/image." + ext;
-        return mapOrEmpty(resolver, transformed);
+        return assetPath + ".transform/" + transformName + "/image." + getFileExtension(assetPath);
+    }
+
+    private String getFileExtension(String path) {
+        if (path == null || path.trim().isEmpty()) {
+            return "jpg";
+        }
+        String clean = path.split("\\?")[0];
+        int dot = clean.lastIndexOf('.');
+        if (dot > -1 && dot < clean.length() - 1) {
+            return clean.substring(dot + 1);
+        }
+        return "jpg";
     }
 
     private String mapOrEmpty(ResourceResolver resolver, String path) {
@@ -386,18 +428,19 @@ public class CourseListModel {
     private static final class ImageMeta {
         private final String src;
         private final String original;
+        private final String transform289;
         private final String srcSet;
         private final String sizes;
-
-        private ImageMeta(String src, String original, String srcSet, String sizes) {
+        private ImageMeta(String src, String original, String transform289, String srcSet, String sizes) {
             this.src = src != null ? src : "";
             this.original = original != null ? original : "";
+            this.transform289 = transform289 != null ? transform289 : "";
             this.srcSet = srcSet != null ? srcSet : "";
             this.sizes = sizes != null ? sizes : "";
         }
 
         private static ImageMeta empty() {
-            return new ImageMeta("", "", "", "");
+            return new ImageMeta("", "", "", "", "");
         }
     }
 }

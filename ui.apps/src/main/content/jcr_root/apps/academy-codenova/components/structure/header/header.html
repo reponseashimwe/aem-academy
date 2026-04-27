@@ -1,17 +1,12 @@
 <div
 	class="cl-header"
 	data-sly-use.nav="com.reponse.mvn.core.models.NavigationModel"
-	data-sly-test.isHomepage="${nav.isHomePage}"
+	data-sly-set.isHomepage="${nav.isHomePage}"
 >
 	<sly
-		data-sly-resource="${'header-utility' @ resourceType='academy-codenova/components/structure/header/header-utility', cssClassName='editable-component editable-component--header-utility', decoration=true}"
+		data-sly-resource="${'header-utility' @ resourceType='academy-codenova/components/structure/header-utility', cssClassName='editable-component editable-component--header-utility', decoration=true}"
 	/>
 	<sly
-		data-sly-resource="${'header-main' @ resourceType='academy-codenova/components/structure/header/header-main', cssClassName='editable-component editable-component--header-main', decoration=true}"
+		data-sly-resource="${'header-main' @ resourceType='academy-codenova/components/structure/header-main', cssClassName='editable-component editable-component--header-main', decoration=true}"
 	/>
 </div>
-
-<sly
-	data-sly-resource="${nav.rootPage.path}/jcr:content/codeland-header"
-	data-sly-test.isHomepage="${!isHomepage}"
-/>

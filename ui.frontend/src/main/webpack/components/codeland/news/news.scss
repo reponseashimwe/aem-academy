@@ -103,7 +103,10 @@
 		font-size: 13px;
 		font-weight: 500;
 		cursor: pointer;
-		transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+		transition:
+			background-color 0.15s,
+			border-color 0.15s,
+			color 0.15s;
 		white-space: nowrap;
 
 		&:hover {
@@ -133,13 +136,29 @@
 		margin-top: $space-md;
 	}
 
+	&__note {
+		margin-top: $space-sm;
+
+		.cmp-text {
+			margin: 0;
+			font-size: 13px;
+			line-height: 1.5;
+		}
+	}
+
 	&__slides.swiper {
+		overflow: hidden;
+
 		.swiper-wrapper {
+			display: flex;
+			flex-direction: row;
 			align-items: flex-start;
+			height: auto;
 		}
 
 		.swiper-slide {
 			width: 279px;
+			flex-shrink: 0;
 			height: auto;
 			margin-right: 24px; // CSS fallback: matches spaceBetween; Swiper's inline style takes over after init
 		}
@@ -305,3 +324,4 @@
 		}
 	}
 }
+

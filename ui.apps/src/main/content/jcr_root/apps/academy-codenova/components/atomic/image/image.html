@@ -1,45 +1,58 @@
-<sly data-sly-test.hideMobClass="${properties.hideOnMobile ? 'hide-mobile' : ''}"></sly>
-<sly data-sly-test.hideDeskClass="${properties.hideOnDesktop ? 'hide-desktop' : ''}"></sly>
+<sly data-sly-use.image="com.adobe.cq.wcm.core.components.models.Image"></sly>
+<sly data-sly-use.responsiveImg="com.reponse.mvn.core.models.ResponsiveImage"></sly>
+<sly data-sly-set.renderSrc="${image.src || responsiveImg.fallbackSrc}"></sly>
+<sly data-sly-set.hideMobClass="${properties.hideOnMobile ? 'hide-mobile' : ''}"></sly>
+<sly data-sly-set.hideDeskClass="${properties.hideOnDesktop ? 'hide-desktop' : ''}"></sly>
 <sly data-sly-set.brClass=""></sly>
-<sly data-sly-set.brSide=""></sly>
-<sly
-	data-sly-test="${properties.borderRadius}"
-	data-sly-set.brClass="${['cl-br-', properties.borderRadius] @ join=''}"
-></sly>
-<sly
-	data-sly-test="${properties.borderRadiusSide}"
-	data-sly-set.brSide="${['cl-br-', properties.borderRadiusSide] @ join=''}"
-></sly>
-
-<sly data-sly-test.hasDesktopImage="${properties.fileReference || properties.fileName}"></sly>
-<sly data-sly-test.hasMobileImage="${properties.mobileFileReference || properties.mobileFileName}"></sly>
-<sly data-sly-set.mobileSrc="${properties.mobileFileReference ? properties.mobileFileReference : [resource.path, '/mobileFile'] @ join=''}"></sly>
-<sly data-sly-test.hasImage="${hasDesktopImage || hasMobileImage}"></sly>
-<sly data-sly-set.mobileMod="${hasMobileImage ? 'cl-atomic-image--has-mobile' : ''}"></sly>
+<sly data-sly-set.brSideClass=""></sly>
+<sly data-sly-test="${properties.borderRadius}" data-sly-set.brClass="${['cl-br-', properties.borderRadius] @ join=''}"></sly>
+<sly data-sly-test="${properties.borderRadiusSide}" data-sly-set.brSideClass="${['cl-br-', properties.borderRadiusSide] @ join=''}"></sly>
 
 <div
-	class="${['cl-atomic-image', mobileMod, properties.aspectRatio, brClass, brSide, properties.objectFit, properties.componentWidth, properties.opacity, properties.margin, properties.marginX, hideMobClass, hideDeskClass] @ join=' '}"
+	class="${[
+        'cl-atomic-image',
+        properties.aspectRatio,
+        properties.objectFit,
+        properties.componentWidth,
+        properties.opacity,
+        properties.margin,
+        properties.marginX,
+        hideMobClass,
+        hideDeskClass,
+        brClass,
+        brSideClass
+    ] @ join=' '}"
 >
-	<sly data-sly-test="${wcmmode.edit && !hasImage}">
-		<img
-			src="/etc.clientlibs/mvnreponse/clientlibs/clientlib-site/resources/images/placeholder.png"
-			alt="Image placeholder"
-			class="cmp-image__image cl-image-placeholder"
-		/>
-	</sly>
+	<img
+		data-sly-test="${wcmmode.edit && !renderSrc}"
+		src="/etc.clientlibs/academy-codenova/clientlibs/clientlib-site/resources/images/placeholder.png"
+		alt="Image placeholder"
+		class="cmp-image__image cl-image-placeholder"
+	/>
 
-	<sly data-sly-test="${hasImage}">
-		<sly data-sly-test="${hasDesktopImage}">
-			<sly data-sly-resource="${resource @ resourceType='core/wcm/components/image/v3/image'}" />
-		</sly>
-
-		<sly data-sly-test="${hasMobileImage}">
-			<img
-				src="${mobileSrc}"
-				alt="${properties.mobileAlt ? properties.mobileAlt : (properties.alt ? properties.alt : '')}"
-				class="${['cl-image__mobile-img', hasDesktopImage ? '' : 'cl-image__mobile-img--all'] @ join=' '}"
-				loading="lazy"
+	<picture data-sly-test="${responsiveImg.hasRenditions}">
+		<sly data-sly-list.r="${responsiveImg.renditions.values}">
+			<sly data-sly-set.currentSrcset="${r.srcset}"></sly>
+			<source
+				data-sly-test="${currentSrcset}"
+				media="${r.media @ context='attribute'}"
+				srcset="${currentSrcset @ context='attribute'}"
 			/>
 		</sly>
-	</sly>
+
+		<img
+			src="${responsiveImg.fallbackSrc @ context='uri'}"
+			alt="${responsiveImg.alt @ context='attribute'}"
+			class="cmp-image__image"
+			loading="lazy"
+		/>
+	</picture>
+
+	<img
+		data-sly-test="${!responsiveImg.hasRenditions && renderSrc}"
+		src="${renderSrc @ context='uri'}"
+		alt="${responsiveImg.alt @ context='attribute'}"
+		class="cmp-image__image"
+		loading="lazy"
+	/>
 </div>

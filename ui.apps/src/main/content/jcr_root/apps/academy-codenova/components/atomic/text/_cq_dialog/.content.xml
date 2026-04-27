@@ -43,6 +43,10 @@
                                                         jcr:primaryType="nt:unstructured"
                                                         text="Body LG"
                                                         value="body-lg"/>
+                                                    <bodyXs
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Body XS"
+                                                        value="body-xs"/>
                                                     <caption
                                                         jcr:primaryType="nt:unstructured"
                                                         text="Caption"

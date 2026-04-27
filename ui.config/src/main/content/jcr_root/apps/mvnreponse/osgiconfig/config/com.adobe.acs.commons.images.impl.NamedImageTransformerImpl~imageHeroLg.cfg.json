@@ -1,7 +1,0 @@
-{
-  "name": "image-hero-lg",
-  "transforms": [
-    "resize:width=1600",
-    "quality:quality=82"
-  ]
-}

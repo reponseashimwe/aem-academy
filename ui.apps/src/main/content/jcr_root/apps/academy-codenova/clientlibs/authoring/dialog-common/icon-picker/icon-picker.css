@@ -1,3 +1,13 @@
+@font-face {
+	font-family: "codeland";
+	src:
+		url("/etc.clientlibs/wknd/clientlibs/clientlib-site/resources/fonts/cl-icons/codeland.ttf") format("truetype"),
+		url("/etc.clientlibs/wknd/clientlibs/clientlib-site/resources/fonts/cl-icons/codeland.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+	font-display: block;
+}
+
 .icon-picker coral-selectlist-item::before,
 .icon-picker .coral3-Select-label::before {
 	font-family: "codeland" !important;

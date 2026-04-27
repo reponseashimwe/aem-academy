@@ -1,3 +1,5 @@
-styles/main.css
 styles/hero-slider.css
 styles/courses-grid.css
+styles/section-list.css
+styles/section-grid-cols.css
+styles/section-text-boxes.css

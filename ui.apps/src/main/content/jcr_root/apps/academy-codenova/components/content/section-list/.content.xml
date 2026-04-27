@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Component"
+    jcr:title="Section: List"
+    jcr:description="Section with a styled list, editable title, description, and an extra content area."
+    sling:resourceSuperType="academy-codenova/components/content/section"
+    componentGroup="Codeland - Content"/>

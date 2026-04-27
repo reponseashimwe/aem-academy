@@ -1,4 +1,4 @@
 {
   "whitelist.name": "course-import",
-  "whitelist.bundles": [ "mvn-reponse.core" ]
+  "whitelist.bundles": [ "academy-codenova.core" ]
 }

@@ -1,48 +1,98 @@
-<section
-	class="cl-news cl-section"
-	data-decorated="${properties.decoration}"
-	data-courses-url="${resource.path}.courses.json"
-	data-default-img="/etc.clientlibs/mvnreponse/clientlibs/clientlib-site/resources/images/course-default.avif"
->
-	<div class="cl-news__inner">
-		<div
-			class="cl-news__title"
-			data-sly-resource="${'title' @ resourceType='academy-codenova/components/atomic/title'}"
-		></div>
-
-		<div
-			class="cl-news__description"
-			data-sly-resource="${'description' @ resourceType='academy-codenova/components/atomic/text'}"
-		></div>
-
-		<div class="cl-news__controls">
+<sly data-sly-use.model="${'com.reponse.mvn.core.models.CourseListModel'}">
+			<section
+		class="cl-news cl-section"
+		data-decorated="${properties.decoration}"
+	>
+		<a
+			class="cl-section-anchor"
+			data-sly-test="${properties.anchorTitle}"
+			id="${properties.anchorTitle @ context='attribute'}"
+			tabindex="-1"
+		></a>
+		<div class="cl-news__inner">
 			<div
-				class="cl-news__tag-filter"
-				data-news-tag-filter
-				style="display: none"
+				class="cl-news__title"
+				data-sly-resource="${'title' @ resourceType='academy-codenova/components/atomic/title'}"
 			></div>
-			<div
-				class="cl-news__sort-wrap"
-				data-news-sort-wrap
-				style="display: none"
-			>
-				<label class="cl-news__sort-label">Sort by</label>
-				<select
-					class="cl-news__sort-select"
-					data-news-sort
-				>
-					<option value="default">Default</option>
-					<option value="startDate_asc">Start Date — Oldest First</option>
-					<option value="startDate_desc">Start Date — Newest First</option>
-					<option value="title_asc">Title — A to Z</option>
-					<option value="title_desc">Title — Z to A</option>
-				</select>
-			</div>
-		</div>
 
-		<div
-			class="cl-news__slider"
-			data-sly-resource="${'slider' @ resourceType='academy-codenova/components/atomic/slider'}"
-		></div>
-	</div>
-</section>
+			<div
+				class="cl-news__description"
+				data-sly-resource="${'description' @ resourceType='academy-codenova/components/atomic/text'}"
+			></div>
+
+			<div
+				class="cl-news__controls"
+				data-sly-test="${(model.showTagFilter && !model.availableTags.empty) || model.showSortControl}"
+			>
+				<div
+					class="cl-news__tag-filter"
+					data-news-tag-filter
+					data-sly-test="${model.showTagFilter && !model.availableTags.empty}"
+				>
+					<button
+						class="${['cl-news__tag-chip', !model.selectedTag ? 'cl-news__tag-chip--active' : ''] @ join=' '}"
+						data-tag=""
+					>
+						All
+					</button>
+					<sly data-sly-list.tag="${model.availableTags}">
+						<button
+							class="${['cl-news__tag-chip', tag == model.selectedTag ? 'cl-news__tag-chip--active' : ''] @ join=' '}"
+							data-tag="${tag}"
+						>
+							${tag}
+						</button>
+					</sly>
+				</div>
+
+				<div
+					class="cl-news__sort-wrap"
+					data-news-sort-wrap
+					data-sly-test="${model.showSortControl}"
+				>
+					<label class="cl-news__sort-label">Sort by</label>
+					<select
+						class="cl-news__sort-select"
+						data-news-sort
+					>
+						<option
+							value="default"
+							data-sly-attribute.selected="${model.currentSortBy == 'default' || !model.currentSortBy}"
+						>
+							Default
+						</option>
+						<option
+							value="startDate_asc"
+							data-sly-attribute.selected="${model.currentSortBy == 'startDate_asc'}"
+						>
+							Start Date — Oldest First
+						</option>
+						<option
+							value="startDate_desc"
+							data-sly-attribute.selected="${model.currentSortBy == 'startDate_desc'}"
+						>
+							Start Date — Newest First
+						</option>
+						<option
+							value="title_asc"
+							data-sly-attribute.selected="${model.currentSortBy == 'title_asc'}"
+						>
+							Title — A to Z
+						</option>
+						<option
+							value="title_desc"
+							data-sly-attribute.selected="${model.currentSortBy == 'title_desc'}"
+						>
+							Title — Z to A
+						</option>
+					</select>
+				</div>
+			</div>
+
+			<div
+				class="cl-news__slider"
+				data-sly-resource="${'slider' @ resourceType='academy-codenova/components/atomic/slider'}"
+			></div>
+		</div>
+	</section>
+</sly>

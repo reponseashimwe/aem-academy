@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    decoration="{Boolean}true">
+
+    <title
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="academy-codenova/components/atomic/title"
+        jcr:title="Section Title"
+        type="h2"
+        typographyVariant="title-3"
+        showDecorator="true"/>
+
+    <description
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="academy-codenova/components/atomic/text"
+        text="&lt;p&gt;Section description.&lt;/p&gt;"/>
+
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="academy-codenova/components/atomic/cl-list"
+        bulletType="numeric">
+        <items jcr:primaryType="nt:unstructured">
+            <item0 jcr:primaryType="nt:unstructured" text="First list item"/>
+            <item1 jcr:primaryType="nt:unstructured" text="Second list item"/>
+            <item2 jcr:primaryType="nt:unstructured" text="Third list item"/>
+        </items>
+    </content>
+
+    <note
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="academy-codenova/components/atomic/text"
+        text="&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; Optional supporting note.&lt;/p&gt;"
+        textVariant="body-xs"/>
+
+</jcr:root>

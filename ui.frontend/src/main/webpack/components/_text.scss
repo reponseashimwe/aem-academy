@@ -55,6 +55,11 @@
 		font-size: 1rem; // 16px
 	}
 
+	&.body-xs {
+		font-size: 0.75rem; // 12px
+		line-height: 1.5;
+	}
+
 	&.caption {
 		font-size: 0.75rem; // 12px
 		text-transform: uppercase;

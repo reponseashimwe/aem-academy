@@ -42,3 +42,10 @@ body.cq-wcm-edit .editable-component::before {
 	border-radius: 3px;
 	z-index: 3;
 }
+
+// Keep AEM authoring drop zones compact across all section containers.
+.section .new.section,
+.cl-section .new.section {
+	min-height: 2.5rem;
+	padding: 0.25rem 0;
+}

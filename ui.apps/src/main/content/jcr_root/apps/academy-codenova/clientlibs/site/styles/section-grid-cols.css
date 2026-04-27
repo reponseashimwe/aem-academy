@@ -1,0 +1,42 @@
+.cl-section-grid-cols {
+    background-color: #fff;
+}
+
+.cl-section-grid-cols__inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding-inline: 16px;
+    overflow: hidden;
+}
+
+.cl-section-grid-cols__title .cmp-title,
+.cl-section-grid-cols__title .cmp-title__text {
+    margin: 0;
+}
+
+.cl-section-grid-cols__description {
+    margin-top: 16px;
+}
+
+.cl-section-grid-cols__description .cmp-text {
+    margin: 0;
+}
+
+.cl-section-grid-cols__content {
+    margin-top: 24px;
+}
+
+.cl-section-grid-cols__extra {
+    margin-top: 24px;
+}
+
+.cl-section-grid-cols__extra:empty {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .cl-section-grid-cols__content,
+    .cl-section-grid-cols__extra {
+        margin-top: 16px;
+    }
+}

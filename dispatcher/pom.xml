@@ -7,16 +7,16 @@
     <!-- P A R E N T  P R O J E C T  D E S C R I P T I O N                      -->
     <!-- ====================================================================== -->
     <parent>
-        <groupId>com.reponse</groupId>
-        <artifactId>mvn-reponse</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <groupId>com.reponse.mvn</groupId>
+        <artifactId>academy-codenova</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>mvn-reponse.dispatcher.ams</artifactId>
-    <name>MVN Reponse - Dispatcher</name>
+    <artifactId>academy-codenova.dispatcher.ams</artifactId>
+    <name>Academy Codenova - Dispatcher</name>
     <packaging>pom</packaging>
-    <description>HTTP &amp; Dispatcher configurations for MVN Reponse</description>
+    <description>HTTP &amp; Dispatcher configurations for Academy Codenova</description>
 
     <build>
         <plugins>
@@ -59,19 +59,19 @@
                                         </requireTextFileChecksum>
                                         <requireTextFileChecksum>
                                             <file>src/conf.d/available_vhosts/aem_author.vhost</file>
-                                            <checksum>ee43c9e5bab4f7dbf867e190765ff359</checksum>
+                                            <checksum>fa7c0d59c0caec1432b053612c4974fe</checksum>
                                             <type>md5</type>
                                             <message>There have been changes detected in a file which is supposed to be immutable according to https://helpx.adobe.com/experience-manager/kb/ams-dispatcher-manual/immutable-files.html: src/conf.d/available_vhosts/aem_author.vhost</message>
                                         </requireTextFileChecksum>
                                         <requireTextFileChecksum>
                                             <file>src/conf.d/available_vhosts/aem_publish.vhost</file>
-                                            <checksum>81f42cc9bde5c88586db0281ea8cc391</checksum>
+                                            <checksum>c1a10665fff98ec307e212807fe039a4</checksum>
                                             <type>md5</type>
                                             <message>There have been changes detected in a file which is supposed to be immutable according to https://helpx.adobe.com/experience-manager/kb/ams-dispatcher-manual/immutable-files.html: src/conf.d/available_vhosts/aem_publish.vhost</message>
                                         </requireTextFileChecksum>
                                         <requireTextFileChecksum>
                                             <file>src/conf.d/available_vhosts/aem_lc.vhost</file>
-                                            <checksum>de40c076a52d21e850ea8f5149ad6c3a</checksum>
+                                            <checksum>3159631176f3cd55efb275b640461165</checksum>
                                             <type>md5</type>
                                             <message>There have been changes detected in a file which is supposed to be immutable according to https://helpx.adobe.com/experience-manager/kb/ams-dispatcher-manual/immutable-files.html: src/conf.d/available_vhosts/aem_lc.vhost</message>
                                         </requireTextFileChecksum>

@@ -1,4 +1,10 @@
 <section class="${['cl-section', properties.margin] @ join=' ', context='attribute'}" data-decorated="${properties.decoration}">
+	<a
+		class="cl-section-anchor"
+		data-sly-test="${properties.anchorTitle}"
+		id="${properties.anchorTitle @ context='attribute'}"
+		tabindex="-1"
+	></a>
 	<div class="page-section">
 		<sly data-sly-resource="${'par' @ resourceType='wcm/foundation/components/parsys'}"/>
 	</div>

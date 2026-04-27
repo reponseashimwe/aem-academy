@@ -1,0 +1,6 @@
+{
+  "name": "image-800x800",
+  "transforms": [
+    "resize:width=800&height=800&quality=100"
+  ]
+}

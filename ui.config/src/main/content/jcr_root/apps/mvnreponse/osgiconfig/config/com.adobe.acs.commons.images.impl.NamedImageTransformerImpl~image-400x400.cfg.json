@@ -1,0 +1,6 @@
+{
+  "name": "image-400x400",
+  "transforms": [
+    "resize:width=400&height=400&quality=100"
+  ]
+}

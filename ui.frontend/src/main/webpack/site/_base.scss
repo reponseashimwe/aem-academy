@@ -142,7 +142,7 @@ main,
 		padding-block: 32px;
 	}
 
-	&[data-decorated="true"] {
+	&:not([data-decorated="false"]) {
 		padding-block-start: 0;
 
 		&::before {
